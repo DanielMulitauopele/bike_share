@@ -48,4 +48,26 @@ ActiveRecord::Schema.define(version: 20180908174033) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "trips", force: :cascade do |t|
+    t.integer "duration"
+    t.datetime "start_date"
+    t.integer "start_station"
+    t.datetime "end_date"
+    t.integer "end_station"
+    t.integer "bike_id"
+    t.string "subscription_type"
+    t.integer "zip_code"
+
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 end
