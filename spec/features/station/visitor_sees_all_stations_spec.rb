@@ -5,6 +5,7 @@ describe 'visitor sees all stations' do
     before(:each) do
       @station1 = Station.create(name: 'Wash Park East', dock_count: 10, city: 'Denver', installation_date: '09/01/2018')
       @station2 = Station.create(name: 'Yale St', dock_count: 5, city: 'Englewood', installation_date: '09/02/2018')
+      
     end
     it "displays all stations" do
       visit stations_path
