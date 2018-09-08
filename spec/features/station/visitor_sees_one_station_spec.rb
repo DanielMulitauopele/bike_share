@@ -11,10 +11,11 @@ describe 'visitor sees one station' do
 
       click_on @station.name
 
+      expect(current_path).to eq('/stations/wash-park-east')
       expect(page).to have_content(@station.name)
       expect(page).to have_content(@station.dock_count)
       expect(page).to have_content(@station.city)
       expect(page).to have_content(@station.installation_date)
     end
   end
-end 
+end
