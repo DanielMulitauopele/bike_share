@@ -11,7 +11,7 @@ describe 'as a visitor' do
 
       expect(page).to have_content(header)
       expect(page).to have_content("Date: #{@condition.date}")
-      save_and_open_page
+
       within('.condition-number-1') do
         expect(page).to have_content("Max Temperature: #{@condition.max_temperature}")
         expect(page).to have_content("Mean Temperature: #{@condition.mean_temperature}")
