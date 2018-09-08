@@ -4,5 +4,9 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   
   resources :stations
+
+  resources :trips, only: [:index]
+
   resources :conditions, only: [:index]
+
 end
