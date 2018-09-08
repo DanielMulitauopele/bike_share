@@ -11,11 +11,17 @@ describe 'visitor sees all bike accessories' do
 
     it "displays all bike accessories" do
       visit '/bike-shop'
-require "pry"; binding.pry
+
       expect(page).to have_content(@accessory1.title)
       expect(page).to have_content(@accessory2.title)
       expect(page).to have_content(@accessory3.title)
       expect(page).to have_content(@accessory4.title)
+    end
+
+    it "displays a cart button" do
+      visit '/bike-shop'
+
+      expect(page).to have_link('Add to Cart')
     end
   end
 end
