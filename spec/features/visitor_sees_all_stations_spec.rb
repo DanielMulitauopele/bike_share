@@ -8,7 +8,7 @@ describe 'visitor sees all stations' do
     end
     it "displays all stations" do
       visit stations_path
-save_and_open_page
+
       expect(page).to have_content(@station1.name)
       expect(page).to have_content(@station1.dock_count)
       expect(page).to have_content(@station1.city)
