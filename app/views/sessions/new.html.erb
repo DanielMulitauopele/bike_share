@@ -1,7 +1,4 @@
 
-
-<h1> Please log in or sign up if you are not a registered user, yet! </h1>
-
 <%= form_tag login_path do %>
 
   <%= label_tag :email %>
@@ -12,4 +9,6 @@
 
   <%= submit_tag 'Login' %>
 <% end %>
+
+<%= link_to 'Create Account', new_user_path %>
   
