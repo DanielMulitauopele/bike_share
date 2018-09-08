@@ -1,0 +1,12 @@
+<h1>All Stations</h1>
+
+<ul id="stations">
+  <% @stations.each do |station| %>
+    <li>
+      <strong>Station: <%= station.name %></strong>
+      Dock Count: <%= station.dock_count %>
+      City: <%= station.city %>
+      Installed: <%= station.installation_date %>
+    </li>
+  <% end %>
+</ul>
