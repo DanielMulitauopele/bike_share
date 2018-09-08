@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   
   resources :stations, only: [:show, :index]
 
-  resources :trips, only: [:index]
+  resources :trips, only: [:index, :show]
 
-  resources :conditions, only: [:index]
+  resources :conditions, only: [:index, :show]
 
 end
