@@ -14,4 +14,6 @@ Rails.application.routes.draw do
 
   resources :conditions, only: [:index, :show]
 
+  get '/bike-shop', to: 'accessories#index'
+
 end

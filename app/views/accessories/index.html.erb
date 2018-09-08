@@ -1,0 +1,7 @@
+<h1>Bike Accessories</h1>
+
+<% @accessories.each do |item| %>
+  <%= item.image %>
+  <%= item.title %>
+  <%= link_to "Add to Cart" %>
+<% end %>
