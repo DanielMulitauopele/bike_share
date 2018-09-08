@@ -4,4 +4,8 @@ class TripsController< ApplicationController
     @trips = Trip.page(@page).per(30)
   end
 
+  def show
+    @trip = Trip.find(params[:id])
+  end
+
 end
