@@ -25,5 +25,11 @@ describe 'as a visitor' do
       expect(page).to have_content("Mean Wind Speed: #{@condition.mean_wind_speed}")
       expect(page).to have_content("Precipitation: #{@condition.precipitation}")
     end
+    it 'should be able to take visitor back to index page' do
+      visit condition_path(@condition)
+
+      click_on('Return to All Conditions Page')
+      expect(current_path).to eq(conditions_path)
+    end
   end
 end
