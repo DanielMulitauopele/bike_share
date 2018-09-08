@@ -7,6 +7,6 @@ Rails.application.routes.draw do
 
   resources :trips, only: [:index, :show]
 
-  resources :conditions, only: [:index]
+  resources :conditions, only: [:index, :show]
 
 end
