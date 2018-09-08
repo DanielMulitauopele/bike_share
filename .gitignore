@@ -20,3 +20,6 @@
 
 # Ignore simplecov coverage
 /coverage
+
+# Ignore global ctags
+/tags
