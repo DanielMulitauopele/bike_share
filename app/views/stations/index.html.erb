@@ -3,7 +3,7 @@
 <ul id="stations">
   <% @stations.each do |station| %>
     <li>
-      <strong>Station: <%= station.name %></strong>
+      Station: <%= link_to station.name, station_path(station), class: 'stations-name' %>
       Dock Count: <%= station.dock_count %>
       City: <%= station.city %>
       Installed: <%= station.installation_date %>
