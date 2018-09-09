@@ -7,12 +7,10 @@ Rails.application.routes.draw do
   get '/dashboard' => 'users#dashboard'
 
   resources :users, only: [:new, :create]
-
   resources :stations, only: [:show, :index]
-
   resources :trips, only: [:index, :show]
-
   resources :conditions, only: [:index, :show]
+  resources :carts, only: [:create]
 
   resources :accessories, only: [:show]
 

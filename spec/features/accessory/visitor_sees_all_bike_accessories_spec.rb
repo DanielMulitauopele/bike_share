@@ -21,7 +21,7 @@ describe 'visitor sees all bike accessories' do
     it "displays a cart button" do
       visit '/bike-shop'
 
-      expect(page).to have_link('Add to Cart')
+      expect(page).to have_button('Add to Cart')
     end
   end
 end
