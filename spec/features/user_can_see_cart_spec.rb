@@ -5,6 +5,7 @@ describe 'Visitor sees all items in the cart' do
     accessory_1 = create(:accessory)
     accessory_2 = create(:accessory, title: 'an accessory')
     accessory_3 = create(:accessory, title: 'an accessory again')
+    user = create(:user)
 
     visit bike_shop_path
 
@@ -20,6 +21,12 @@ describe 'Visitor sees all items in the cart' do
       click_on 'Add to Cart'
     end
 
+    visit login_path
+
+    fill_in 'login_email', with: user.email
+    fill_in 'login_password', with: '1234'
+    click_button 'Login'
+
     within('#Cart-Header') do
       click_on 'Cart'
     end
@@ -32,7 +39,6 @@ describe 'Visitor sees all items in the cart' do
     expect(page).to have_content(accessory_3.title)
     expect(page).to have_content("price: #{accessory_3.price}")
     expect(page).to have_content(90)
-
 
     expect(current_path).to eq(carts_path)
   end

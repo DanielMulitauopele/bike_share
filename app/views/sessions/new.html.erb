@@ -1,14 +1,16 @@
 
-<%= form_tag login_path do %>
-
-  <%= label_tag :email %>
-  <%= text_field_tag :email %>
-
-  <%= label_tag :password %>
-  <%= password_field_tag :password %>
-
-  <%= submit_tag 'Login' %>
+<h1>Log In</h1>
+<%= form_for :login do |f| %>
+  <div>
+    <%= f.label :email %>
+    <%= f.text_field :email, autofocus: true %>
+  </div>
+  <div>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  <div>
+    <%= f.submit "Login" %>
+  </div>
 <% end %>
 
-<%= link_to 'Create Account', new_user_path %>
-  
