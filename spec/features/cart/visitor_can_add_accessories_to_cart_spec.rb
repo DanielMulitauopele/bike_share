@@ -6,17 +6,21 @@ RSpec.describe 'when a visitor adds an accessory to their cart' do
     visit bike_shop_path
 
     click_button 'Add to Cart'
+    expect(page).to have_content("You have added an #{accessory.title} to your cart!")
 
+    click_button('Add to Cart')
     expect(page).to have_content("You have added an #{accessory.title} to your cart!")
   end
-  it "the cart can add multiple items" do
+
+  it "should increment items in cart" do
     accessory = create(:accessory)
+
     visit bike_shop_path
 
-    click_button('Add to Cart')
-    expect(page).to have_content("You have added an #{accessory.title} to your cart!")
+    expect(page).to have_content("Cart: 0")
 
     click_button('Add to Cart')
-    expect(page).to have_content("You have added an #{accessory.title} to your cart!")
+
+    expect(page).to have_content("Cart: 1")
   end
 end
