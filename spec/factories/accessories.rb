@@ -4,6 +4,6 @@ FactoryBot.define do
       description {'A thing for your bike'}
       price {30}
       status {0}
-      image {'image.jpg'}
+      image {'default-image.jpg'}
   end
 end

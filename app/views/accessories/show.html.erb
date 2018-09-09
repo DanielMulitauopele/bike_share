@@ -1,0 +1,8 @@
+<h1><%= @accessory.title %></h1>
+
+<%= image_tag('default-image.jpg', class: 'default-image') %>
+<ul>
+  <li><%= @accessory.description %></li>
+  <li><%= number_to_currency(@accessory.price) %></li>
+</ul>
+<%= button_to "Add to Cart", carts_path(accessory_id: @accessory.id) %>
