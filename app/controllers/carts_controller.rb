@@ -16,5 +16,9 @@ class CartsController < ApplicationController
     @cart.contents.each do |key, value|
       @new_hash[Accessory.find(key.to_i)] = value
     end
+    @total = 0
+    @new_hash.each do |key, value|
+      @total += (key.price * value).to_i
+    end
   end
 end

@@ -24,13 +24,14 @@ describe 'Visitor sees all items in the cart' do
       click_on 'Cart'
     end
 
+
      expect(page).to have_content(accessory_1.title)
      expect(page).to have_content("price: #{accessory_1.price}")
      expect(page).to have_content(accessory_2.title)
      expect(page).to have_content("price: #{accessory_2.price}")
     expect(page).to have_content(accessory_3.title)
     expect(page).to have_content("price: #{accessory_3.price}")
-    save_and_open_page
+    expect(page).to have_content(90)
 
 
     expect(current_path).to eq(carts_path)
