@@ -13,7 +13,7 @@ describe 'visitor sees one accessory' do
 
       # visit bike_shop_path
       visit accessory_path(@accessory)
-save_and_open_page
+
       expect(page).to have_content(@accessory.title)
       expect(page).to have_css("img[src*='default-image']", visible: false)
       expect(page).to have_content(@accessory.description)
