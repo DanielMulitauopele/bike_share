@@ -1,7 +1,10 @@
 <h1>Bike Accessories</h1>
 
 <% @accessories.each do |item| %>
+  <div id="accessory-<%= item.id %>">
+
   <%= item.image %>
   <%= item.title %>
-  <%= link_to "Add to Cart" %>
+  <%= button_to 'Add to Cart', carts_path(accessory_id: item.id) %>
+  </div>
 <% end %>
