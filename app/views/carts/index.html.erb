@@ -1,0 +1,22 @@
+<h1>Cart Items</h1>
+
+  <table style="width:100%">
+  <tr>
+    <th>Item</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Sub-Total</th>
+    <th>Delete</th>
+  </tr>
+<% @new_hash.each do |key, value| %>
+  <tr>
+  <td> <%= key.title %></td>
+  <td>price: <%= key.price %></td>
+  <td> <%= value %></td>
+  <td> <%= (key.price * value) %></td>
+  <td> <%= link_to 'Remove', carts_path(accessory_id: key), method: :delete %></td>
+  </tr>
+<% end %>
+</tr>
+  </table>
+  <td><%= @total %></td>

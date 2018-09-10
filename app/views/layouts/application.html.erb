@@ -16,17 +16,10 @@
     <% end %>
 
     <hr>
-
-    <% if notice %>
-      <%= notice %>
-    <% end %>
-
-    <% if alert %>
-        <%= alert %>
-    <% end %>
-
-    <p>Cart: <%= @cart.total_count %></p>
-
+<% flash.each do |type, message| %>
+  <%= content_tag :div, message.html_safe, class: type %>
+<% end %>
+<p id="Cart-Header"><%= link_to 'Cart: ', carts_path %><%= @cart.total_count %></p>
     <%= yield %>
   </body>
 </html>
