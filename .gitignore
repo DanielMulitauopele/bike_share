@@ -26,3 +26,4 @@
 
 # Ignore global ctags
 /tags
+.DS_Store
