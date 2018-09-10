@@ -6,4 +6,9 @@
   <li><%= @accessory.title %></li>
   <li><%= number_to_currency(@accessory.price) %></li>
 </ul>
+<% if  @accessory.status == 1 %>
+  <p>Accessory Retired</p>
+  <% else %>
 <%= button_to "Add to Cart", carts_path(accessory_id: @accessory.id) %>
+<% end %>
+
