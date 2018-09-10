@@ -6,7 +6,7 @@ class CartsController < ApplicationController
     @cart.add_accessory(accessory.id.to_s)
     session[:cart] = @cart.contents
     quantity = @cart.count_of(accessory.id.to_s)
-    flash[:notice] = "You now have #{pluralize(quantity, "copy")} of #{accessory.title} in your cart."
+    flash[:notice] = "You now have #{quantity} of #{accessory.title} in your cart."
     redirect_to bike_shop_path
   end
 
