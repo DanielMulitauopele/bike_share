@@ -16,14 +16,9 @@ Rails.application.routes.draw do
 
   resources :carts, only: [:create, :index]
 
-  # log in page with form:
-	get '/login'     => 'sessions#new'
+	resources :accessories, only: :show
 
-	# create (post) action for when log in form is submitted:
-	post '/login'    => 'sessions#create'
-
-	# delete action to log out:
-	delete '/logout' => 'sessions#destroy'
+  delete '/carts', to: 'carts#destroy'
 
   get '/bike-shop', to: 'accessories#index'
 

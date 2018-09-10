@@ -6,6 +6,7 @@
     <th>Price</th>
     <th>Quantity</th>
     <th>Sub-Total</th>
+    <th>Delete</th>
   </tr>
 <% @new_hash.each do |key, value| %>
   <tr>
@@ -13,6 +14,7 @@
   <td>price: <%= key.price %></td>
   <td> <%= value %></td>
   <td> <%= (key.price * value) %></td>
+  <td> <%= link_to 'Remove', carts_path(accessory_id: key), method: :delete %></td>
   </tr>
 <% end %>
 </tr>
