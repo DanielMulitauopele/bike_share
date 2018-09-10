@@ -4,7 +4,7 @@ describe 'user can visit login page' do
   describe 'they link from the root page' do
     it 'should allow user to vist login page' do
       visit root_path
-      click_link 'Login'
+      click_on 'Login'
 
       expect(current_path).to eq(login_path)
       expect(page).to have_content('Log In')
@@ -18,7 +18,7 @@ describe 'user can visit login page' do
         email = 'hans@email.com'
         visit root_path
 
-        click_link 'Sign Up'
+        click_on 'Sign Up'
 
         expect(current_path).to eq(new_user_path)
 
@@ -53,4 +53,43 @@ describe 'user can visit login page' do
     expect(current_path).to eq(users_path)
     expect(page).to have_content('Oops, could not create account. Please use a valid email and password and try again.')
   end
+  
+  describe 'login/logout' do 
+    it 'should allow user to login and logout' do 
+      user = User.create!(name: 'Hans', email: 'hans@email.com', password: 'test123')
+      
+      visit login_path
+      
+      fill_in :login_email, with: user.email
+      fill_in :login_password, with: 'test123'
+      click_on 'Login' 
+      
+      
+      expect(current_path).to eq(dashboard_path)
+      expect(page).to have_content('You have been successfully logged in!')
+      expect(page).to have_content("Logged in as #{user.name}")
+      expect(page).to have_content('Log Out')
+      expect(page).to_not have_content('Log In')
+      
+      click_on 'Log Out' 
+      
+      expect(current_path).to eq(bike_shop_path)
+      expect(page).to have_content('You have been successfully logged out!')
+      expect(page).to have_content('Log In')
+      expect(page).to_not have_content('Log Out')
+    end
+  end
+  
+  it 'should not login user if invalid entry' do 
+    user = User.create!(name: 'Hans', email: 'hans@email.com', password: 'test123') 
+    
+    visit login_path
+    
+    fill_in :login_email, with: user.email
+    fill_in :login_password, with: 'test000'
+    click_on 'Login'
+    
+    expect(current_path).to eq(login_path)
+    expect(page).to have_content('Incorrect email or password, please try again.')
+  end  
 end
