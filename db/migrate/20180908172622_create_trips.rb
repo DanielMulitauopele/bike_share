@@ -3,9 +3,9 @@ class CreateTrips < ActiveRecord::Migration[5.1]
     create_table :trips do |t|
       t.integer :duration
       t.datetime :start_date
-      t.integer :start_station
+      t.references :start_station, foreign_key:{to_table: :stations}
       t.datetime :end_date
-      t.integer :end_station
+      t.references :end_station, foreign_key:{to_table: :stations}
       t.integer :bike_id
       t.string :subscription_type
       t.integer :zip_code

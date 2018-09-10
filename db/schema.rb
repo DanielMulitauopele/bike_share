@@ -61,14 +61,16 @@ ActiveRecord::Schema.define(version: 20180908202309) do
   create_table "trips", force: :cascade do |t|
     t.integer "duration"
     t.datetime "start_date"
-    t.integer "start_station"
+    t.bigint "start_station_id"
     t.datetime "end_date"
-    t.integer "end_station"
+    t.bigint "end_station_id"
     t.integer "bike_id"
     t.string "subscription_type"
     t.integer "zip_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["end_station_id"], name: "index_trips_on_end_station_id"
+    t.index ["start_station_id"], name: "index_trips_on_start_station_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -79,4 +81,6 @@ ActiveRecord::Schema.define(version: 20180908202309) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "trips", "stations", column: "end_station_id"
+  add_foreign_key "trips", "stations", column: "start_station_id"
 end

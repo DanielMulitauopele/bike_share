@@ -13,7 +13,7 @@ RSpec.describe 'when a visitor adds an accessory to their cart' do
   end
 
   it "should increment items in cart" do
-    accessory = create(:accessory)
+    create(:accessory)
 
     visit bike_shop_path
 
