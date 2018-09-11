@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
 
+  get '/dashboard' => 'users#dashboard'
+  get '/trips-dashboard' => 'trips#dashboard'
+
   resources :users, only: [:new, :create]
   resources :carts, only: [:create, :index]
   resources :stations, only: [:show, :index]
