@@ -74,6 +74,14 @@ describe 'user can visit login page' do
       expect(page).to have_content('My Orders')
       expect(page).to have_content('Log Out')
       expect(page).to_not have_content('Log In')
+      
+      visit root_path
+      click_on 'Log Out'
+    
+      expect(current_path).to eq(login_path)
+      expect(page).to have_content('You have been successfully logged out!')
+      expect(page).to have_content('Log In')
+      expect(page).to_not have_content('Log Out')
     end
     
     it 'should not login user if invalid entry' do 
@@ -87,22 +95,6 @@ describe 'user can visit login page' do
       
       expect(current_path).to eq(login_path)
       expect(page).to have_content('Incorrect email or password, please try again.')
-    end 
-    
-    it 'should allow user to log out' 
-    
-    do
-      user = User.create!(name: 'Hans', email: 'hans@email.com', password: 'test123') 
-      
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-      
-      visit root_path
-      click_on 'Log Out' 
-    
-      expect(current_path).to eq(root_path)
-      expect(page).to have_content('You have been successfully logged out!')
-      expect(page).to have_content('Login')
-      expect(page).to_not have_content('Log Out')
     end  
   end
 end
