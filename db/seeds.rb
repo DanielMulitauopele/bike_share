@@ -3,6 +3,8 @@ require 'csv'
 Condition.destroy_all
 Station.destroy_all
 Trip.destroy_all
+User.destroy_all
+Accessory.destroy_all
 
 CSV.foreach('./db/csv/station.csv', headers: true, header_converters: :symbol) do |station|
   station = Station.new(
@@ -10,7 +12,7 @@ CSV.foreach('./db/csv/station.csv', headers: true, header_converters: :symbol) d
     name: station[:name],
     dock_count: station[:dock_count],
     city: station[:city],
-    installation_date: station[:installation_date],
+    installation_date: Date.strptime(station[:installation_date], '%m/%d/%Y')
   )
   if !station.save
     next
@@ -55,6 +57,38 @@ CSV.foreach('./db/csv/trip.csv', headers: true, header_converters: :symbol) do |
   end
 end
 
+CSV.foreach('./db/csv/user.csv', headers: true, header_converters: :symbol) do |person|
+  user = User.new(
+    id: person[:id],
+    name: person[:name],
+    email: person[:email],
+    password: person[:password]
+  )
+  if !user.save
+    next
+  else
+    user.save
+  end
+end
+
+CSV.foreach('./db/csv/accessory.csv', headers: true, header_converters: :symbol) do |a|
+  accessory = Accessory.new(
+    id: a[:id],
+    title: a[:title],
+    description: a[:description],
+    price: a[:price],
+    status: a[:status],
+    image: a[:image]
+  )
+  if !accessory.save
+    next
+  else
+    accessory.save
+  end
+end
+
 ActiveRecord::Base.connection.reset_pk_sequence!('stations')
 ActiveRecord::Base.connection.reset_pk_sequence!('trips')
 ActiveRecord::Base.connection.reset_pk_sequence!('conditions')
+ActiveRecord::Base.connection.reset_pk_sequence!('users')
+ActiveRecord::Base.connection.reset_pk_sequence!('accessories')

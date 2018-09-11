@@ -14,11 +14,30 @@ class Cart
     @contents[id] = @contents[id] - 1
   end
 
+  def destroy_cart_item(id)
+    @contents.delete(id.to_s)
+  end
+
   def count_of(id)
     @contents[id].to_i
   end
 
   def total_count
     @contents.values.sum
+  end
+
+  def format
+    formatted_hash = {}
+    @contents.each do |item_id, count|
+      item = Accessory.find(item_id.to_i)
+      formatted_hash[item] = {'count' => count, 'subtotal' => (item.price * count)}
+    end
+    formatted_hash
+  end
+
+  def cart_total
+    format.values.inject(0) do |init, hash|
+      init += hash['subtotal']
+    end
   end
 end
