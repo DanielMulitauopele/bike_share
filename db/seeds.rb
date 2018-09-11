@@ -12,7 +12,7 @@ CSV.foreach('./db/csv/station.csv', headers: true, header_converters: :symbol) d
     name: station[:name],
     dock_count: station[:dock_count],
     city: station[:city],
-    installation_date: station[:installation_date],
+    installation_date: Date.strptime(station[:installation_date], '%m/%d/%Y')
   )
   if !station.save
     next
