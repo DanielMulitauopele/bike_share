@@ -8,4 +8,10 @@ class TripsController< ApplicationController
     @trip = Trip.find(params[:id])
   end
 
+  def dashboard
+    @average_duration = Trip.average_duration
+    @longest_ride = Trip.longest_ride
+    @shortest_ride = Trip.shortest_ride
+  end
+
 end

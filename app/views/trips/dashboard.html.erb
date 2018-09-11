@@ -1,0 +1,14 @@
+<h1>Trip Dashboard</h1>
+<h2>Average Trip Duration: <%= @average_duration %></h2>
+<ul>
+  <% @longest_ride.each do |ride| %>
+    <li>Longest Ride: <%= ride %></li>
+    <% end %>
+</ul>
+
+<ul>
+  <% @shortest_ride.each do |ride| %>
+    <li>Shortest Ride: <%= ride %></li>
+    <% end %>
+</ul>
+
