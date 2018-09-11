@@ -8,13 +8,13 @@
     <th>Sub-Total</th>
     <th>Delete</th>
   </tr>
-<% @new_hash.each do |key, value| %>
+<% @items.each do |item, values_hash| %>
   <tr>
-  <td> <%= key.title %></td>
-  <td>price: <%= key.price %></td>
-  <td> <%= value %></td>
-  <td> <%= (key.price * value) %></td>
-  <td> <%= link_to 'Remove', carts_path(accessory_id: key), method: :delete %></td>
+  <td> <%= item.title %></td>
+  <td>price: <%= item.price %></td>
+  <td> <%= values_hash['count'] %></td>
+  <td> <%= number_to_currency(values_hash['subtotal'])%></td>
+  <td> <%= link_to 'Remove', carts_path(accessory_id: item.id), method: :delete %></td>
   </tr>
 <% end %>
 </tr>
