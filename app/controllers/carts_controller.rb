@@ -12,9 +12,8 @@ class CartsController < ApplicationController
 
   def destroy
     accessory = Accessory.find(params[:accessory_id])
-    @cart.subtract_accessory(accessory.id.to_s)
+    @cart.destroy_cart_item(accessory.id)
     session[:cart] = @cart.contents
-
     flash[:notice] = "Successfully removed #{view_context.link_to accessory.title, accessory_path(accessory)} from your cart."
     redirect_to carts_path
   end

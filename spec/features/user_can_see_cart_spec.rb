@@ -94,6 +94,7 @@ describe 'Visitor sees all items in the cart' do
 
     expect(current_path).to eq(carts_path)
     expect(page).to have_content("Successfully removed #{accessory_1.title} from your cart.")
+    expect(page).to_not have_css("#accessory-1#{accessory_1.id}")
   end
   it 'links to the deleted accessory' do
     accessory_1 = create(:accessory)

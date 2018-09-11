@@ -9,7 +9,7 @@
     <th>Delete</th>
   </tr>
 <% @items.each do |item, values_hash| %>
-  <tr>
+  <tr id="accessory-<%= item.id %>">
   <td> <%= item.title %></td>
   <td>price: <%= item.price %></td>
   <td> <%= link_to '+', carts_path(accessory_id: item.id), method: :post %></td>
