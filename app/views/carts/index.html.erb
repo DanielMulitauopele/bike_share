@@ -8,13 +8,15 @@
     <th>Sub-Total</th>
     <th>Delete</th>
   </tr>
-<% @new_hash.each do |key, value| %>
+<% @new_hash.each do |item, count| %>
   <tr>
-  <td> <%= key.title %></td>
-  <td>price: <%= key.price %></td>
-  <td> <%= value %></td>
-  <td> <%= (key.price * value) %></td>
-  <td> <%= link_to 'Remove', carts_path(accessory_id: key), method: :delete %></td>
+  <td> <%= item.title %></td>
+  <td>price: <%= item.price %></td>
+  <td> <%= link_to '+', carts_path(accessory_id: item), method: :post %></td>
+  <td> <%= count %></td>
+
+  <td> <%= (item.price * count) %></td>
+  <td> <%= link_to 'Remove', carts_path(accessory_id: item), method: :delete %></td>
   </tr>
 <% end %>
 </tr>
