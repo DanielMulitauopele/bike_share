@@ -1,3 +1,7 @@
-<%= current_user.email %>
-</br>
-<%= link_to 'My Orders'%> 
+<h2><%= current_user.email %></h2>
+
+<br>
+
+<% @orders.each do |order| %>
+<%= link_to "Order Number: #{order.id}" %>
+<% end %>

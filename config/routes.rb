@@ -17,5 +17,5 @@ Rails.application.routes.draw do
   put '/carts', to: 'carts#update'
 
   get '/bike-shop', to: 'accessories#index'
-  get '/dashboard' => 'users#dashboard'
+  get '/dashboard', to: 'users#dashboard'
 end
