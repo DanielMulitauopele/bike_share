@@ -2,3 +2,7 @@
 <%= @station.dock_count %>
 <%= @station.city %>
 <%= @station.installation_date %>
+
+<% if current_user? %>
+  Number of rides started at this station: <%= @station.rides_started %>
+<% end %>
