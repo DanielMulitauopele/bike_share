@@ -10,7 +10,7 @@ describe 'as a user' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
       visit '/dashboard'
-
+      save_and_open_page
       expect(page).to have_link("Order Number: #{order_1.id}")
       expect(page).to have_link("Order Number: #{order_2.id}")
     end

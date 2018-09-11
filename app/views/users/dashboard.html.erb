@@ -1,7 +1,7 @@
 <h2><%= current_user.email %></h2>
 
-<br>
-
 <% @orders.each do |order| %>
-<%= link_to "Order Number: #{order.id}" %>
+  <ul>
+    <%= link_to "Order Number: #{order.id}" %>
+  </ul>
 <% end %>
