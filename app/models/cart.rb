@@ -21,4 +21,19 @@ class Cart
   def total_count
     @contents.values.sum
   end
+
+  def format
+    formatted_hash = {}
+    @contents.each do |item_id, count|
+      item = Accessory.find(item_id.to_i)
+      formatted_hash[item] = {'count' => count, 'subtotal' => (item.price * count)}
+    end
+    formatted_hash
+  end
+
+  def cart_total
+    format.values.inject(0) do |init, hash|
+      init += hash['subtotal']
+    end
+  end
 end
