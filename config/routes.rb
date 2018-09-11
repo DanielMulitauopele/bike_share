@@ -4,10 +4,11 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
-  
-  get '/dashboard' => 'users#dashboard'
 
-  resources :users, only: [:new, :create]
+
+  namespace :users, only: [:new, :create] do
+    get '/dashboard' => 'users#dashboard'
+  end
 
   resources :stations, only: [:show, :index]
   resources :trips, only: [:index, :show]
