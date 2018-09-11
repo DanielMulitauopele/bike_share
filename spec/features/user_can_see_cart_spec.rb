@@ -35,6 +35,7 @@ describe 'Visitor sees all items in the cart' do
 
     expect(current_path).to eq(carts_path)
   end
+  
   it 'retains cart items on login' do
     accessory_1 = create(:accessory)
     accessory_2 = create(:accessory, title: 'an accessory')
@@ -75,6 +76,7 @@ describe 'Visitor sees all items in the cart' do
 
     expect(current_path).to eq(carts_path)
   end
+  
   it 'can remove items from the cart' do
     accessory_1 = create(:accessory)
 
