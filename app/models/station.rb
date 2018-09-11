@@ -12,4 +12,8 @@ class Station < ApplicationRecord
   def rides_started
     start_trips.count
   end
+
+  def rides_ended
+    end_trips.count
+  end
 end

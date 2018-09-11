@@ -27,5 +27,9 @@ describe Station, type: :model do
     it "#rides_started" do
       expect(@station_1.rides_started).to eq(3)
     end
+
+    it "#rides_ended" do
+      expect(@station_1.rides_ended).to eq(3)
+    end
   end
 end
