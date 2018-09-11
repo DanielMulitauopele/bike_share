@@ -34,7 +34,7 @@ describe 'as a visitor' do
       expect(page).to have_content(accessory.title)
       expect(page).to have_content(2)
 
-      click_on '1'
+      click_on 'Cart'
       expect(page).to have_content(1)
     end
   end
