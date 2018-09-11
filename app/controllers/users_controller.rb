@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
-  
+
   def dashboard
     @user = User.find(current_user.id)
+    @orders = @user.orders
   end
-  
+
   def new
     @user = User.new
   end
@@ -12,7 +13,7 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     @user.email.downcase!
     if @user.save
-      session[:user_id] = @user.id 
+      session[:user_id] = @user.id
       redirect_to dashboard_path
       flash[:notice] = "Successfully created account for #{@user.name}!"
     else
