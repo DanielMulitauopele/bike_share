@@ -16,11 +16,11 @@ describe 'user can visit login page' do
       it 'should register the new user' do
         username = 'Hans'
         email = 'hans@email.com'
-        
+
         visit login_path
-    
+
         click_on 'Create Account'
-    
+
         expect(current_path).to eq(new_user_path)
 
         fill_in :user_name, with: username
@@ -31,7 +31,6 @@ describe 'user can visit login page' do
         expect(current_path).to eq(dashboard_path)
         expect(page).to have_content("Logged in as #{User.last.name}")
         expect(page).to have_content("#{User.last.email}")
-        expect(page).to have_content('My Orders')
         expect(page).to have_content('Log Out')
         expect(page).to_not have_content('Log In')
       end
@@ -53,27 +52,27 @@ describe 'user can visit login page' do
     expect(current_path).to eq(users_path)
     expect(page).to have_content('Oops, could not create account. Please use a valid email and password and try again.')
   end
-  
-  describe 'login/logout' do 
-    it 'should allow user to login and logout' do 
+
+  describe 'login/logout' do
+    it 'should allow user to login and logout' do
       user = User.create!(name: 'Hans', email: 'hans@email.com', password: 'test123')
-      
+
       visit root_path
       click_on 'Login'
-      
+
       expect(current_path).to eq(login_path)
-      
+
       fill_in :login_email, with: user.email
       fill_in :login_password, with: 'test123'
-      click_on 'Login' 
-      
+      click_on 'Login'
+
       expect(current_path).to eq(dashboard_path)
       expect(page).to have_content('You have been successfully logged in!')
       expect(page).to have_content("Logged in as #{user.name}")
       expect(page).to have_content("#{user.email}")
-      expect(page).to have_content('My Orders')
       expect(page).to have_content('Log Out')
       expect(page).to_not have_content('Log In')
+
       
       visit root_path
       click_on 'Log Out'
@@ -86,15 +85,15 @@ describe 'user can visit login page' do
     
     it 'should not login user if invalid entry' do 
       user = User.create!(name: 'Hans', email: 'hans@email.com', password: 'test123') 
-      
+
       visit login_path
-      
+
       fill_in :login_email, with: user.email
       fill_in :login_password, with: 'test000'
       click_on 'Login'
-      
+
       expect(current_path).to eq(login_path)
       expect(page).to have_content('Incorrect email or password, please try again.')
-    end  
+    end
   end
 end
