@@ -6,9 +6,8 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy'
 
 
-  namespace :users, only: [:new, :create] do
-    get '/dashboard' => 'users#dashboard'
-  end
+  resources :user, only: [:new, :create]
+  get '/dashboard' => 'users#dashboard'
 
   resources :stations, only: [:show, :index]
   resources :trips, only: [:index, :show]
