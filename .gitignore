@@ -21,9 +21,6 @@
 # Ignore simplecov coverage
 /coverage
 
-# Ignore CSV data
-/db/csv
-
 # Ignore global ctags
 /tags
 .DS_Store
