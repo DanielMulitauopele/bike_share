@@ -10,6 +10,19 @@ class CartsController < ApplicationController
     redirect_to bike_shop_path
   end
 
+  def update
+    accessory = Accessory.find(params[:accessory_id])
+    if params[:do] == 'add'
+      @cart.add_accessory(accessory.id.to_s)
+    elsif params[:do] == 'subtract'
+      @cart.subtract_accessory(accessory.id.to_s)
+    end
+    session[:cart] = @cart.contents
+    quantity = @cart.count_of(accessory.id.to_s)
+    flash[:notice] = "You now have #{quantity} of #{accessory.title} in your cart."
+    redirect_to carts_path
+  end
+
   def destroy
     accessory = Accessory.find(params[:accessory_id])
     @cart.destroy_cart_item(accessory.id)

@@ -22,7 +22,8 @@ Rails.application.routes.draw do
 
   delete '/carts', to: 'carts#destroy'
   post '/carts', to: 'carts#create'
-  
+  put '/carts', to: 'carts#update'
+
   get '/bike-shop', to: 'accessories#index'
 
 end
