@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
-  
+
   get '/dashboard' => 'users#dashboard'
 
   resources :users, only: [:new, :create]
@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 	resources :accessories, only: :show
 
   delete '/carts', to: 'carts#destroy'
+  post '/carts', to: 'carts#create'
+  put '/carts', to: 'carts#update'
 
   get '/bike-shop', to: 'accessories#index'
 end
