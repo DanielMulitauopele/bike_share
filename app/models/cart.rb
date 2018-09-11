@@ -14,6 +14,10 @@ class Cart
     @contents[id] = @contents[id] - 1
   end
 
+  def destroy_cart_item(id)
+    @contents.delete(id.to_s)
+  end
+
   def count_of(id)
     @contents[id].to_i
   end

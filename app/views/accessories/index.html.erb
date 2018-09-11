@@ -3,8 +3,8 @@
 <% @accessories.each do |item| %>
   <div id="accessory-<%= item.id %>">
 
-  <%= item.image %>
+  <%= image_tag(item.image)  %>
   <%= item.title %>
-  <%= button_to 'Add to Cart', carts_path(accessory_id: item.id) %>
+  <%= button_to 'Add to Cart', carts_path(accessory_id: item.id, do: 'add') %>
   </div>
 <% end %>
