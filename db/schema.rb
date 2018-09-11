@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180911212202) do
+ActiveRecord::Schema.define(version: 20180911231410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,13 @@ ActiveRecord::Schema.define(version: 20180911212202) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "order_accessories", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "accessory_id"
+    t.index ["accessory_id"], name: "index_order_accessories_on_accessory_id"
+    t.index ["order_id"], name: "index_order_accessories_on_order_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -90,6 +97,8 @@ ActiveRecord::Schema.define(version: 20180911212202) do
     t.integer "role", default: 0
   end
 
+  add_foreign_key "order_accessories", "accessories"
+  add_foreign_key "order_accessories", "orders"
   add_foreign_key "orders", "users"
   add_foreign_key "trips", "stations", column: "end_station_id"
   add_foreign_key "trips", "stations", column: "start_station_id"
