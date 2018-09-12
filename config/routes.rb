@@ -23,4 +23,5 @@ Rails.application.routes.draw do
 
   get '/bike-shop', to: 'accessories#index'
   get '/dashboard', to: 'users#dashboard'
+  get '/stations-dashboard', to: 'stations#dashboard'
 end

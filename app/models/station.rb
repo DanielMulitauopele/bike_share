@@ -21,16 +21,16 @@ class Station < ApplicationRecord
     maximum(:dock_count)
   end 
   
-  def self.most_bikes_station  
-    where(dock_count: most_bikes)
+  def self.most_bikes_station 
+    order(dock_count: :desc).first.name
   end
   
   def self.fewest_bikes
-    minimum(:dock_count)
+     minimum(:dock_count)
   end
   
   def self.fewest_bikes_station
-     where(dock_count: fewest_bikes)
+     order(:dock_count).first.name
   end
   
   def self.newest_installation

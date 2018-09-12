@@ -45,12 +45,12 @@ describe Station, type: :model do
       expect(actual).to eq(expected)
     end
     
-    # it 'returns name of station with most bikes' do
-    #   expected = @station_1.name 
-    #   actual = Station.most_bikes_station  
-    # 
-    #   expect(actual).to eq(expected)
-    # end
+    it 'returns name of station with most bikes' do
+      expected = @station_1.name 
+      actual = Station.most_bikes_station  
+    
+      expect(actual).to eq(expected)
+    end
   # 
     it 'returns fewest bikes at a station' do
       expected = @station_4.dock_count 
@@ -58,12 +58,12 @@ describe Station, type: :model do
   
       expect(actual).to eq(expected)
     end
-  # 
-  #   it 'returns name of station with fewest bikes' do
-  #     expected = @station_4.name 
-  #     actual = Station.fewest_bikes_station  
-  #   end
-  # # 
+  
+    it 'returns name of station with fewest bikes' do
+      expected = @station_4.name 
+      actual = Station.fewest_bikes_station  
+    end
+  
     it 'returns recently installed station' do
       expected = @station_4.name
       actual = Station.newest_installation
