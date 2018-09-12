@@ -32,7 +32,6 @@ class CartsController < ApplicationController
   end
 
   def index
-    require "pry"; binding.pry
     @items = @cart.format
     @total = @cart.cart_total
   end

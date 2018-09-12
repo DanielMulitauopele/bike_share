@@ -65,7 +65,7 @@ describe 'as a user' do
 
       expect(current_path).to eq(dashboard_path)
       expect(page).to have_link("Order Number: 1")
-      expect(page).to have_content("Your order has been created!")
+      expect(page).to have_content("Order number 1 has been created!")
     end
   end
 end

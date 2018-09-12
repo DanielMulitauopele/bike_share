@@ -25,7 +25,7 @@ describe 'as a user' do
 
       click_on 'Order Number: 1'
 
-      expect(current_path).to eq(user_order_path(user, order_1))
+      expect(current_path).to eq(order_path(order_1.id))
       expect(page).to have_content("Order #{order_1.id} Details")
     end
   end
