@@ -36,7 +36,7 @@ describe 'registered user sees one station' do
       expect(page).to have_content("Number of rides ended at this station: 3")
       expect(page).to have_content("Most frequent destination station: #{@station_2.name}")
       expect(page).to have_content("Most frequent origination station: #{@station_2.name}")
-      # expect(page).to have_content("Date with the highest number of trips started at this station: 09/01/2018")
+      expect(page).to have_content("Date with the highest number of trips started at this station: 09/06/2018")
       expect(page).to have_content("Most frequent zip code for users starting trips at this station: 98765")
       # expect(page).to have_content("Bike ID most frequently starting a trip at this station: 1")
     end
