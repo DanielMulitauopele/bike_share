@@ -53,7 +53,7 @@ describe 'Visitor sees all items in the cart' do
 
     expect(current_path).to eq(carts_path)
     expect(page).to have_content("Successfully removed #{accessory.title} from your cart.")
-    #expect(page).to_not have_content(accessory.title)
+    expect(page).to_not have_css("#accessory-1#{accessory.id}")
   end
   
   it 'links to the deleted accessory' do
