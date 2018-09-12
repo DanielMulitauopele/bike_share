@@ -8,7 +8,7 @@ describe 'as a user' do
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-      visit order_path(user)
+      visit user_order_path(user, order_1)
 
       expect(page).to have_content("Order #{order_1.id} Details")
       expect(page).to have_content('Accessory')

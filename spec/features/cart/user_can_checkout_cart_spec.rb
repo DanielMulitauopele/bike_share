@@ -27,7 +27,7 @@ describe 'as a user' do
       within('#Cart-Header') do
         click_on 'Cart'
       end
-      save_and_open_page
+
       expect(current_path).to eq(carts_path)
       expect(page).to have_content(accessory_1.title)
       expect(page).to have_content("price: #{accessory_1.price}")
@@ -37,6 +37,34 @@ describe 'as a user' do
       expect(page).to have_content("price: #{accessory_3.price}")
       expect(page).to have_content("Total: $90.00")
       expect(page).to have_link('Checkout')
+    end
+    it "should create a new order when user presses checkout" do
+      accessory_1 = create(:accessory)
+      accessory_2 = create(:accessory, title: 'an accessory')
+      accessory_3 = create(:accessory, title: 'an accessory again')
+      user = create(:user)
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+      visit bike_shop_path
+
+      within("#accessory-#{accessory_1.id}") do
+        click_on 'Add to Cart'
+      end
+      within("#accessory-#{accessory_2.id}") do
+        click_on 'Add to Cart'
+      end
+      within("#accessory-#{accessory_3.id}") do
+        click_on 'Add to Cart'
+      end
+      within('#Cart-Header') do
+        click_on 'Cart'
+      end
+
+      click_on 'Checkout'
+
+      expect(current_path).to eq(dashboard_path)
+      expect(page).to have_link("Order Number: 1")
     end
   end
 end
