@@ -24,4 +24,12 @@ class Trip < ApplicationRecord
     rides = select(:id).where(duration: minimum(:duration))
     rides.map {|ride| ride.id }
   end
+
+  def self.group_by_month_year
+    group("DATE_TRUNC('month', start_date)").count
+  end
+
+  def self.group_by_year
+    group("DATE_TRUNC('year', start_date)").count
+  end
 end

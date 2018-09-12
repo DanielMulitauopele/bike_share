@@ -13,4 +13,16 @@
 </ul>
 
 <p>Most Popular Start Location <%= @most_popular_start_station %></p>
+<p>Most Popular End Location <%= @most_popular_end_station %></p>
 
+<ul>
+  <% @grouped_by_month_year.each do |date, count| %>
+  <li><%= date.strftime("%b-%Y")%>: <%= count %></li>
+<% end %>
+</ul>
+
+<ul>
+  <% @grouped_by_year.each do |date, count| %>
+  <li><%= date.strftime("%Y")%>: <%= count %></li>
+<% end %>
+</ul>

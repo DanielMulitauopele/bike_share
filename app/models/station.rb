@@ -15,4 +15,10 @@ has_many :end_trips, class_name: 'Trip', foreign_key: 'end_station_id', dependen
     group('stations.id').order('count desc').
     limit(1).first.name
   end
+  def self.max_ending_station
+    select("name, count(trips.id) as count").
+    joins('join trips on trips.end_station_id = stations.id').
+    group('stations.id').order('count desc').
+    limit(1).first.name
+  end
 end
