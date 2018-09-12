@@ -11,7 +11,6 @@ describe 'as a user' do
       visit '/dashboard'
 
       expect(page).to have_link("Order Number: #{order_1.id}")
-      expect(page).to have_link("Order Number: #{order_2.id}")
     end
   end
 end
