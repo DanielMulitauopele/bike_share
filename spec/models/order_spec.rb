@@ -8,5 +8,7 @@ describe Order, type: :model do
   end
   describe 'relationships' do
     it {should belong_to :user}
+    it {should have_many :order_accessories}
+    it {should have_many :accessories}
   end
 end 
