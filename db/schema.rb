@@ -48,6 +48,14 @@ ActiveRecord::Schema.define(version: 20180911212202) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.float "total"
+    t.string "status"
+    t.datetime "datetime"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "stations", force: :cascade do |t|
     t.string "name"
     t.integer "dock_count"
@@ -82,6 +90,7 @@ ActiveRecord::Schema.define(version: 20180911212202) do
     t.integer "role", default: 0
   end
 
+  add_foreign_key "orders", "users"
   add_foreign_key "trips", "stations", column: "end_station_id"
   add_foreign_key "trips", "stations", column: "start_station_id"
 end

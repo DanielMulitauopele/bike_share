@@ -14,10 +14,12 @@ Rails.application.routes.draw do
   resources :trips, only: [:index, :show]
   resources :conditions, only: [:index, :show]
 	resources :accessories, only: :show
+  resources :orders, only: [:show]
 
   delete '/carts', to: 'carts#destroy'
   post '/carts', to: 'carts#create'
   put '/carts', to: 'carts#update'
 
   get '/bike-shop', to: 'accessories#index'
+  get '/dashboard', to: 'users#dashboard'
 end
