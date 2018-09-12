@@ -19,7 +19,7 @@ describe 'registered user sees one station' do
       @trip_9 = Trip.create!(duration: 140, start_date: '09/04/2018', start_station_id: 3, end_date: '09/04/2018', end_station_id: 3, bike_id: 1, subscription_type: 'cheap', zip_code: 98765)
       @trip_10 = Trip.create!(duration: 60, start_date: '09/05/2018', start_station_id: 3, end_date: '09/05/2018', end_station_id: 3, bike_id: 5, subscription_type: 'expensive', zip_code: 98765)
       @trip_11 = Trip.create!(duration: 160, start_date: '09/06/2018', start_station_id: 1, end_date: '09/06/2018', end_station_id: 3, bike_id: 6, subscription_type: 'cheap', zip_code: 29765)
-      @trip_12 = Trip.create!(duration: 160, start_date: '09/06/2018', start_station_id: 1, end_date: '09/06/2018', end_station_id: 3, bike_id: 4, subscription_type: 'cheap', zip_code: 29765)
+      @trip_12 = Trip.create!(duration: 160, start_date: '09/06/2018', start_station_id: 1, end_date: '09/06/2018', end_station_id: 3, bike_id: 4, subscription_type: 'cheap', zip_code: 98765)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
     end
 
@@ -37,7 +37,7 @@ describe 'registered user sees one station' do
       expect(page).to have_content("Most frequent destination station: #{@station_2.name}")
       expect(page).to have_content("Most frequent origination station: #{@station_2.name}")
       # expect(page).to have_content("Date with the highest number of trips started at this station: 09/01/2018")
-      # expect(page).to have_content("Most frequent zip code for users starting trips at this station: 98765")
+      expect(page).to have_content("Most frequent zip code for users starting trips at this station: 98765")
       # expect(page).to have_content("Bike ID most frequently starting a trip at this station: 1")
     end
   end

@@ -96,7 +96,7 @@ describe Station, type: :model do
       @trip_9 = Trip.create!(duration: 140, start_date: '09/04/2018', start_station_id: 3, end_date: '09/04/2018', end_station_id: 3, bike_id: 1, subscription_type: 'cheap', zip_code: 98765)
       @trip_10 = Trip.create!(duration: 60, start_date: '09/05/2018', start_station_id: 3, end_date: '09/05/2018', end_station_id: 3, bike_id: 5, subscription_type: 'expensive', zip_code: 98765)
       @trip_11 = Trip.create!(duration: 160, start_date: '09/06/2018', start_station_id: 1, end_date: '09/06/2018', end_station_id: 3, bike_id: 6, subscription_type: 'cheap', zip_code: 29765)
-      @trip_12 = Trip.create!(duration: 160, start_date: '09/06/2018', start_station_id: 1, end_date: '09/06/2018', end_station_id: 3, bike_id: 4, subscription_type: 'cheap', zip_code: 29765)
+      @trip_12 = Trip.create!(duration: 160, start_date: '09/06/2018', start_station_id: 1, end_date: '09/06/2018', end_station_id: 3, bike_id: 4, subscription_type: 'cheap', zip_code: 98765)
     end
 
     it "#rides_started" do
@@ -113,6 +113,10 @@ describe Station, type: :model do
 
     it "#most_trips_from" do
       expect(@station_1.most_trips_from).to eq('Yale St')
+    end
+
+    it "#frequent_zip_code" do
+      expect(@station_1.frequent_zip_code).to eq(98765)
     end
   end
 end

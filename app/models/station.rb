@@ -78,4 +78,10 @@ class Station < ApplicationRecord
     .group(:id)
     .order("count(start_station_id) desc").first.name
   end
+
+  def frequent_zip_code
+    start_trips.select('trips.zip_code, count(trips.id) as count')
+    .group('trips.zip_code')
+    .order('count').last.zip_code
+  end
 end
