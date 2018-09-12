@@ -110,5 +110,9 @@ describe Station, type: :model do
     it "#most_trips_to" do
       expect(@station_1.most_trips_to).to eq('Yale St')
     end
+
+    it "#most_trips_from" do
+      expect(@station_1.most_trips_from).to eq('Yale St')
+    end
   end
 end

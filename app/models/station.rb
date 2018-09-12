@@ -70,4 +70,12 @@ class Station < ApplicationRecord
     .group(:id)
     .order("count(end_station_id) desc").first.name
   end
+
+  def most_trips_from
+    Station.select(:name)
+    .joins("join trips on trips.start_station_id = stations.id")
+    .where("trips.end_station_id = ?", id)
+    .group(:id)
+    .order("count(start_station_id) desc").first.name
+  end
 end
