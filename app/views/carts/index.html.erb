@@ -19,6 +19,9 @@
   <td> <%= link_to 'Remove', carts_path(accessory_id: item.id), method: :delete %></td>
   </tr>
 <% end %>
+<br>
 </tr>
   </table>
-  <td><%= @total %></td>
+  <td>Total: <%= number_to_currency(@total) %></td>
+
+<h3><%= link_to "Checkout" %> </h3>
