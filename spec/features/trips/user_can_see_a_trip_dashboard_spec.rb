@@ -58,5 +58,21 @@ describe 'visit the trips-dashboard-path' do
       expect(page).to have_content("2013: 4")
       expect(page).to have_content("2014: 1")
     end
+    it 'should show the distribution of rides grouped by subscription type' do
+      visit trips_dashboard_path
+
+      expect(page).to have_content("Subscriber: 25.0%")
+      expect(page).to have_content("Customer: 75.0%")
+    end
+    it 'it should show the date with the most rides' do
+      visit trips_dashboard_path
+
+      expect(page).to have_content("Most Popular Day: 2013-02-09: 3")
+    end
+    it 'it should show the date with the least rides' do
+      visit trips_dashboard_path
+
+      expect(page).to have_content("Least Popular Day: 2013-01-09: 1")
+    end
   end
 end

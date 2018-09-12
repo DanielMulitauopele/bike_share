@@ -16,6 +16,12 @@ class TripsController< ApplicationController
     @most_popular_end_station = Station.max_ending_station
     @grouped_by_month_year = Trip.group_by_month_year
     @grouped_by_year = Trip.group_by_year
+    @most_ridden_bike = Trip.most_ridden_bike
+    @least_ridden_bike = Trip.least_ridden_bike
+    @distribution_by_subscriber = Trip.distribution_by_subscription
+    @max_day = Trip.max_day
+    @min_day = Trip.min_day
+
   end
 
 end

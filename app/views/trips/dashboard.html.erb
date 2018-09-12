@@ -26,3 +26,14 @@
   <li><%= date.strftime("%Y")%>: <%= count %></li>
 <% end %>
 </ul>
+<p>Most Ridden Bike: <%= @most_ridden_bike.bike_id %> - Rides: <%= @most_ridden_bike.count %></p>
+<p>Least Ridden Bike: <%= @least_ridden_bike.bike_id %> - Rides: <%= @least_ridden_bike.count %></p>
+
+<ul>
+  <% @distribution_by_subscriber.each do |subscription_group| %>
+    <li><%= subscription_group.subscription_type.capitalize %>: <%= subscription_group.percentage %>%</li>
+    <% end %>
+</ul>
+
+<p>Most Popular Day: <%= @max_day.day.strftime("%F") %>: <%= @max_day.count %></p>
+<p>Least Popular Day: <%= @min_day.day.strftime("%F") %>: <%= @min_day.count %></p>
