@@ -1,0 +1,39 @@
+<h1>Trip Dashboard</h1>
+<h2>Average Trip Duration: <%= @average_duration %></h2>
+<ul>
+  <% @longest_ride.each do |ride| %>
+    <li>Longest Ride: <%= ride %></li>
+    <% end %>
+</ul>
+
+<ul>
+  <% @shortest_ride.each do |ride| %>
+    <li>Shortest Ride: <%= ride %></li>
+    <% end %>
+</ul>
+
+<p>Most Popular Start Location <%= @most_popular_start_station %></p>
+<p>Most Popular End Location <%= @most_popular_end_station %></p>
+
+<ul>
+  <% @grouped_by_month_year.each do |date, count| %>
+  <li><%= date.strftime("%b-%Y")%>: <%= count %></li>
+<% end %>
+</ul>
+
+<ul>
+  <% @grouped_by_year.each do |date, count| %>
+  <li><%= date.strftime("%Y")%>: <%= count %></li>
+<% end %>
+</ul>
+<p>Most Ridden Bike: <%= @most_ridden_bike.bike_id %> - Rides: <%= @most_ridden_bike.count %></p>
+<p>Least Ridden Bike: <%= @least_ridden_bike.bike_id %> - Rides: <%= @least_ridden_bike.count %></p>
+
+<ul>
+  <% @distribution_by_subscriber.each do |subscription_group| %>
+    <li><%= subscription_group.subscription_type.capitalize %>: <%= subscription_group.percentage %>%</li>
+    <% end %>
+</ul>
+
+<p>Most Popular Day: <%= @max_day.day.strftime("%F") %>: <%= @max_day.count %></p>
+<p>Least Popular Day: <%= @min_day.day.strftime("%F") %>: <%= @min_day.count %></p>
