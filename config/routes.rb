@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
-
   get '/dashboard' => 'users#dashboard'
   get '/trips-dashboard' => 'trips#dashboard'
 
@@ -23,4 +22,5 @@ Rails.application.routes.draw do
 
   get '/bike-shop', to: 'accessories#index'
   get '/dashboard', to: 'users#dashboard'
+  get '/stations-dashboard', to: 'stations#dashboard'
 end
