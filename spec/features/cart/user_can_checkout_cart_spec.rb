@@ -38,6 +38,7 @@ describe 'as a user' do
       expect(page).to have_content("Total: $90.00")
       expect(page).to have_link('Checkout')
     end
+    
     it "should create a new order when user presses checkout" do
       accessory_1 = create(:accessory)
       accessory_2 = create(:accessory, title: 'an accessory')
