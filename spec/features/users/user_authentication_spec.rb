@@ -72,12 +72,14 @@ describe 'user can visit login page' do
       expect(page).to have_content("#{user.email}")
       expect(page).to have_content('Log Out')
       expect(page).to_not have_content('Log In')
-
+      
+      visit root_path
       click_on 'Log Out'
+    
+      expect(current_path).to eq(login_path)
 
-      expect(current_path).to eq(root_path)
       expect(page).to have_content('You have been successfully logged out!')
-      expect(page).to have_content('Login')
+      expect(page).to have_content('Log In')
       expect(page).to_not have_content('Log Out')
     end
 
