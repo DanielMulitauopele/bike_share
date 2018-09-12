@@ -4,8 +4,8 @@ describe 'as a user' do
   describe 'viewing dashboard page' do
     it "should list out orders" do
       user = create(:user)
-      order_1 = user.orders.create(id: 1, total: 297.34, status: 'paid', datetime: "11/04/17 23:00")
-      order_2 = user.orders.create(id: 2, total: 327.56, status: 'ordered', datetime: "11/04/17 23:00")
+      order_1 = user.orders.create(id: 1, total: 297.34, status: 'paid')
+      order_2 = user.orders.create(id: 2, total: 327.56, status: 'ordered')
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
@@ -16,7 +16,7 @@ describe 'as a user' do
     end
     it "should take visitor to order show page" do
       user = create(:user)
-      order_1 = user.orders.create(id: 1, total: 297.34, status: 'paid', datetime: "11/04/17 23:00")
+      order_1 = user.orders.create(id: 1, total: 297.34, status: 'paid')
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
@@ -25,7 +25,7 @@ describe 'as a user' do
 
       click_on 'Order Number: 1'
 
-      expect(current_path).to eq(order_path(order_1))
+      expect(current_path).to eq(order_path(order_1.id))
       expect(page).to have_content("Order #{order_1.id} Details")
     end
   end
