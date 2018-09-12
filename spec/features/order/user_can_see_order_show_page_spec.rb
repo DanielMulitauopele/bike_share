@@ -8,9 +8,15 @@ describe 'as a user' do
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-      visit '/dashboard'
+      visit order_path(user)
 
-      expect(page).to have_link("Order Number: #{order_1.id}")
+      expect(page).to have_content("Order #{order_1.id} Details")
+      expect(page).to have_content('Accessory')
+      expect(page).to have_content('Subtotal')
+      expect(page).to have_content('Quantity')
+      expect(page).to have_content('Order Total')
+      expect(page).to have_content('Status')
+      expect(page).to have_content('Date/Time')
     end
   end
 end
