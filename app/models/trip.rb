@@ -24,5 +24,4 @@ class Trip < ApplicationRecord
     rides = select(:id).where(duration: minimum(:duration))
     rides.map {|ride| ride.id }
   end
-
 end

@@ -8,4 +8,11 @@ class Station < ApplicationRecord
 
  has_many :start_trips, class_name: 'Trip', foreign_key: 'start_station_id', dependent: :destroy
 has_many :end_trips, class_name: 'Trip', foreign_key: 'end_station_id', dependent: :destroy
+
+  def self.max_starting_station
+    select("name, count(trips.id) as count").
+    joins('join trips on trips.start_station_id = stations.id').
+    group('stations.id').order('count desc').
+    limit(1).first.name
+  end
 end

@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'visit the trips-dashboard-path' do
   context 'as a registered user' do
 		before(:each) do
-    	@station_1 = create(:station)
+    	@station_1 = create(:station, name: "yellow", slug: 'yellow')
     	@station_2 = create(:station, name: "orange", slug: 'orange')
     	@station_3 = create(:station, name: "blue", slug: 'blue')
     	@trip_1 = Trip.create!(duration: 100, start_date:	'2013-01-09 00:23:00', start_station_id:	1	, end_date: '2013-01-09 00:25:00',
@@ -33,6 +33,11 @@ describe 'visit the trips-dashboard-path' do
       visit trips_dashboard_path
 
       expect(page).to have_content("Shortest Ride: #{trip.id}")
+		end
+		it 'should show the start station with the most rides' do
+      visit trips_dashboard_path
+
+      expect(page).to have_content("Most Popular Start Location #{@station_1.name}")
 		end
   end
 end
