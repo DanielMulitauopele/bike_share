@@ -7,7 +7,7 @@ class Station < ApplicationRecord
   validates_uniqueness_of :slug
 
  has_many :start_trips, class_name: 'Trip', foreign_key: 'start_station_id', dependent: :destroy
-has_many :end_trips, class_name: 'Trip', foreign_key: 'end_station_id', dependent: :destroy
+ has_many :end_trips, class_name: 'Trip', foreign_key: 'end_station_id', dependent: :destroy
 
   def self.max_starting_station
     select("name, count(trips.id) as count").
@@ -15,17 +15,27 @@ has_many :end_trips, class_name: 'Trip', foreign_key: 'end_station_id', dependen
     group('stations.id').order('count desc').
     limit(1).first.name
   end
+
   def self.max_ending_station
     select("name, count(trips.id) as count").
     joins('join trips on trips.end_station_id = stations.id').
     group('stations.id').order('count desc').
     limit(1).first.name
+  end
 
-    def rides_started
-      start_trips.count
-    end
+  def rides_started
+    start_trips.count
+  end
 
-    def rides_ended
-      end_trips.count
+  def rides_ended
+    end_trips.count
+  end
+
+  def most_trips_to
+    Station.select(:name)
+    .joins("join trips on trips.end_station_id = stations.id")
+    .where("trips.start_station_id = ?", id)
+    .group(:id)
+    .order("count(end_station_id) desc").first.name
   end
 end
