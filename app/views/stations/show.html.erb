@@ -6,4 +6,5 @@
 <% if current_user? %>
   Number of rides started at this station: <%= @station.rides_started %>
   Number of rides ended at this station: <%= @station.rides_ended %>
+  Most frequent destination station: <%= @station.most_trips_to %>
 <% end %>

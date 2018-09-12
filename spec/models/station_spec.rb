@@ -31,5 +31,9 @@ describe Station, type: :model do
     it "#rides_ended" do
       expect(@station_1.rides_ended).to eq(3)
     end
+
+    it "#most_trips_to" do
+      expect(@station_1.most_trips_to).to eq('Yale St')
+    end
   end
 end
