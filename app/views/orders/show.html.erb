@@ -1,1 +1,15 @@
 <h2>Order <%= @order.id %> Details</h2>
+
+<% @accessories.each do |accessory, values_hash| %>
+  <div class="accessory-<%= accessory.id %>">
+    <h3><%= accessory.title %></h3>
+    <ul>
+      <li>Subtotal: <%= number_to_currency(values_hash['subtotal']) %></li>
+      <li>Quantity: <%= values_hash['count'] %></li>
+    </ul>
+  </div>
+<% end %>
+
+<h4>Order Total:</h4> <%= number_to_currency(@cart.cart_total) %>
+<h4>Status:</h4> Ordered
+<h4>Created:</h4> <%= @order.created_at %>

@@ -7,16 +7,15 @@ Rails.application.routes.draw do
   get '/dashboard' => 'users#dashboard'
   get '/trips-dashboard' => 'trips#dashboard'
 
-  resources :users, only: [:new, :create] do 
-    resources :orders, only: [:create]
-  end
+  resources :users, only: [:new, :create]
+  resources :orders, only: [:show, :create]
+  
   resources :carts, only: [:create, :index]
   resources :stations, only: [:show, :index]
   resources :trips, only: [:index, :show]
   resources :conditions, only: [:index, :show]
 	resources :accessories, only: :show
-  resources :orders, only: [:show, :create]
-  
+
   delete '/carts', to: 'carts#destroy'
   post '/carts', to: 'carts#create'
   put '/carts', to: 'carts#update'
