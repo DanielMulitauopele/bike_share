@@ -1,40 +1,6 @@
 require 'rails_helper'
 
 describe 'user sees all items in cart' do
-  it 'shows all items in cart' do
-    accessory_1 = create(:accessory)
-    accessory_2 = create(:accessory, title: 'an accessory')
-    accessory_3 = create(:accessory, title: 'an accessory again')
-
-    visit bike_shop_path
-
-    expect(page).to have_content("Cart: 0")
-
-    within("#accessory-#{accessory_1.id}") do
-      click_on 'Add to Cart'
-    end
-    within("#accessory-#{accessory_2.id}") do
-      click_on 'Add to Cart'
-    end
-    within("#accessory-#{accessory_3.id}") do
-      click_on 'Add to Cart'
-    end
-
-    within('#Cart-Header') do
-      click_on 'Cart'
-    end
-
-
-     expect(page).to have_content(accessory_1.title)
-     expect(page).to have_content("price: #{accessory_1.price}")
-     expect(page).to have_content(accessory_2.title)
-     expect(page).to have_content("price: #{accessory_2.price}")
-     expect(page).to have_content(accessory_3.title)
-     expect(page).to have_content("price: #{accessory_3.price}")
-     expect(page).to have_content(90)
-
-    expect(current_path).to eq(carts_path)
-  end
   it 'retains cart items on login' do
     accessory_1 = create(:accessory)
     accessory_2 = create(:accessory, title: 'an accessory')
@@ -67,91 +33,11 @@ describe 'user sees all items in cart' do
 
     expect(current_path).to eq(carts_path)
     expect(page).to have_content(accessory_1.title)
-    expect(page).to have_content("price: #{accessory_1.price}")
+    expect(page).to have_content("Price: #{accessory_1.price}")
     expect(page).to have_content(accessory_2.title)
-    expect(page).to have_content("price: #{accessory_2.price}")
+    expect(page).to have_content("Price: #{accessory_2.price}")
     expect(page).to have_content(accessory_3.title)
-    expect(page).to have_content("price: #{accessory_3.price}")
-    expect(page).to have_content(90)
+    expect(page).to have_content("Price: #{accessory_3.price}")
+    expect(page).to have_content("Total: $#{90}")
   end
-  it 'can remove items from the cart' do
-    accessory_1 = create(:accessory)
-
-    visit bike_shop_path
-
-    expect(page).to have_content("Cart: 0")
-
-    within("#accessory-#{accessory_1.id}") do
-      click_on 'Add to Cart'
-    end
-
-    within('#Cart-Header') do
-      click_on 'Cart'
-    end
-
-    click_on 'Remove'
-
-    expect(current_path).to eq(carts_path)
-    expect(page).to have_content("Successfully removed #{accessory_1.title} from your cart.")
-    expect(page).to_not have_css("#accessory-1#{accessory_1.id}")
-  end
-  it 'links to the deleted accessory' do
-    accessory_1 = create(:accessory)
-
-    visit bike_shop_path
-
-    expect(page).to have_content("Cart: 0")
-
-    within("#accessory-#{accessory_1.id}") do
-      click_on 'Add to Cart'
-    end
-
-    within('#Cart-Header') do
-      click_on 'Cart'
-    end
-
-    click_on 'Remove'
-
-    click_on accessory_1.title
-
-    expect(page).to have_content(accessory_1.title)
-    expect(current_path).to eq(accessory_path(accessory_1))
-  end
-end
-
-describe 'When user clicks on checkout after adding items to cart, they are directed to their dashboard page' do 
-  describe 'they link from the cart page' do 
-    it 'should direct user to their dashboard' do 
-      accessory_1 = create(:accessory)
-      accessory_2 = create(:accessory, title: 'an accessory')
-      user = create(:user, role: 0)
-
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-
-      visit bike_shop_path
-
-      expect(page).to have_content("Cart: 0")
-
-      within("#accessory-#{accessory_1.id}") do
-        click_on 'Add to Cart'
-      end
-      within("#accessory-#{accessory_2.id}") do
-        click_on 'Add to Cart'
-      end
-      within('#Cart-Header') do
-        click_on 'Cart'
-      end
-      expect(current_path).to eq(carts_path)
-      expect(page).to have_content(accessory_1.title)
-      expect(page).to have_content("price: #{accessory_1.price}")
-      expect(page).to have_content(accessory_2.title)
-      expect(page).to have_content("price: #{accessory_2.price}")
-      expect(page).to have_content(60)
-
-      click_on 'Checkout'
-
-      expect(current_path).to eq(dashboard_path)
-      expect(page).to have_content("You have successfully submitted your order totaling $total")
-    end 
-  end 
 end

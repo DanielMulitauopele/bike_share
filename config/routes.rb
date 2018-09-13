@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   get '/trips-dashboard' => 'trips#dashboard'
 
   resources :users, only: [:new, :create]
-  resources :orders, only: [:show, :create]
-  
+  resources :orders, only: [:show, :create, :edit, :update]
+
   resources :carts, only: [:create, :index]
   resources :stations, only: [:show, :index]
   resources :trips, only: [:index, :show]

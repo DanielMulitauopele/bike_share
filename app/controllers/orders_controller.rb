@@ -3,15 +3,31 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @accessories = @cart.format
   end
-  
+
   def create
     if current_user
-      order = current_user.orders.create!(total: @cart.contents.values.sum, status: "ordered" , user_id: current_user.id)
-      flash[:order] = "You have successfully submitted your order totaling $total!"
+      order = current_user.orders.create!(total: @cart.contents.values.sum, status: "Ordered" , user_id: current_user.id)
+      flash[:order] = "You have successfully submitted your order totaling $#{@cart.cart_total}!"
       redirect_to dashboard_path
     else 
       redirect_to login_path
-      flash[:order] = "Please login first befor checkout"
+      flash[:alert] = 'Please login before checking out!'
     end
+  end
+
+  def edit
+    @order = Order.find(params[:id])
+  end
+
+  def update
+    order = Order.find(params[:id])
+    order.update(order_params)
+    redirect_to order_path(order)
+  end
+
+  private
+
+  def order_params
+    params.require(:order).permit(:status)
   end
 end

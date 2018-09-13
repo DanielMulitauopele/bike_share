@@ -1,0 +1,7 @@
+<h2>Edit Order <%= @order.id %> </h2>
+
+<%= form_for @order do |f| %>
+  <%= f.label :status %>
+  <%= f.select :status, options_for_select(["Ordered", "Completed", "Paid", "Canceled"]) %>
+  <%= f.submit %>
+<% end %>
