@@ -15,7 +15,7 @@ describe 'as a user' do
       within("#accessory-#{accessory_1.id}") do
         click_on 'Add to Cart'
       end
-      within("#accessory-#{accessory_2.id}") do
+      within("#accessory-#{accessory_1.id}") do
         click_on 'Add to Cart'
       end
       within("#accessory-#{accessory_3.id}") do
@@ -35,8 +35,8 @@ describe 'as a user' do
 
       within '.accessory-1' do
         expect(page).to have_content(accessory_1.title)
-        expect(page).to have_content("Subtotal: $30.00")
-        expect(page).to have_content("Quantity: 1")
+        expect(page).to have_content("Subtotal: $60.00")
+        expect(page).to have_content("Quantity: 2")
       end
 
       expect(page).to have_content('Order Total')
