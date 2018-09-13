@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :current_user, :current_admin?
+  helper_method :current_user?
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -18,5 +19,9 @@ class ApplicationController < ActionController::Base
 
   def set_cart
     @cart ||= Cart.new(session[:cart])
+  end
+
+  def current_user?
+    current_user
   end
 end
