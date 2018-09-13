@@ -17,7 +17,7 @@ class Trip < ApplicationRecord
                 vis:    'mean_visibility'}
 
   def self.average_duration
-    average(:duration).round(2)
+    average(:duration)
   end
 
   def self.longest_ride
@@ -66,30 +66,29 @@ class Trip < ApplicationRecord
 
   def self.max_by(range, type)
     column_name = COLUMN_MAP[type]
-    select("start_date, count(trips.id) as count")
-    .joins("join conditions on conditions.date = trips.start_date")
+    select("DATE_TRUNC('day',start_date) as start_date, count(trips.id) as count")
+    .joins("join conditions on DATE_TRUNC('day', conditions.date) = DATE_TRUNC('day', trips.start_date)")
     .where("#{column_name} between ? and ?", range.first, range.last)
-    .group(:start_date)
+    .group("DATE_TRUNC('day', start_date)")
     .order("count desc").limit(1).first
   end
 
   def self.min_by(range, type)
     column_name = COLUMN_MAP[type]
-    select("start_date, count(trips.id) as count")
-    .joins("join conditions on conditions.date = trips.start_date")
+    select("DATE_TRUNC('day',start_date) as start_date, count(trips.id) as count")
+    .joins("join conditions on DATE_TRUNC('day', conditions.date) = DATE_TRUNC('day', trips.start_date)")
     .where("#{column_name} between ? and ?", range.first, range.last)
-    .group(:start_date)
+    .group("DATE_TRUNC('day', start_date)")
     .order("count asc").limit(1).first
   end
 
   def self.avg_by(range, type)
     column_name = COLUMN_MAP[type]
-    data = select("date_trunc('day', start_date), count(trips.id) as count")
+    count_of_trips = select("distinct trips.id")
            .joins("join conditions on date_trunc('day', conditions.date) = date_trunc('day', trips.start_date)")
-           .where("#{column_name} between ? and ?", range.first, range.last)
-           .group("date_trunc('day', trips.start_date)")
-           .order("count desc")
-    sum = data.inject(0) {|base, day_data| base += day_data.count }
-    sum / data.length unless sum == 0 || data.length == 0
+            .where("#{column_name} between ? and ?", range.first, range.last).count
+    total_trips = Trip.count
+    avg = ((count_of_trips.to_f / total_trips) * 100) unless count_of_trips == 0
+    avg ||= 0
   end
 end
