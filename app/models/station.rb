@@ -79,6 +79,13 @@ class Station < ApplicationRecord
     .order("count(start_station_id) desc").first.name
   end
 
+  def date_with_highest_number
+    start_trips.select("trips.start_date, count(trips.start_station_id) as count")
+    .where("trips.start_station_id = ?", id)
+    .group(:start_date)
+    .order("count").last.start_date
+  end
+
   def frequent_zip_code
     start_trips.select('trips.zip_code, count(trips.id) as count')
     .group('trips.zip_code')
