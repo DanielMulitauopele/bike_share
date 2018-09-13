@@ -6,7 +6,6 @@ class Order < ApplicationRecord
 
   def format
     grouped = accessories.group(:accessory_id).count
-
     formatted_hash = {}
     grouped.each do |item_id, count|
       item = Accessory.find(item_id.to_i)
