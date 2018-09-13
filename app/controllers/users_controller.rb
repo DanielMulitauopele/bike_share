@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
+ before_action :set_user, only: [:dashboard, :edit, :update]
 
   def dashboard
-    @user = User.find(current_user.id)
     @orders = @user.orders
   end
 
@@ -22,9 +22,27 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    @user.update(user_params)
+    if @user.save
+      flash[:success] = "#{@user.name} profile updated."
+      redirect_to dashboard_path
+    else
+      flash[:failure] = "User '#{params[:user][:email]}' already exists."
+      redirect_to edit_user_path(@user)
+    end
+  end
+
 private
 
   def user_params
     params.require(:user).permit(:name, :email, :password)
+  end
+
+  def set_user
+    @user = User.find(current_user.id)
   end
 end

@@ -27,8 +27,8 @@ describe 'registered user sees one station' do
       visit stations_path
 
       click_on @station_1.name
-      
-      expect(current_path).to eq('/stations/wash-park-east')
+
+      expect(current_path).to eq('/wash-park-east')
       expect(page).to have_content(@station_1.name)
       expect(page).to have_content(@station_1.dock_count)
       expect(page).to have_content(@station_1.city)

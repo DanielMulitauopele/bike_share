@@ -1,8 +1,12 @@
 class OrdersController < ApplicationController
 
   def show
-    @order = Order.find(params[:id])
-    @accessories = @order.format
+    if current_user?
+      @order = Order.find(params[:id])
+      @accessories = @order.format
+    else
+      render file: "/public/404"
+    end
   end
 
   def create

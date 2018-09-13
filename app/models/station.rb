@@ -9,6 +9,10 @@ class Station < ApplicationRecord
   has_many :start_trips, class_name: 'Trip', foreign_key: 'start_station_id', dependent: :destroy
   has_many :end_trips, class_name: 'Trip', foreign_key: 'end_station_id', dependent: :destroy
 
+  def to_param
+    slug
+  end
+
   def self.stations_total_count
     count
   end
