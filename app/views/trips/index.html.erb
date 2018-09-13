@@ -1,16 +1,19 @@
 <h1>All Trips</h1>
 
+<p><%= link_to 'Trips Dashboard', trips_dashboard_path %>
+
   <ul>
-<% @trips.each do |trip| %>
-  <li>Duration: <%= trip.duration %></li>
-  <li>Start Date: <%= trip.start_date%></li>
-  <li>Start Station: <%= trip.start_station.name %></li>
-  <li>End Date: <%= trip.end_date %></li>
-  <li>End Station: <%= trip.end_station.name %></li>
-  <li>Bike ID: <%= trip.bike_id %></li>
-  <li>Subscription Type: <%= trip.subscription_type%></li>
-  <li>Zip Code: <%= trip.zip_code%></li>
-  <% end %>
+    <% @trips.each do |trip| %>
+      <li>ID: <%= link_to trip.id, trip_path(trip.id) %></li>
+      <li>Duration: <%= trip.duration %></li>
+      <li>Start Date: <%= trip.start_date%></li>
+      <li>Start Station: <%= trip.start_station.name %></li>
+      <li>End Date: <%= trip.end_date %></li>
+      <li>End Station: <%= trip.end_station.name %></li>
+      <li>Bike ID: <%= trip.bike_id %></li>
+      <li>Subscription Type: <%= trip.subscription_type%></li>
+      <li>Zip Code: <%= trip.zip_code%></li>
+    <% end %>
   </ul>
 
   <% if @page > 1 %>

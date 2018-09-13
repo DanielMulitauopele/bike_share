@@ -1,5 +1,7 @@
 <h1>All Conditions</h1>
 
+<p><%= link_to 'Conditions Dashboard', conditions_dashboard_path %>
+
 <% @conditions.each do |condition| %>
   <div class="condition">
     <h4><%= link_to "Date: #{condition.date}", condition_path(condition) %></h4>
