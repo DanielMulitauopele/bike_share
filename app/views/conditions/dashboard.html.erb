@@ -1,3 +1,29 @@
 <h1>Conditions Dashboard</h1>
 
+<ul>
+<% @data.each do |info, results| %>
+  <strong><li><%= info %></li></strong>
+  <li>Max # of Rides: <%= results[0][0] %> : <%= results[0][1] %></li>
+  <li>Min # of Rides: <%= results[1][0] %> : <%= results[1][1] %></li>
+  <li>Avg # of Rides: <%= results[2][0] %></li>
+  <% end %>
+  </ul>
 
+
+<ul>
+<% @precip_data.each do |info, results| %>
+  <strong><li><%= info %></li></strong>
+  <li>Max # of Rides: <%= results[0][0] %> : <%= results[0][1] %></li>
+  <li>Min # of Rides: <%= results[1][0] %> : <%= results[1][1] %></li>
+  <li>Avg # of Rides: <%= results[2][0] %></li>
+  <% end %>
+  </ul>
+
+
+<% @wind_data.each do |info, results| %>
+  <strong><li><%= info %></li></strong>
+  <li>Max # of Rides: <%= results[0][0] %> : <%= results[0][1] %></li>
+  <li>Min # of Rides: <%= results[1][0] %> : <%= results[1][1] %></li>
+  <li>Avg # of Rides: <%= results[2][0] %></li>
+  <% end %>
+  </ul>

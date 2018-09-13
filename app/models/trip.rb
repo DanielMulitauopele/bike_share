@@ -66,20 +66,86 @@ class Trip < ApplicationRecord
     .joins("join conditions on conditions.date = trips.start_date")
     .where("max_temperature between ? and ?", range.first, range.last)
     .group(:start_date)
-    .order("count desc")
+      .order("count desc").limit(1).first
   end
 
   def self.min_by_temperature(range)
     select("start_date, count(trips.id) as count")
     .joins("join conditions on conditions.date = trips.start_date")
-    .where("min_temperature between ? and ?", range.first, range.last)
+    .where("max_temperature between ? and ?", range.first, range.last)
     .group(:start_date)
-    .order("count desc")
+      .order("count asc").limit(1).first
   end
 
   def self.avg_by_temperature(range)
     data = select("date_trunc('day', start_date), count(trips.id) as count").joins("join conditions on date_trunc('day', conditions.date) = date_trunc('day', trips.start_date)").where("conditions.max_temperature between ? and ?", range.first, range.last).group("date_trunc('day', trips.start_date)") .order("count desc")
     sum = data.inject(0) {|base, day_data| base += day_data.count }
-    sum / data.length
+    sum / data.length unless sum == 0 || data.length == 0
+  end
+
+  def self.max_by_precipitation(range)
+    select("start_date, count(trips.id) as count")
+    .joins("join conditions on conditions.date = trips.start_date")
+    .where("precipitation between ? and ?", range.first, range.last)
+    .group(:start_date)
+    .order("count desc").limit(1).first
+  end
+
+  def self.min_by_precipitation(range)
+    select("start_date, count(trips.id) as count")
+    .joins("join conditions on conditions.date = trips.start_date")
+    .where("precipitation between ? and ?", range.first, range.last)
+    .group(:start_date)
+      .order("count asc").limit(1).first
+  end
+
+  def self.avg_by_precipitation(range)
+    data = select("date_trunc('day', start_date), count(trips.id) as count").joins("join conditions on date_trunc('day', conditions.date) = date_trunc('day', trips.start_date)").where("conditions.precipitation between ? and ?", range.first, range.last).group("date_trunc('day', trips.start_date)") .order("count desc")
+    sum = data.inject(0) {|base, day_data| base += day_data.count }
+    sum / data.length unless sum == 0 || data.length == 0
+  end
+
+  def self.max_by_wind(range)
+    select("start_date, count(trips.id) as count")
+    .joins("join conditions on conditions.date = trips.start_date")
+    .where("mean_wind_speed between ? and ?", range.first, range.last)
+    .group(:start_date)
+    .order("count desc").limit(1).first
+  end
+
+  def self.min_by_wind(range)
+    select("start_date, count(trips.id) as count")
+    .joins("join conditions on conditions.date = trips.start_date")
+    .where("mean_wind_speed between ? and ?", range.first, range.last)
+    .group(:start_date)
+      .order("count asc").limit(1).first
+  end
+
+  def self.avg_by_wind(range)
+    data = select("date_trunc('day', start_date), count(trips.id) as count").joins("join conditions on date_trunc('day', conditions.date) = date_trunc('day', trips.start_date)").where("conditions.mean_wind_speed between ? and ?", range.first, range.last).group("date_trunc('day', trips.start_date)") .order("count desc")
+    sum = data.inject(0) {|base, day_data| base += day_data.count }
+    sum / data.length unless sum == 0 || data.length == 0
+  end
+
+  def self.max_by_visibility(range)
+    select("start_date, count(trips.id) as count")
+    .joins("join conditions on conditions.date = trips.start_date")
+    .where("mean_visibility between ? and ?", range.first, range.last)
+    .group(:start_date)
+    .order("count desc").limit(1).first
+  end
+
+  def self.min_by_visibility(range)
+    select("start_date, count(trips.id) as count")
+    .joins("join conditions on conditions.date = trips.start_date")
+    .where("mean_visibility between ? and ?", range.first, range.last)
+    .group(:start_date)
+      .order("count asc").limit(1).first
+  end
+
+  def self.avg_by_visibility(range)
+    data = select("date_trunc('day', start_date), count(trips.id) as count").joins("join conditions on date_trunc('day', conditions.date) = date_trunc('day', trips.start_date)").where("conditions.mean_visibility between ? and ?", range.first, range.last).group("date_trunc('day', trips.start_date)") .order("count desc")
+    sum = data.inject(0) {|base, day_data| base += day_data.count }
+    sum / data.length unless sum == 0 || data.length == 0
   end
 end
