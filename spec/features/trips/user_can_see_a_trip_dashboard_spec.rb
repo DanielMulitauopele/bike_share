@@ -27,24 +27,23 @@ describe 'visit the trips-dashboard-path' do
       visit trips_dashboard_path
 
       expect(page).to have_content("Longest Ride: Trip #{trip.id} - #{trip.start_date.strftime("%F")} - #{trip.duration} Seconds")
-      save_and_open_page
 		end
 		it 'should show the shortest ride' do
     	trip = Trip.create(duration: 50, start_date:	'2013-01-09 11:30:00', start_station_id:	3	, end_date: '2013-01-09 11:51:00',
                             end_station_id: 3, bike_id: 76, subscription_type:	'customer', zip_code:	872671)
       visit trips_dashboard_path
 
-      expect(page).to have_content("Shortest Ride: #{trip.id}")
+      expect(page).to have_content("Shortest Ride: Trip #{trip.id} - #{trip.start_date.strftime("%F")} - #{trip.duration} Seconds")
 		end
 		it 'should show the start station with the most rides' do
       visit trips_dashboard_path
 
-      expect(page).to have_content("Most Popular Start Location #{@station_1.name}")
+      expect(page).to have_content("Most Popular Start Location: #{@station_1.name}")
 		end
     it 'should show the end station with the most rides' do
       visit trips_dashboard_path
 
-      expect(page).to have_content("Most Popular End Location #{@station_2.name}")
+      expect(page).to have_content("Most Popular End Location: #{@station_2.name}")
 		end
     it 'should show the count of rides grouped by month/year' do
       visit trips_dashboard_path
