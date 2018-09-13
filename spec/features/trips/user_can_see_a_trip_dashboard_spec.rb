@@ -26,7 +26,8 @@ describe 'visit the trips-dashboard-path' do
                             end_station_id: 3, bike_id: 76, subscription_type:	'customer', zip_code:	872671)
       visit trips_dashboard_path
 
-      expect(page).to have_content("Longest Ride: #{trip.id}")
+      expect(page).to have_content("Longest Ride: Trip #{trip.id} - #{trip.start_date.strftime("%F")} - #{trip.duration} Seconds")
+      save_and_open_page
 		end
 		it 'should show the shortest ride' do
     	trip = Trip.create(duration: 50, start_date:	'2013-01-09 11:30:00', start_station_id:	3	, end_date: '2013-01-09 11:51:00',

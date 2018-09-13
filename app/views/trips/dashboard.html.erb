@@ -2,7 +2,7 @@
 <h2>Average Trip Duration: <%= @average_duration %></h2>
 <ul>
   <% @longest_ride.each do |ride| %>
-    <li>Longest Ride: <%= ride %></li>
+    <li>Longest Ride: <%= ride.id %> - <%= ride.start_date %> - <%= ride.duration %> Seconds</li>
     <% end %>
 </ul>
 
