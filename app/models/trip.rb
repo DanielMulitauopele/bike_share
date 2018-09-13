@@ -11,18 +11,21 @@ class Trip < ApplicationRecord
   belongs_to :start_station, class_name: "Station"
   belongs_to :end_station, class_name: "Station"
 
+  COLUMN_MAP = {temp:   'max_temperature',
+                wind:   'mean_wind_speed',
+                precip: 'precipitation',
+                vis:    'mean_visibility'}
+
   def self.average_duration
     average(:duration)
   end
 
   def self.longest_ride
-    rides = select(:id).where(duration: maximum(:duration))
-    rides.map {|ride| ride.id }
+    select(:id, :start_date, :duration).where(duration: maximum(:duration))
   end
 
   def self.shortest_ride
-    rides = select(:id).where(duration: minimum(:duration))
-    rides.map {|ride| ride.id }
+    select(:id, :start_date, :duration).where(duration: minimum(:duration))
   end
 
   def self.group_by_month_year
@@ -34,14 +37,14 @@ class Trip < ApplicationRecord
   end
 
   def self.most_ridden_bike
-   select('bike_id, count(id) as count').
+    select('bike_id, count(id) as count').
     group('bike_id').
     order('count desc').
     limit(1).first
   end
 
   def self.least_ridden_bike
-   select('bike_id, count(id) as count').
+    select('bike_id, count(id) as count').
     group('bike_id').
     order('count asc').
     limit(1).first
@@ -60,4 +63,34 @@ class Trip < ApplicationRecord
   def self.min_day
     select("DATE_TRUNC('day', start_date) as day, count(id) as count").group('day').order('count asc').limit(1).first
   end
+
+  def self.max_by(range, type)
+    column_name = COLUMN_MAP[type]
+    select("DATE_TRUNC('day',start_date) as start_date, count(trips.id) as count")
+    .joins("join conditions on DATE_TRUNC('day', conditions.date) = DATE_TRUNC('day', trips.start_date)")
+    .where("#{column_name} between ? and ?", range.first, range.last)
+    .group("DATE_TRUNC('day', start_date)")
+    .order("count desc").limit(1).first
+  end
+
+  def self.min_by(range, type)
+    column_name = COLUMN_MAP[type]
+    select("DATE_TRUNC('day',start_date) as start_date, count(trips.id) as count")
+    .joins("join conditions on DATE_TRUNC('day', conditions.date) = DATE_TRUNC('day', trips.start_date)")
+    .where("#{column_name} between ? and ?", range.first, range.last)
+    .group("DATE_TRUNC('day', start_date)")
+    .order("count asc").limit(1).first
+  end
+
+  def self.avg_by(range, type)
+    column_name = COLUMN_MAP[type]
+    count_of_trips = select("distinct trips.id")
+           .joins("join conditions on date_trunc('day', conditions.date) = date_trunc('day', trips.start_date)")
+            .where("#{column_name} between ? and ?", range.first, range.last).count
+    total_trips = Trip.count
+    avg = ((count_of_trips.to_f / total_trips) * 100) unless count_of_trips == 0
+    avg ||= 0
+  end
+
+
 end

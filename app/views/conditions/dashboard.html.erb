@@ -1,0 +1,49 @@
+<h1>Conditions Dashboard</h1>
+
+<h3>Temperature</h3>
+<ul id="temp-list">
+<% @stats[:temp].each do |range_title, range_stats| %>
+  <div id="temp-<%= range_title[0..1] %>">
+  <strong><li>Range: <%= range_title %></li></strong>
+  <li>Max # of Rides: <%= range_stats[:max][:date] %> : <%= range_stats[:max][:count] %></li>
+  <li>Min # of Rides: <%= range_stats[:min][:date] %> : <%= range_stats[:min][:count] %></li>
+  <li>Avg # of Rides: <%= range_stats[:avg][:count].round(2) %></li>
+  <% end %>
+</ul>
+
+
+<h3>Precipitation</h3>
+<ul id="precip-list">
+<% @stats[:precip].each do |range_title, range_stats| %>
+  <div id="precip-<%= range_title[0..1] %>">
+  <strong><li>Range: <%= range_title %></li></strong>
+  <li>Max # of Rides: <%= range_stats[:max][:date] %> : <%= range_stats[:max][:count] %></li>
+  <li>Min # of Rides: <%= range_stats[:min][:date] %> : <%= range_stats[:min][:count] %></li>
+  <li>Avg # of Rides: <%= range_stats[:avg][:count].round(2) %></li>
+  <% end %>
+</ul>
+
+
+<h3>Wind Speed</h3>
+<ul id= "wind-list">
+<% @stats[:wind].each do |range_title, range_stats| %>
+  <div id="wind-<%= range_title[0..1] %>">
+  <strong><li>Range: <%= range_title %></li></strong>
+  <li>Max # of Rides: <%= range_stats[:max][:date] %> : <%= range_stats[:max][:count] %></li>
+  <li>Min # of Rides: <%= range_stats[:min][:date] %> : <%= range_stats[:min][:count] %></li>
+  <li>Avg # of Rides: <%= range_stats[:avg][:count].round(2) %></li>
+  </div>
+  <% end %>
+</ul>
+
+<h3>Visibility</h3>
+<ul id="vis-list">
+<% @stats[:vis].each do |range_title, range_stats| %>
+  <div id="vis-<%= range_title[0..1] %>">
+  <strong><li>Range: <%= range_title %></li></strong>
+  <li>Max # of Rides: <%= range_stats[:max][:date] %> : <%= range_stats[:max][:count] %></li>
+  <li>Min # of Rides: <%= range_stats[:min][:date] %> : <%= range_stats[:min][:count] %></li>
+  <li>Avg # of Rides: <%= range_stats[:avg][:count].round(2) %></li>
+  </div>
+  <% end %>
+</ul>

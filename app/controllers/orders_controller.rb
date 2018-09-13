@@ -2,17 +2,22 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @accessories = @cart.format
+    @accessories = @order.format
   end
 
   def create
     if current_user && @cart.total_count != 0
       order = current_user.orders.create!(total: @cart.contents.values.sum, status: "Ordered", user_id: current_user.id)
+      @cart.contents.each do |id, quantity|
+        quantity.times do
+          order.accessories << Accessory.find(id)
+        end
+      end
       flash[:order] = "You have successfully submitted your order totaling $#{@cart.cart_total}!"
-      # session.delete(:cart)
+      session[:cart] = nil
       redirect_to dashboard_path
     elsif current_user && @cart.total_count == 0
-      flash[:notice] = "Your cart is empty, please add items from the #{view_context.link_to 'bike shop', bike_shop_path} to your cart first before checking out!"
+      flash[:notice] = "Your cart is empty, please add items from the #{view_context.link_to 'bike shop', bike_shop_path} to your cart before checking out!"
       redirect_to carts_path
     else 
       redirect_to login_path
@@ -31,8 +36,7 @@ class OrdersController < ApplicationController
   end
 
   private
-
-  def order_params
-    params.require(:order).permit(:status)
-  end
+    def order_params
+      params.require(:order).permit(:status)
+    end
 end

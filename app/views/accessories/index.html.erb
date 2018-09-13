@@ -4,7 +4,8 @@
   <div id="accessory-<%= item.id %>">
 
   <%= image_tag(item.image)  %>
-  <%= item.title %>
-  <%= button_to 'Add to Cart', carts_path(accessory_id: item.id, do: 'add') %>
+  <%= link_to item.title, accessory_path(item.id) %>
+  <%= button_to 'Add to Cart', carts_path(accessory_id: item.id, do: 'add') unless item.retired? %>
+  <%= 'Accessory Retired' if item.retired? %>
   </div>
 <% end %>
