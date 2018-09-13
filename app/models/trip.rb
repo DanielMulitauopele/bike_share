@@ -91,4 +91,6 @@ class Trip < ApplicationRecord
     avg = ((count_of_trips.to_f / total_trips) * 100) unless count_of_trips == 0
     avg ||= 0
   end
+
+
 end

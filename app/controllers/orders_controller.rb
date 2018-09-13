@@ -1,15 +1,23 @@
 class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
-    @accessories = @cart.format
+    @accessories = @order.format
   end
 
   def create
     if current_user
       order = current_user.orders.create!(total: @cart.contents.values.sum, status: "Ordered" , user_id: current_user.id)
+
+      @cart.contents.each do |id, quantity|
+        quantity.times do
+          order.accessories << Accessory.find(id)
+        end
+      end
+
       flash[:order] = "You have successfully submitted your order totaling $#{@cart.cart_total}!"
+      session[:cart] = nil
       redirect_to dashboard_path
-    else 
+    else
       redirect_to login_path
       flash[:alert] = 'Please login before checking out!'
     end
