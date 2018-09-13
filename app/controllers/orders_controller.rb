@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
       end
 
       flash[:order] = "You have successfully submitted your order totaling $#{@cart.cart_total}!"
+      session[:cart] = nil
       redirect_to dashboard_path
     else
       redirect_to login_path
