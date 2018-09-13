@@ -94,4 +94,6 @@ class Trip < ApplicationRecord
     sum = data.inject(0) {|base, day_data| base += day_data.count }
     sum / data.length unless sum == 0 || data.length == 0
   end
+
+
 end

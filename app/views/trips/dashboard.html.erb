@@ -35,5 +35,23 @@
     <% end %>
 </ul>
 
-<p>Most Popular Day: <%= @max_day.day.strftime("%F") %>: <%= @max_day.count %></p>
-<p>Least Popular Day: <%= @min_day.day.strftime("%F") %>: <%= @min_day.count %></p>
+<h3>Most Popular Day: <%= @max_day.day.strftime("%F") %>: <%= @max_day.count %></h3>
+  <ul>
+    <li>Max Temperature: <%= @max_day_weather.max_temperature %></li>
+    <li>Mean Temperature: <%= @max_day_weather.mean_temperature %></li>
+    <li>Min Temperature: <%= @max_day_weather.min_temperature %></li>
+    <li>Mean Humidity: <%= @max_day_weather.mean_humidity %></li>
+    <li>Mean Visibility: <%= @max_day_weather.mean_visibility %></li>
+    <li>Mean Wind Speed: <%= @max_day_weather.mean_wind_speed %></li>
+    <li>Precipitation: <%= @max_day_weather.precipitation %></li>
+  </ul>
+<h3>Least Popular Day: <%= @min_day.day.strftime("%F") %>: <%= @min_day.count %></h3>
+  <ul>
+    <li>Max Temperature: <%= @min_day_weather.max_temperature %></li>
+    <li>Mean Temperature: <%= @min_day_weather.mean_temperature %></li>
+    <li>Min Temperature: <%= @min_day_weather.min_temperature %></li>
+    <li>Mean Humidity: <%= @min_day_weather.mean_humidity %></li>
+    <li>Mean Visibility: <%= @min_day_weather.mean_visibility %></li>
+    <li>Mean Wind Speed: <%= @min_day_weather.mean_wind_speed %></li>
+    <li>Precipitation: <%= @min_day_weather.precipitation %></li>
+  </ul>
