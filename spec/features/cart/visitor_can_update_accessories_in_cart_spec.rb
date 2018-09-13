@@ -5,8 +5,8 @@ describe 'as a visitor' do
     it "should be able to increase quantity" do
       accessory = create(:accessory)
       visit bike_shop_path
-
       click_button 'Add to Cart'
+      
       expect(page).to have_content("You now have 1 of  #{accessory.title} in your cart.")
 
       within '#Cart-Header' do
@@ -19,6 +19,7 @@ describe 'as a visitor' do
       click_on '+'
       expect(page).to have_content(2)
     end
+    
     it "should be able to decrease quantity" do
       accessory = create(:accessory)
       visit bike_shop_path
@@ -32,10 +33,10 @@ describe 'as a visitor' do
       end
 
       expect(page).to have_content(accessory.title)
-      expect(page).to have_content("count: 2")
+      expect(page).to have_content("Count: #{2}")
       click_on '-'
 
-      expect(page).to have_content("count: 1")
+      expect(page).to have_content("Count: #{1}")
     end
   end
 end

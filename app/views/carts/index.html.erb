@@ -11,9 +11,9 @@
 <% @items.each do |item, values_hash| %>
   <tr id="accessory-<%= item.id %>">
   <td> <%= item.title %></td>
-  <td>price: <%= item.price %></td>
+  <td>Price: <%= item.price %></td>
   <td> <%= link_to '-', carts_path(accessory_id: item.id, do: 'subtract'), method: :put %></td>
-  <td>count: <%= values_hash['count'] %></td>
+  <td>Count: <%= values_hash['count'] %></td>
   <td> <%= link_to '+', carts_path(accessory_id: item.id, do: 'add'), method: :put %></td>
   <td> <%= number_to_currency(values_hash['subtotal'])%></td>
   <td> <%= link_to 'Remove', carts_path(accessory_id: item.id), method: :delete %></td>

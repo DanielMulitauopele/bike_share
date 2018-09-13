@@ -51,7 +51,7 @@ describe Station, type: :model do
     
       expect(actual).to eq(expected)
     end
-  # 
+  
     it 'returns fewest bikes at a station' do
       expected = @station_4.dock_count 
       actual = Station.fewest_bikes

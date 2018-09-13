@@ -26,12 +26,12 @@ describe 'Visitor sees all items in the cart' do
     
     expect(current_path).to eq(carts_path)
     expect(page).to have_content(accessory_1.title)
-    expect(page).to have_content("price: #{accessory_1.price}")
+    expect(page).to have_content("Price: #{accessory_1.price}")
     expect(page).to have_content(accessory_2.title)
-    expect(page).to have_content("price: #{accessory_2.price}")
+    expect(page).to have_content("Price: #{accessory_2.price}")
     expect(page).to have_content(accessory_3.title)
-    expect(page).to have_content("price: #{accessory_3.price}")
-    expect(page).to have_content(90)
+    expect(page).to have_content("Price: #{accessory_3.price}")
+    expect(page).to have_content("Total: $#{90}")
   end
   
   it 'can remove items from the cart' do
@@ -74,9 +74,9 @@ describe 'Visitor sees all items in the cart' do
     click_on 'Remove'
 
     click_on accessory.title
-
-    expect(page).to have_content(accessory.title)
+    
     expect(current_path).to eq(accessory_path(accessory))
+    expect(page).to have_content(accessory.title)
   end
 end
 

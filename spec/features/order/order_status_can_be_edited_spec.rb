@@ -27,6 +27,7 @@ describe 'as a user' do
       click_on 'Checkout'
       @order = @user.orders.first.id
     end
+    
     it "should take user to order edit page" do
       visit dashboard_path
 
@@ -35,6 +36,7 @@ describe 'as a user' do
       expect(current_path).to eq(edit_order_path(@order))
       expect(page).to have_content("Edit Order #{@order}")
     end
+    
     it "should allow user to edit status" do
       visit dashboard_path
 
@@ -46,7 +48,6 @@ describe 'as a user' do
       select "Canceled", from: "order[status]"
       click_on 'Update Order'
 
-      save_and_open_page
       expect(current_path).to eq(order_path(@order))
       expect(page).to have_content('Status: Canceled')
     end

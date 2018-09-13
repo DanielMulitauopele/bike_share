@@ -5,9 +5,14 @@ class OrdersController < ApplicationController
   end
 
   def create
-    order = current_user.orders.create!(total: @cart.contents.values.sum, status: "Ordered" , user_id: current_user.id)
-    flash[:order] = "Order number #{order.id} has been created!"
-    redirect_to dashboard_path
+    if current_user
+      order = current_user.orders.create!(total: @cart.contents.values.sum, status: "Ordered" , user_id: current_user.id)
+      flash[:order] = "You have successfully submitted your order totaling $#{@cart.cart_total}!"
+      redirect_to dashboard_path
+    else 
+      redirect_to login_path
+      flash[:alert] = 'Please login before checking out!'
+    end
   end
 
   def edit
