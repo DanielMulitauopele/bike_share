@@ -30,7 +30,7 @@ describe 'user sees all items in cart' do
     within('#Cart-Header') do
       click_on 'Cart'
     end
-    
+
     expect(current_path).to eq(carts_path)
     expect(page).to have_content(accessory_1.title)
     expect(page).to have_content("price: #{accessory_1.price}")

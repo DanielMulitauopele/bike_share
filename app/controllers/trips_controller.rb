@@ -21,7 +21,5 @@ class TripsController< ApplicationController
     @distribution_by_subscriber = Trip.distribution_by_subscription
     @max_day = Trip.max_day
     @min_day = Trip.min_day
-
   end
-
 end
