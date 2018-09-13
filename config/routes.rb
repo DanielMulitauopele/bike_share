@@ -21,6 +21,6 @@ Rails.application.routes.draw do
 	resources :accessories, only: :show
   
   namespace :admin do
-    resources :stations, only: [:index]
+    resources :stations
   end  
 end

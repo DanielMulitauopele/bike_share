@@ -24,7 +24,7 @@ describe 'As an admin' do
 end
 
 context "as default user" do
-  it 'does not allow default user to see admin categories index' do
+  it 'does not allow default user to see admin stations index' do
     user = User.create(name: 'Hans', email: 'hans@email.com', password: 'Test123', role: 0)
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
