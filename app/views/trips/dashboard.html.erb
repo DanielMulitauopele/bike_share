@@ -1,35 +1,42 @@
 <h1>Trip Dashboard</h1>
 <h2>Average Trip Duration: <%= @average_duration %></h2>
+<p><%= link_to 'Back to Trips Index', trips_path %></p>
 <ul>
+  <strong><li>Longest Rides:</li></strong>
   <% @longest_ride.each do |ride| %>
-    <li>Longest Ride: <%= ride %></li>
+    <li>Longest Ride: Trip <%= ride.id %> - <%= ride.start_date.strftime("%F") %> - <%= ride.duration %> Seconds</li>
     <% end %>
 </ul>
 
 <ul>
+ <strong><li>Shortest Rides:</li></strong>
   <% @shortest_ride.each do |ride| %>
-    <li>Shortest Ride: <%= ride %></li>
+    <li>Shortest Ride: Trip <%= ride.id %> - <%= ride.start_date.strftime("%F") %> - <%= ride.duration %> Seconds</li>
     <% end %>
 </ul>
 
-<p>Most Popular Start Location <%= @most_popular_start_station %></p>
-<p>Most Popular End Location <%= @most_popular_end_station %></p>
+<p>Most Popular Start Location: <%= @most_popular_start_station %></p>
+<p>Most Popular End Location: <%= @most_popular_end_station %></p>
 
 <ul>
+  <strong><li>Rides by Month Year: </li></strong>
   <% @grouped_by_month_year.each do |date, count| %>
   <li><%= date.strftime("%b-%Y")%>: <%= count %></li>
 <% end %>
 </ul>
 
 <ul>
+  <strong><li>Rides by Year: </li></strong>
   <% @grouped_by_year.each do |date, count| %>
   <li><%= date.strftime("%Y")%>: <%= count %></li>
 <% end %>
 </ul>
+
 <p>Most Ridden Bike: <%= @most_ridden_bike.bike_id %> - Rides: <%= @most_ridden_bike.count %></p>
 <p>Least Ridden Bike: <%= @least_ridden_bike.bike_id %> - Rides: <%= @least_ridden_bike.count %></p>
 
 <ul>
+  <strong><li>Distribution by Subscriber</li></strong>
   <% @distribution_by_subscriber.each do |subscription_group| %>
     <li><%= subscription_group.subscription_type.capitalize %>: <%= subscription_group.percentage %>%</li>
     <% end %>
