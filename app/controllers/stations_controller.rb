@@ -1,5 +1,6 @@
 class StationsController < ApplicationController
-  
+  before_action :set_station, only: [:show]
+
   def dashboard
     @stations_count = Station.stations_total_count
     @average_docks = Station.average_docks
@@ -10,12 +11,18 @@ class StationsController < ApplicationController
     @newest_station = Station.newest_installation
     @oldest_station = Station.oldest_installation
   end
-  
+
   def index
     @stations = Station.all
   end
 
   def show
+
+  end
+
+  private
+
+  def set_station
     @station = Station.friendly.find(params[:id])
   end
 end

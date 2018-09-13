@@ -17,15 +17,17 @@ Rails.application.routes.draw do
   post '/carts' => 'carts#create'
   put '/carts' => 'carts#update'
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :edit, :update]
   resources :orders, only: [:show, :create, :edit, :update]
   resources :carts, only: [:create, :index]
-  resources :stations, only: [:show, :index]
+  resources :stations, only: [:index]
   resources :trips, only: [:index, :show]
   resources :conditions, only: [:index, :show]
 	resources :accessories, only: :show
-  
+
   namespace :admin do
     resources :stations
   end
+
+   get '/:id', to: 'stations#show', as: :station
 end
