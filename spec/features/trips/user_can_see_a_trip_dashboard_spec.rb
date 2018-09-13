@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'visit the trips-dashboard-path' do
   context 'as a registered user' do
 		before(:each) do
+      @user = create(:user)
     	@station_1 = create(:station, name: "yellow", slug: 'yellow')
     	@station_2 = create(:station, name: "orange", slug: 'orange')
     	@station_3 = create(:station, name: "blue", slug: 'blue')

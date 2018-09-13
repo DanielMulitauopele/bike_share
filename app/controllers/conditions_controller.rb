@@ -12,6 +12,7 @@ class ConditionsController < ApplicationController
   end
 
   def dashboard
+    redirect_to login_path unless current_user
     @stats = {}
     CATEGORY.each do |category_name, category_bins|
       @stats[category_name] = {}
