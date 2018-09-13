@@ -4,7 +4,7 @@
   <div id="accessory-<%= item.id %>">
 
   <%= image_tag(item.image)  %>
-  <%= item.title %>
+  <%= link_to item.title, accessory_path(item.id) %>
   <%= button_to 'Add to Cart', carts_path(accessory_id: item.id, do: 'add') %>
   </div>
 <% end %>
