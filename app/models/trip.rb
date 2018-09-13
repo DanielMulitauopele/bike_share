@@ -11,6 +11,11 @@ class Trip < ApplicationRecord
   belongs_to :start_station, class_name: "Station"
   belongs_to :end_station, class_name: "Station"
 
+  COLUMN_MAP = {temp:   'max_temperature',
+                wind:   'mean_wind_speed',
+                precip: 'precipitation',
+                vis:    'mean_visibility'}
+
   def self.average_duration
     average(:duration)
   end
@@ -34,14 +39,14 @@ class Trip < ApplicationRecord
   end
 
   def self.most_ridden_bike
-   select('bike_id, count(id) as count').
+    select('bike_id, count(id) as count').
     group('bike_id').
     order('count desc').
     limit(1).first
   end
 
   def self.least_ridden_bike
-   select('bike_id, count(id) as count').
+    select('bike_id, count(id) as count').
     group('bike_id').
     order('count asc').
     limit(1).first
@@ -59,5 +64,34 @@ class Trip < ApplicationRecord
 
   def self.min_day
     select("DATE_TRUNC('day', start_date) as day, count(id) as count").group('day').order('count asc').limit(1).first
+  end
+
+  def self.max_by(range, type)
+    column_name = COLUMN_MAP[type]
+    select("start_date, count(trips.id) as count")
+    .joins("join conditions on conditions.date = trips.start_date")
+    .where("#{column_name} between ? and ?", range.first, range.last)
+    .group(:start_date)
+    .order("count desc").limit(1).first
+  end
+
+  def self.min_by(range, type)
+    column_name = COLUMN_MAP[type]
+    select("start_date, count(trips.id) as count")
+    .joins("join conditions on conditions.date = trips.start_date")
+    .where("#{column_name} between ? and ?", range.first, range.last)
+    .group(:start_date)
+    .order("count asc").limit(1).first
+  end
+
+  def self.avg_by(range, type)
+    column_name = COLUMN_MAP[type]
+    data = select("date_trunc('day', start_date), count(trips.id) as count")
+           .joins("join conditions on date_trunc('day', conditions.date) = date_trunc('day', trips.start_date)")
+           .where("#{column_name} between ? and ?", range.first, range.last)
+           .group("date_trunc('day', trips.start_date)")
+           .order("count desc")
+    sum = data.inject(0) {|base, day_data| base += day_data.count }
+    sum / data.length unless sum == 0 || data.length == 0
   end
 end
