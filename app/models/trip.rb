@@ -21,13 +21,11 @@ class Trip < ApplicationRecord
   end
 
   def self.longest_ride
-    rides = select(:id).where(duration: maximum(:duration))
-    rides.map {|ride| ride.id }
+    select(:id, :start_date, :duration).where(duration: maximum(:duration))
   end
 
   def self.shortest_ride
-    rides = select(:id).where(duration: minimum(:duration))
-    rides.map {|ride| ride.id }
+    select(:id, :start_date, :duration).where(duration: minimum(:duration))
   end
 
   def self.group_by_month_year
