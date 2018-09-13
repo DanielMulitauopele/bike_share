@@ -51,11 +51,7 @@ describe Station, type: :model do
 
       expect(actual).to eq(expected)
     end
-<<<<<<< HEAD
-  #
-=======
-  
->>>>>>> 6a9c723a026c3a19f996ab2aad7bc5b5dedc6b73
+
     it 'returns fewest bikes at a station' do
       expected = @station_4.dock_count
       actual = Station.fewest_bikes
@@ -125,6 +121,10 @@ describe Station, type: :model do
 
     it "#frequent_zip_code" do
       expect(@station_1.frequent_zip_code).to eq(98765)
+    end
+
+    it "#frequent_bike_id" do
+      expect(@station_1.frequent_bike_id).to eq(4)
     end
   end
 end

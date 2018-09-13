@@ -8,7 +8,7 @@
   <p>Number of rides ended at this station: <%= @station.rides_ended %></p>
   <p>Most frequent destination station: <%= @station.most_trips_to %></p>
   <p>Most frequent origination station: <%= @station.most_trips_from %></p>
-  <p>Date with the highest number of trips started at this station: <%= @station.date_with_highest_number %></p>
+  <p>Date with the highest number of trips started at this station: <%= @station.date_with_highest_number.strftime("%F") %></p>
   <p>Most frequent zip code for users starting trips at this station: <%= @station.frequent_zip_code %></p>
   <p>Bike ID most frequently starting a trip at this station: <%= @station.frequent_bike_id %>
 <% end %>
