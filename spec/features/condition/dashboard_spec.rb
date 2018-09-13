@@ -24,22 +24,29 @@ describe 'visit the condition dashboard' do
 
       expect(page).to have_content('Conditions Dashboard')
 
-      save_and_open_page
-      expect(page).to have_content("Max # of Rides: 2018-04-09 : 3")
-      expect(page).to have_content("Min # of Rides: 2018-01-09 : 1")
-      expect(page).to have_content("Avg # of Rides: 2")
+      within "#temp-list" do
+        expect(page).to have_content("Max # of Rides: 2018-04-09 : 3")
+        expect(page).to have_content("Min # of Rides: 2018-01-09 : 1")
+        expect(page).to have_content("Avg # of Rides: 2")
+      end
 
-      expect(page).to have_content("Max # of Rides: 2018-02-09 : 2")
-      expect(page).to have_content("Min # of Rides: 2018-02-09 : 2")
-      expect(page).to have_content("Avg # of Rides: 2")
+      within "#precip-list" do
+        expect(page).to have_content("Max # of Rides: 2018-02-09 : 2")
+        expect(page).to have_content("Min # of Rides: 2018-02-09 : 2")
+        expect(page).to have_content("Avg # of Rides: 2")
+      end
 
-      expect(page).to have_content("Max # of Rides: 2018-04-09 : 3")
-      expect(page).to have_content("Min # of Rides: 2018-04-09 : 3")
-      expect(page).to have_content("Avg # of Rides: 3")
+      within "#wind-list" do
+        expect(page).to have_content("Max # of Rides: 2018-04-09 : 3")
+        expect(page).to have_content("Min # of Rides: 2018-04-09 : 3")
+        expect(page).to have_content("Avg # of Rides: 3")
+      end
 
-      expect(page).to have_content("Max # of Rides: 2018-06-09 : 2")
-      expect(page).to have_content("Min # of Rides: 2018-06-09 : 2")
-      expect(page).to have_content("Avg # of Rides: 2")
+      within "#vis-list" do
+        expect(page).to have_content("Max # of Rides: 2018-04-09 : 3")
+        expect(page).to have_content("Min # of Rides: 2018-06-09 : 2")
+        expect(page).to have_content("Avg # of Rides: 2")
+      end
     end
   end
 end
