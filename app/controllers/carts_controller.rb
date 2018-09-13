@@ -1,5 +1,10 @@
 class CartsController < ApplicationController
   include ActionView::Helpers::TextHelper
+  
+  def index
+    @items = @cart.format
+    @total = @cart.cart_total
+  end
 
   def create
     accessory = Accessory.find(params[:accessory_id])
@@ -29,10 +34,5 @@ class CartsController < ApplicationController
     session[:cart] = @cart.contents
     flash[:notice] = "Successfully removed #{view_context.link_to accessory.title, accessory_path(accessory)} from your cart."
     redirect_to carts_path
-  end
-
-  def index
-    @items = @cart.format
-    @total = @cart.cart_total
   end
 end

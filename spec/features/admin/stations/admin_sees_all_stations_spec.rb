@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe 'As an admin' do 
-  it 'allows admin to see all stations' do
+describe 'Admin' do 
+  it 'can see all stations' do
     station_1 = Station.create(name: 'Wash Park East', dock_count: 10, city: 'Denver', installation_date: '09/01/2018')
     station_2 = Station.create(name: 'Yale St', dock_count: 5, city: 'Englewood', installation_date: '09/02/2018')
     admin = User.create!(name: 'Rajaa', email: 'rajaa@email.com', password: '12345', role: 1)

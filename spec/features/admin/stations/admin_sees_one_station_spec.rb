@@ -1,5 +1,5 @@
-describe 'admin sees one station' do
-  it "displays one station" do
+describe 'Admin' do
+  it "can see one station" do
     station = Station.create(name: 'Wash Park East', dock_count: 10, city: 'Denver', installation_date: '2018/09/01')
     admin = User.create!(name: 'Rajaa', email: 'rajaa@email.com', password: '12345', role: 1)
 
