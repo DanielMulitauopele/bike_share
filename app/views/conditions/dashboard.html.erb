@@ -7,7 +7,7 @@
   <strong><li>Range: <%= range_title %></li></strong>
   <li>Max # of Rides: <%= range_stats[:max][:date] %> : <%= range_stats[:max][:count] %></li>
   <li>Min # of Rides: <%= range_stats[:min][:date] %> : <%= range_stats[:min][:count] %></li>
-  <li>Avg # of Rides: <%= range_stats[:avg][:count] %></li>
+  <li>Avg # of Rides: <%= range_stats[:avg][:count].round(2) %></li>
   <% end %>
 </ul>
 
@@ -19,7 +19,7 @@
   <strong><li>Range: <%= range_title %></li></strong>
   <li>Max # of Rides: <%= range_stats[:max][:date] %> : <%= range_stats[:max][:count] %></li>
   <li>Min # of Rides: <%= range_stats[:min][:date] %> : <%= range_stats[:min][:count] %></li>
-  <li>Avg # of Rides: <%= range_stats[:avg][:count] %></li>
+  <li>Avg # of Rides: <%= range_stats[:avg][:count].round(2) %></li>
   <% end %>
 </ul>
 
@@ -31,7 +31,7 @@
   <strong><li>Range: <%= range_title %></li></strong>
   <li>Max # of Rides: <%= range_stats[:max][:date] %> : <%= range_stats[:max][:count] %></li>
   <li>Min # of Rides: <%= range_stats[:min][:date] %> : <%= range_stats[:min][:count] %></li>
-  <li>Avg # of Rides: <%= range_stats[:avg][:count] %></li>
+  <li>Avg # of Rides: <%= range_stats[:avg][:count].round(2) %></li>
   </div>
   <% end %>
 </ul>
@@ -43,7 +43,7 @@
   <strong><li>Range: <%= range_title %></li></strong>
   <li>Max # of Rides: <%= range_stats[:max][:date] %> : <%= range_stats[:max][:count] %></li>
   <li>Min # of Rides: <%= range_stats[:min][:date] %> : <%= range_stats[:min][:count] %></li>
-  <li>Avg # of Rides: <%= range_stats[:avg][:count] %></li>
+  <li>Avg # of Rides: <%= range_stats[:avg][:count].round(2) %></li>
   </div>
   <% end %>
 </ul>
