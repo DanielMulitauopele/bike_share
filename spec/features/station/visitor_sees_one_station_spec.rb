@@ -3,10 +3,10 @@ require 'rails_helper'
 describe 'visitor sees one station' do
   describe 'they link from stations index' do
     before(:each) do
-      @station = Station.create(name: 'Wash Park East', dock_count: 10, city: 'Denver', installation_date: '09/01/2018')
+      @station = Station.create(name: 'Wash Park East', dock_count: 10, city: 'Denver', installation_date: '2018/09/01')
     end
 
-    it "displays one stations" do
+    it "displays one station" do
       visit stations_path
 
       click_on @station.name

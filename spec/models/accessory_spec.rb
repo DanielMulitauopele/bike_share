@@ -8,4 +8,9 @@ describe Accessory, type: :model do
 
     it {should validate_uniqueness_of :title}
   end
+  
+  describe 'relationships' do
+    it {should have_many :order_accessories}
+    it {should have_many :orders}
+  end
 end
