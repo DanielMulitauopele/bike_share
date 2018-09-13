@@ -11,7 +11,8 @@ class Cart
   end
 
   def subtract_accessory(id)
-    @contents[id] = @contents[id] - 1
+    @contents[id] = @contents[id] - 1 unless @contents[id] <= 0
+    destroy_cart_item(id) if @contents[id] == 0
   end
 
   def destroy_cart_item(id)
