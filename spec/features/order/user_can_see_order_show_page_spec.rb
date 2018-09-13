@@ -42,6 +42,7 @@ describe 'as a user' do
       expect(page).to have_content('Order Total')
       expect(page).to have_content('Status')
       expect(page).to have_content('Created')
+      expect(page).to have_content('Updated')
     end
   end
 end
