@@ -17,7 +17,7 @@ class Trip < ApplicationRecord
                 vis:    'mean_visibility'}
 
   def self.average_duration
-    average(:duration)
+    average(:duration).round(2)
   end
 
   def self.longest_ride

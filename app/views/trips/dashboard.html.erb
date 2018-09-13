@@ -1,5 +1,6 @@
 <h1>Trip Dashboard</h1>
 <h2>Average Trip Duration: <%= @average_duration %></h2>
+<p><%= link_to 'Back to Trips Index', trips_path %></p>
 <ul>
   <strong><li>Longest Rides:</li></strong>
   <% @longest_ride.each do |ride| %>
