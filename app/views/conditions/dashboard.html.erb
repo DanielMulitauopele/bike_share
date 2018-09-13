@@ -1,29 +1,43 @@
 <h1>Conditions Dashboard</h1>
 
+<h3>Temperature</h3>
 <ul>
-<% @data.each do |info, results| %>
-  <strong><li><%= info %></li></strong>
-  <li>Max # of Rides: <%= results[0][0] %> : <%= results[0][1] %></li>
-  <li>Min # of Rides: <%= results[1][0] %> : <%= results[1][1] %></li>
-  <li>Avg # of Rides: <%= results[2][0] %></li>
+<% @data[:temp].each do |temp_range| %>
+  <strong><li>Range: <%= temp_range.first %></li></strong>
+  <li>Max # of Rides: <%= temp_range.last[:max][:date] %> : <%= temp_range.last[:max][:count] %></li>
+  <li>Min # of Rides: <%= temp_range.last[:min][:date] %> : <%= temp_range.last[:min][:count] %></li>
+  <li>Avg # of Rides: <%= temp_range.last[:avg][:count] %></li>
   <% end %>
-  </ul>
+</ul>
 
 
+<h3>Precipitation</h3>
 <ul>
-<% @precip_data.each do |info, results| %>
-  <strong><li><%= info %></li></strong>
-  <li>Max # of Rides: <%= results[0][0] %> : <%= results[0][1] %></li>
-  <li>Min # of Rides: <%= results[1][0] %> : <%= results[1][1] %></li>
-  <li>Avg # of Rides: <%= results[2][0] %></li>
+<% @data[:precip].each do |precip_range| %>
+  <strong><li>Range: <%= precip_range.first %></li></strong>
+  <li>Max # of Rides: <%= precip_range.last[:max][:date] %> : <%= precip_range.last[:max][:count] %></li>
+  <li>Min # of Rides: <%= precip_range.last[:min][:date] %> : <%= precip_range.last[:min][:count] %></li>
+  <li>Avg # of Rides: <%= precip_range.last[:avg][:count] %></li>
   <% end %>
-  </ul>
+</ul>
 
 
-<% @wind_data.each do |info, results| %>
-  <strong><li><%= info %></li></strong>
-  <li>Max # of Rides: <%= results[0][0] %> : <%= results[0][1] %></li>
-  <li>Min # of Rides: <%= results[1][0] %> : <%= results[1][1] %></li>
-  <li>Avg # of Rides: <%= results[2][0] %></li>
+<h3>Wind Speed</h3>
+<ul>
+<% @data[:wind].each do |wind_range| %>
+  <strong><li>Range: <%= wind_range.first %></li></strong>
+  <li>Max # of Rides: <%= wind_range.last[:max][:date] %> : <%= wind_range.last[:max][:count] %></li>
+  <li>Min # of Rides: <%= wind_range.last[:min][:date] %> : <%= wind_range.last[:min][:count] %></li>
+  <li>Avg # of Rides: <%= wind_range.last[:avg][:count] %></li>
   <% end %>
-  </ul>
+</ul>
+
+<h3>Visibility</h3>
+<ul>
+<% @data[:vis].each do |vis_range| %>
+  <strong><li>Range: <%= vis_range.first %></li></strong>
+  <li>Max # of Rides: <%= vis_range.last[:max][:date] %> : <%= vis_range.last[:max][:count] %></li>
+  <li>Min # of Rides: <%= vis_range.last[:min][:date] %> : <%= vis_range.last[:min][:count] %></li>
+  <li>Avg # of Rides: <%= vis_range.last[:avg][:count] %></li>
+  <% end %>
+</ul>
