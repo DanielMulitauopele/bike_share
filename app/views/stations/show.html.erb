@@ -1,7 +1,10 @@
-<%= @station.name %><br>
-<%= @station.dock_count %><br>
-<%= @station.city %><br>
-<%= @station.installation_date %><br>
+<h1><%= @station.name %></h1>
+
+<p><%= link_to "Back to All Stations", stations_path %></p>
+
+Dock Count: <%= @station.dock_count %><br>
+City: <%= @station.city %><br>
+Date of Installation: <%= @station.installation_date %><br>
 
 <% if current_user? %>
   <p>Number of rides started at this station: <%= @station.rides_started %></p>
