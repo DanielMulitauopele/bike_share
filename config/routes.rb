@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get '/dashboard' => 'users#dashboard'
   get '/trips-dashboard' => 'trips#dashboard'
   get '/stations-dashboard' => 'stations#dashboard'
-  get '/conditions-dashboard', to: 'conditions#dashboard'
+  get '/conditions-dashboard' => 'conditions#dashboard'
 
   delete '/carts' => 'carts#destroy'
   post '/carts' => 'carts#create'
@@ -26,7 +26,9 @@ Rails.application.routes.draw do
 	resources :accessories, only: :show
 
   namespace :admin do
-    resources :stations
+    resources :stations, except: [:index, :show]
+    resources :trips, except: [:index, :show]
+    resources :conditions, except: [:index, :show]
   end
 
    get '/:id', to: 'stations#show', as: :station

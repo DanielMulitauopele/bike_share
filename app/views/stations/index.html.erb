@@ -9,6 +9,10 @@
       Dock Count: <%= station.dock_count %>
       City: <%= station.city %>
       Installed: <%= station.installation_date %>
+      <% if current_admin? %>
+        <%= link_to 'Edit' %>
+        <%= link_to 'Delete' %>
+      <% end %>
     </li>
   <% end %>
 </ul>
