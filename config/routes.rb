@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     resources :stations, except: [:index, :show]
     resources :trips, except: [:index, :show]
     resources :conditions, except: [:index, :show]
+    get '/dashboard' => 'users#dashboard'
   end
 
    get '/:id', to: 'stations#show', as: :station
