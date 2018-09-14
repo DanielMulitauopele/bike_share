@@ -24,3 +24,24 @@ describe 'as a visitor' do
     end
   end
 end
+describe 'as an admin' do
+  describe 'visiting conditions index page' do
+    before(:each) do
+      @condition = create(:condition, id: 1)
+    end
+    it 'should list out all conditions' do
+
+      admin = create(:user, role: 1)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+      visit conditions_path
+
+      within('.condition-number-1') do
+        click_on 'Delete'
+      end
+
+      expect(page).to have_content("Successfully deleted #{@condition.date}")
+      expect(page).to_not have_content("Max Temperature: #{@condition.max_temperature}")
+
+    end
+  end
+end
