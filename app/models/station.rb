@@ -68,7 +68,7 @@ class Station < ApplicationRecord
   end
 
   def most_trips_to
-    Station.select(:name)
+    a = Station.select(:name)
     .joins("join trips on trips.end_station_id = stations.id")
     .where("trips.start_station_id = ?", id)
     .group(:id)

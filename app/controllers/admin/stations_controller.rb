@@ -1,13 +1,7 @@
 class Admin::StationsController < Admin::BaseController
-  def index
-    @stations = Station.all
-  end
-  
-  def show
-    @station = Station.friendly.find(params[:id])
-  end
   
   def new 
+    @admin = current_user
     @station = Station.new 
   end 
   
@@ -15,7 +9,7 @@ class Admin::StationsController < Admin::BaseController
     @station = Station.create(station_params)
     if @station.save 
       flash[:notice] = "Station #{@station.name} successfully created!"
-      redirect_to admin_station_path(@station)
+      redirect_to station_path(@station)
     else 
       flash[:alert] = 'Oops, something went wrong, please try again!'
       render :new
