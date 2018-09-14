@@ -24,3 +24,53 @@ describe 'as a visitor' do
     end
   end
 end
+describe 'as an admin' do
+  describe 'visiting conditions index page' do
+    before(:each) do
+      @condition = create(:condition, id: 1)
+    end
+    it 'should delete a conditon' do
+
+      admin = create(:user, role: 1)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+      visit conditions_path
+
+      within('.condition-number-1') do
+        click_on 'Delete'
+      end
+
+      expect(page).to have_content("Successfully deleted #{@condition.date}")
+      expect(page).to_not have_content("Max Temperature: #{@condition.max_temperature}")
+
+    end
+    it 'should edit a conditon' do
+      temp = 1000
+
+      admin = create(:user, role: 1)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+      visit conditions_path
+
+      within('.condition-number-1') do
+        click_on 'Edit'
+      end
+
+      fill_in 'condition[max_temperature]', with: temp
+      fill_in 'condition[min_temperature]', with: temp
+      fill_in 'condition[mean_temperature]', with: temp
+      fill_in 'condition[mean_humidity]', with: temp
+      fill_in 'condition[mean_visibility]', with: temp
+      fill_in 'condition[mean_wind_speed]', with: temp
+      fill_in 'condition[precipitation]', with: temp
+      click_on 'Submit'
+
+      expect(page).to have_content("Max Temperature: #{temp}")
+      expect(page).to have_content("Mean Temperature: #{temp}")
+      expect(page).to have_content("Min Temperature: #{temp}")
+      expect(page).to have_content("Mean Humidity: #{temp}")
+      expect(page).to have_content("Mean Visibility: #{temp}")
+      expect(page).to have_content("Mean Wind Speed: #{temp}")
+      expect(page).to have_content("Precipitation: #{temp}")
+
+    end
+  end
+end
