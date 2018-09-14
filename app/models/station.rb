@@ -26,7 +26,7 @@ class Station < ApplicationRecord
   end
 
   def self.most_bikes_station
-    order(dock_count: :desc).first.name
+    Station.where(dock_count: most_bikes).pluck(:name)
   end
 
   def self.fewest_bikes
@@ -34,7 +34,7 @@ class Station < ApplicationRecord
   end
 
   def self.fewest_bikes_station
-    order(:dock_count).first.name
+    Station.where(dock_count: fewest_bikes).pluck(:name)
   end
 
   def self.newest_installation
