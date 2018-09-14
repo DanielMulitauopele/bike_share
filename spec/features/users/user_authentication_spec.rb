@@ -96,4 +96,25 @@ describe 'user can visit login page' do
       expect(page).to have_content('Incorrect email or password, please try again.')
     end
   end
+  describe 'login/logout as an Admin' do
+    it 'should direct admin to dashboard' do
+      user = User.create!(name: 'Hans', email: 'hans@email.com', password: 'test123', role: 1)
+
+      visit root_path
+      click_on 'Login'
+
+      expect(current_path).to eq(login_path)
+
+      fill_in :login_email, with: user.email
+      fill_in :login_password, with: 'test123'
+      click_on 'Login'
+
+      expect(current_path).to eq(admin_dashboard_path)
+      expect(page).to have_content("Logged in as Admin User: #{user.name}")
+      expect(page).to have_content("#{user.email}")
+      expect(page).to have_content('Log Out')
+      expect(page).to_not have_content('Log In')
+
+    end
+end
 end
