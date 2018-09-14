@@ -15,7 +15,8 @@ The [premise](http://backend.turing.io/module2/projects/bike-share-redux) of the
 ## What did we use to build the site?
 This site is an app built on the Ruby on Rails framework, utilizing a PostgreSQL database and ActiveRecord to interact with said database. We also used the following gems to help support our development:
 
-
+* Ruby Version > 2.4.0
+* Rails 5.1.6
 * [Byebug](https://github.com/deivid-rodriguez/byebug/blob/master/README.md)
 * [Capybara](https://github.com/teamcapybara/capybara)
 * [Rspec-rails](https://github.com/rspec/rspec)
