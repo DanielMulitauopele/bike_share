@@ -50,9 +50,9 @@ With these features, visitors to our site can experience the full functionality 
 
 ### Contributors
 
-* Tara Craig, Project Manager
-* Patrick Shobe
-* Rajaa Boulassouak
-* Daniel Mulitauopele
+* [Tara Craig](https://github.com/TCraig7), Project Manager
+* [Patrick Shobe](https://github.com/patrickshobe)
+* [Rajaa Boulassouak](https://github.com/RajaaBoulassouak)
+* [Daniel Mulitauopele](https://github.com/DanielMulitauopele)
 
 
