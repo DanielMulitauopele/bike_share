@@ -42,4 +42,10 @@ describe 'user can edit their dashboard info' do
     expect(page).to_not have_content('Robert Ross')
     expect(page).to_not have_content('painterbob13@gmail.com')
   end
+
+  scenario "user cannot edit another user's information" do
+    visit "/users/2/edit"
+save_and_open_page
+    expect(page).to have_content("The page you were looking for doesn't exist.")
+  end
 end
