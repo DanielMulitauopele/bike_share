@@ -1,4 +1,17 @@
 class Admin::ConditionsController < Admin::BaseController
+
+  def create
+    condition = Condition.create(condition_params)
+    if condition.save
+      flash[:notice] = "#{condition.date} created successfully!"
+      redirect_to condition_path(condition)
+    else
+      flash[:notice] = 'Failed to create!'
+      @condition = Condition.new
+      render :new
+    end
+  end
+
   def destroy
     condition = Condition.find(params[:id])
     Condition.destroy(condition.id)
@@ -14,6 +27,10 @@ class Admin::ConditionsController < Admin::BaseController
     @condition = Condition.find(params[:id])
     @condition.update(condition_params)
     redirect_to condition_path(@condition)
+  end
+
+  def new
+    @condition = Condition.new
   end
 
   private

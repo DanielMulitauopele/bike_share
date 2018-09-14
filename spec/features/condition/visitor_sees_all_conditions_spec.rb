@@ -61,7 +61,7 @@ describe 'as an admin' do
       fill_in 'condition[mean_visibility]', with: temp
       fill_in 'condition[mean_wind_speed]', with: temp
       fill_in 'condition[precipitation]', with: temp
-      click_on 'Edit Condition'
+      click_on 'Submit'
 
       expect(page).to have_content("Max Temperature: #{temp}")
       expect(page).to have_content("Mean Temperature: #{temp}")

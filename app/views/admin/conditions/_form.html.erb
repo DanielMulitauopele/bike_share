@@ -1,5 +1,3 @@
-<h3> Create A Condition </h3>
-
 <%= form_for [:admin, @condition] do |f| %>
 <%= f.label :date %>
 <%= f.date_field :date%>
@@ -17,5 +15,5 @@
 <%= f.text_field :mean_wind_speed%>
 <%= f.label :precipitation%>
 <%= f.text_field :precipitation%>
-<%= f.submit 'Edit Condition' %>
+<%= f.submit 'Submit' %>
 <% end %>
