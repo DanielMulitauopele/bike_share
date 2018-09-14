@@ -19,7 +19,7 @@ describe 'Admin' do
     fill_in :station_installation_date, with: installation_date
     click_on 'Create Station' 
     
-    expect(current_path).to eq('/admin/stations/wash-park-west')
+    expect(current_path).to eq('/wash-park-west')
     expect(page).to have_content(Station.last.name)
     expect(page).to have_content(Station.last.dock_count)
     expect(page).to have_content(Station.last.city)
@@ -45,7 +45,6 @@ describe 'Admin' do
     fill_in :station_installation_date, with: installation_date
     click_on 'Create Station' 
     
-    expect(current_path).to eq(admin_stations_path)
     expect(page).to have_content('Oops, something went wrong, please try again!')
   end 
 end 
