@@ -15,3 +15,11 @@
 <h4>Status:</h4> <%= @order.status %>
 <h4>Created:</h4> <%= @order.created_at %>
 <h4>Updated:</h4> <%= @order.updated_at %>
+
+<% if current_admin? %>
+  <ul>
+    <li><%= @order.user.name %></li>
+    <li><%= @order.user.address %></li>
+  </ul>
+
+<% end %>
