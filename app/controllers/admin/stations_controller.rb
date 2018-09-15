@@ -24,7 +24,7 @@ class Admin::StationsController < Admin::BaseController
     @station.update(station_params)
     if @station.save 
       @station.should_generate_new_friendly_id?
-      flash[:notice] = "#{@station.name} created successfully!"
+      flash[:notice] = "successfully updated station #{@station.name}."
       redirect_to station_path(@station)
     else 
       flash[:alert] = 'Oops, something went wrong, please try again!'

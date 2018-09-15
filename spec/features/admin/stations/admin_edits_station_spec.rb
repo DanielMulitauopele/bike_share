@@ -23,15 +23,15 @@ describe 'Admin' do
     click_on 'Submit' 
   
     expect(current_path).to eq('/jump-street')
-    expect(page).to have_content("#{new_name} created successfully!")
+    expect(page).to have_content("successfully updated station #{new_name}.")
     expect(page).to have_content(new_name)
     expect(page).to have_content(new_dock_count)
     expect(page).to have_content(new_city)
     expect(page).to have_content(new_installation_date)
-    expect(page).to_not have_content('Wash Park East')
-    expect(page).to_not have_content(10)
-    expect(page).to_not have_content('Denver')
-    expect(page).to_not have_content('2018/09/01')
+    expect(page).to_not have_content(station.name)
+    expect(page).to_not have_content(station.dock_count)
+    expect(page).to_not have_content(station.city)
+    expect(page).to_not have_content(station.installation_date)
   end 
 
   it 'can not create station if invalid entry' do 
