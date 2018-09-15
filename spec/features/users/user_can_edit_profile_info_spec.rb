@@ -45,7 +45,10 @@ describe 'user can edit their dashboard info' do
 
   scenario "user cannot edit another user's information" do
     visit "/users/2/edit"
+<<<<<<< HEAD
 
+=======
+>>>>>>> a3673b2ef6f79d2c2a88144438286622f1cef1c6
     expect(page).to have_content("The page you were looking for doesn't exist.")
   end
 end
