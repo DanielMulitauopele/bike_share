@@ -4,7 +4,7 @@ describe 'as a user' do
   describe 'visiting order show page' do
     it "should display order details on the order show page" do
       accessory_1 = create(:accessory)
-      accessory_2 = create(:accessory, title: 'an accessory')
+      create(:accessory, title: 'an accessory')
       accessory_3 = create(:accessory, title: 'an accessory again')
       user = create(:user)
 
