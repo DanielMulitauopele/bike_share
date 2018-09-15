@@ -23,7 +23,7 @@ describe 'registered user sees one station' do
   describe 'they link from stations index' do
     describe 'they see one station' do
       it 'they can not edit or delete station as a regular user' do
-        user = User.create(email: 'tara@gmail.com', password: 'password')
+        user = create(:user)
         
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
         
@@ -51,7 +51,7 @@ describe 'registered user sees one station' do
   
   describe 'Admin sees one station' do 
     it 'they see link to edit and delete a station' do
-      admin = User.create(email: 'tara@gmail.com', password: 'password', role: 1)
+      admin = create(:user, role: 1)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
       visit station_path(@station_1)
