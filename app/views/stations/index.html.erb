@@ -10,8 +10,8 @@
       City: <%= station.city %>
       Installed: <%= station.installation_date %>
       <% if current_admin? %>
-        <%= link_to 'Edit' %>
-        <%= link_to 'Delete' %>
+        <%= link_to 'Edit', edit_admin_station_path(station) %>
+        <%= link_to 'Delete', admin_station_path(station), method: :delete %>
       <% end %>
     </li>
   <% end %>

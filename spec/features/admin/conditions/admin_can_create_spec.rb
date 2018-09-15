@@ -27,13 +27,13 @@ describe 'Admin visits new condition page' do
     expect(page).to have_content("Mean Wind Speed: #{temp}")
     expect(page).to have_content("Precipitation: #{temp}")
   end
+  
   it 'should fail to create' do
     temp = 1000
 
     admin = create(:user, role: 1)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
     visit  new_admin_condition_path
-
 
     fill_in 'condition[max_temperature]', with: temp
     fill_in 'condition[min_temperature]', with: temp

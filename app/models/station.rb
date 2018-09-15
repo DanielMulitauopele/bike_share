@@ -12,6 +12,10 @@ class Station < ApplicationRecord
   def to_param
     slug
   end
+  
+  def should_generate_new_friendly_id?
+    slug.blank? || self.name_changed?
+  end
 
   def self.stations_total_count
     count
