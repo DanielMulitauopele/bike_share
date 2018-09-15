@@ -1,0 +1,11 @@
+<h1>Bike Accessories</h1>
+
+<% @accessories.each do |item| %>
+  <div id="accessory-<%= item.id %>">
+
+  <%= image_tag(item.image)  %>
+  <%= link_to item.title, accessory_path(item.id) %>
+  <%= button_to 'Add to Cart', carts_path(accessory_id: item.id, do: 'add') unless item.retired? %>
+  <%= 'Accessory Retired' if item.retired? %>
+  </div>
+<% end %>
