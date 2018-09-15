@@ -26,7 +26,7 @@ class Station < ApplicationRecord
   end
 
   def self.most_bikes_station
-    order(dock_count: :desc).first.name
+    Station.where(dock_count: most_bikes).pluck(:name)
   end
 
   def self.fewest_bikes
@@ -34,7 +34,7 @@ class Station < ApplicationRecord
   end
 
   def self.fewest_bikes_station
-    order(:dock_count).first.name
+    Station.where(dock_count: fewest_bikes).pluck(:name)
   end
 
   def self.newest_installation
@@ -68,37 +68,42 @@ class Station < ApplicationRecord
   end
 
   def most_trips_to
-    a = Station.select(:name)
+     station = Station.select(:name)
     .joins("join trips on trips.end_station_id = stations.id")
     .where("trips.start_station_id = ?", id)
     .group(:id)
-    .order("count(end_station_id) desc").first.name
+    .order("count(end_station_id) desc")
+     station.first.name unless station.first.nil?
   end
 
   def most_trips_from
-    Station.select(:name)
+    station = Station.select(:name)
     .joins("join trips on trips.start_station_id = stations.id")
     .where("trips.end_station_id = ?", id)
     .group(:id)
-    .order("count(start_station_id) desc").first.name
+    .order("count(start_station_id) desc")
+     station.first.name unless station.first.nil?
   end
 
   def date_with_highest_number
-    start_trips.select("trips.start_date, count(trips.start_station_id) as count")
+    station = start_trips.select("trips.start_date, count(trips.start_station_id) as count")
     .where("trips.start_station_id = ?", id)
     .group(:start_date)
-    .order("count").last.start_date
+    .order("count")
+    station.last.start_date unless station.last.nil?
   end
 
   def frequent_zip_code
-    start_trips.select('trips.zip_code, count(trips.id) as count')
+    station = start_trips.select('trips.zip_code, count(trips.id) as count')
     .group('trips.zip_code')
-    .order('count').last.zip_code
+    .order('count')
+    station.last.zip_code unless station.last.nil?
   end
 
   def frequent_bike_id
-    start_trips.select('bike_id, count(start_station_id) as count')
+    station = start_trips.select('bike_id, count(start_station_id) as count')
     .group(:bike_id)
-    .order('count').last.bike_id
+    .order('count')
+    station.last.bike_id unless station.last.nil?
   end
 end

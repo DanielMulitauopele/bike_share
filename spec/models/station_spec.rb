@@ -19,8 +19,8 @@ describe Station, type: :model do
   describe 'class methods' do
     before :each do
       @station_1 = Station.create(name: 'Wash Park East', dock_count: 10, city: 'Denver', installation_date: '09/01/2018')
-      @station_2 = Station.create(name: 'Yale St', dock_count: 8, city: 'Englewood', installation_date: '09/02/2018')
-      @station_3 = Station.create(name: 'Union Station', dock_count: 6, city: 'Denver', installation_date: '09/03/2018')
+      @station_2 = Station.create(name: 'Yale St', dock_count: 10, city: 'Englewood', installation_date: '09/02/2018')
+      @station_3 = Station.create(name: 'Union Station', dock_count: 4, city: 'Denver', installation_date: '09/03/2018')
       @station_4 = Station.create(name: 'Market Street', dock_count: 4, city: 'Denver', installation_date: '09/04/2018')
     end
 
@@ -39,28 +39,28 @@ describe Station, type: :model do
     end
 
     it 'returns most bikes at a station' do
-      expected = @station_1.dock_count
+      expected = 10
       actual = Station.most_bikes
 
       expect(actual).to eq(expected)
     end
 
     it 'returns name of station with most bikes' do
-      expected = @station_1.name
+      expected = [@station_1.name, @station_2.name]
       actual = Station.most_bikes_station
 
       expect(actual).to eq(expected)
     end
 
     it 'returns fewest bikes at a station' do
-      expected = @station_4.dock_count
+      expected = 4
       actual = Station.fewest_bikes
 
       expect(actual).to eq(expected)
     end
 
     it 'returns name of station with fewest bikes' do
-      expected = @station_4.name
+      expected = [@station_3.name, @station_4.name]
       actual = Station.fewest_bikes_station
     end
 

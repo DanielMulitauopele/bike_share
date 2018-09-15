@@ -6,6 +6,7 @@ describe 'as a visitor' do
       @condition = create(:condition, id: 1)
     end
     it 'should link to specific condition from index page' do
+
       header = "Conditions for #{@condition.date}"
       visit conditions_path
 
@@ -14,7 +15,7 @@ describe 'as a visitor' do
       expect(page).to have_content(header)
     end
     it 'should show the details of a specific condition' do
-      header = "Conditions for #{@condition.date}"
+
       visit condition_path(@condition)
 
       expect(page).to have_content("Max Temperature: #{@condition.max_temperature}")
@@ -30,6 +31,33 @@ describe 'as a visitor' do
 
       click_on('Return to All Conditions Page')
       expect(current_path).to eq(conditions_path)
+    end
+  end
+end
+describe 'as an admin ' do
+  describe 'visiting condition show page' do
+    before(:each) do
+      @condition = create(:condition, id: 1)
+    end
+    it 'should link to the edit page' do
+      admin = create(:user, role: 1)
+     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
+      visit condition_path(@condition)
+
+      click_on 'Edit'
+
+      expect(current_path).to eq(edit_admin_condition_path(@condition))
+    end
+    it 'should delete' do
+      admin = create(:user, role: 1)
+     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
+      visit condition_path(@condition)
+
+      click_on 'Delete'
+
+      expect(page).to_not have_content("max temperature: #{@condition.max_temperature}")
     end
   end
 end

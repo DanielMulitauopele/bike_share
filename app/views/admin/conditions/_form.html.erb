@@ -1,0 +1,19 @@
+<%= form_for [:admin, @condition] do |f| %>
+<%= f.label :date %>
+<%= f.date_field :date%>
+<%= f.label :max_temperature %>
+<%= f.text_field :max_temperature %>
+<%= f.label :min_temperature %>
+<%= f.text_field :min_temperature %>
+<%= f.label :mean_temperature%>
+<%= f.text_field :mean_temperature%>
+<%= f.label :mean_humidity%>
+<%= f.text_field :mean_humidity%>
+<%= f.label :mean_visibility%>
+<%= f.text_field :mean_visibility%>
+<%= f.label :mean_wind_speed%>
+<%= f.text_field :mean_wind_speed%>
+<%= f.label :precipitation%>
+<%= f.text_field :precipitation%>
+<%= f.submit 'Submit' %>
+<% end %>

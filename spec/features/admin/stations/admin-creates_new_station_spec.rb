@@ -26,7 +26,7 @@ describe 'Admin' do
     expect(page).to have_content(Station.last.installation_date)
   end 
   
-  it 'station is not created if invalid entry' do 
+  it 'can not create station if invalid entry' do 
     admin = User.create!(name: 'Rajaa', email: 'rajaa@email.com', password: '12345', role: 1)
     station = Station.create(name: 'Wash Park East', dock_count: 10, city: 'Denver', installation_date: '2018/09/01')
     
@@ -45,6 +45,7 @@ describe 'Admin' do
     fill_in :station_installation_date, with: installation_date
     click_on 'Create Station' 
     
+    expect(current_path).to eq(admin_stations_path)
     expect(page).to have_content('Oops, something went wrong, please try again!')
   end 
 end 
