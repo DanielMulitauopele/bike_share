@@ -4,7 +4,6 @@ class Trip < ApplicationRecord
                         :end_date,
                         :bike_id,
                         :subscription_type,
-                        :zip_code,
                         :start_station_id,
                         :end_station_id
 
