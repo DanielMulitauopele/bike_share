@@ -9,6 +9,7 @@ describe 'Visit Trips Index' do
       30.times {@trips_array << create(:trip, start_station_id: station.id, end_station_id: station.id)}
       32.times {@second_trips_array << create(:trip, duration: 3500, start_station_id: station.id, end_station_id: station.id)}
     end
+    
     it 'should show the first 30 trips' do
 
       visit trips_path
@@ -24,6 +25,7 @@ describe 'Visit Trips Index' do
       expect(page).to have_content("Zip Code: #{@trips_array[0].zip_code}")
       expect(page).to_not have_content("Duration:   #{@second_trips_array[0].duration}")
     end
+    
     it 'should show the next 30 trips' do
 
       visit trips_path(page: 2)
@@ -32,6 +34,7 @@ describe 'Visit Trips Index' do
       expect(page).to_not have_content("Duration:   #{@trips_array[0].duration}")
       expect(page).to have_content("Duration:   #{@second_trips_array[0].duration}")
     end
+    
     it 'should link to the next 30 trips' do
 
       visit trips_path
@@ -42,6 +45,7 @@ describe 'Visit Trips Index' do
       expect(page).to_not have_content("Duration:   #{@trips_array[0].duration}")
       expect(page).to have_content("Duration:   #{@second_trips_array[0].duration}")
     end
+    
     it 'should link to the prior 30 trips' do
 
       visit trips_path(page: 2)
