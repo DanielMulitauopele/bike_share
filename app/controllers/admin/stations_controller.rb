@@ -1,7 +1,6 @@
 class Admin::StationsController < Admin::BaseController
   
   def new 
-    @admin = current_user
     @station = Station.new 
   end 
   
@@ -15,6 +14,30 @@ class Admin::StationsController < Admin::BaseController
       render :new
     end
   end 
+  
+  def edit
+    @station = Station.find_by(slug: params[:id])
+  end
+
+  def update
+    @station = Station.find_by(slug: params[:id])
+    @station.update(station_params)
+    if @station.save 
+      @station.should_generate_new_friendly_id?
+      flash[:notice] = "successfully updated station #{@station.name}."
+      redirect_to station_path(@station)
+    else 
+      flash[:alert] = 'Oops, something went wrong, please try again!'
+      render :edit
+    end
+  end
+  
+  def destroy 
+    station = Station.find_by(slug: params[:id])
+    station.destroy 
+    flash[:notice] = "Station successfully deleted "
+    redirect_to stations_path
+  end
   
   private 
     def station_params

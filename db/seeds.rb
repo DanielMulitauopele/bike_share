@@ -77,7 +77,7 @@ CSV.foreach('./db/csv/accessory.csv', headers: true, header_converters: :symbol)
     title: a[:title],
     description: a[:description],
     price: a[:price],
-    status: a[:status],
+    status: a[:status].to_i,
     image: a[:image]
   )
   if !accessory.save

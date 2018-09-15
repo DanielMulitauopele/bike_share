@@ -4,14 +4,14 @@
 
 <ul id="stations">
   <% @stations.each do |station| %>
-    <li>
+    <li id="station-<%= station.id %>">
       Station: <%= link_to station.name, station_path(station), class: 'stations-name' %>
       Dock Count: <%= station.dock_count %>
       City: <%= station.city %>
       Installed: <%= station.installation_date %>
       <% if current_admin? %>
-        <%= link_to 'Edit' %>
-        <%= link_to 'Delete' %>
+        <%= link_to 'Edit', edit_admin_station_path(station) %>
+        <%= link_to 'Delete', admin_station_path(station), method: :delete %>
       <% end %>
     </li>
   <% end %>

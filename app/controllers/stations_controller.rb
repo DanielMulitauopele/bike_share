@@ -17,12 +17,10 @@ class StationsController < ApplicationController
   end
 
   def show
-
   end
 
   private
-
-  def set_station
-    @station = Station.friendly.find(params[:id])
-  end
+    def set_station
+      @station = Station.friendly.find(params[:id])
+    end
 end

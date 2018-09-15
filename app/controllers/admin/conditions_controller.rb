@@ -1,5 +1,9 @@
 class Admin::ConditionsController < Admin::BaseController
-
+  
+  def new
+    @condition = Condition.new
+  end
+  
   def create
     condition = Condition.create(condition_params)
     if condition.save
@@ -12,13 +16,6 @@ class Admin::ConditionsController < Admin::BaseController
     end
   end
 
-  def destroy
-    condition = Condition.find(params[:id])
-    Condition.destroy(condition.id)
-    flash[:notice] = "Successfully deleted #{condition.date}"
-    redirect_to conditions_path
-  end
-
   def edit
     @condition = Condition.find(params[:id])
   end
@@ -28,16 +25,19 @@ class Admin::ConditionsController < Admin::BaseController
     @condition.update(condition_params)
     redirect_to condition_path(@condition)
   end
-
-  def new
-    @condition = Condition.new
+  
+  def destroy
+    condition = Condition.find(params[:id])
+    Condition.destroy(condition.id)
+    flash[:notice] = "Successfully deleted #{condition.date}"
+    redirect_to conditions_path
   end
 
   private
-  def condition_params
-    params.require(:condition).permit(:date, :max_temperature, :mean_temperature,
+    def condition_params
+      params.require(:condition).permit(:date, :max_temperature, :mean_temperature,
                                       :min_temperature, :mean_humidity,
                                       :mean_visibility, :mean_wind_speed,
                                       :precipitation)
-  end
+    end
 end

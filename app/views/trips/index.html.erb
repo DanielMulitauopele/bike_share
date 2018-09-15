@@ -2,6 +2,10 @@
 
 <p><%= link_to 'Trips Dashboard', trips_dashboard_path %>
 
+<% if current_admin? %>
+  <%= link_to "Create New Trip", new_admin_trip_path %>
+<% end %>
+
   <ul>
     <% @trips.each do |trip| %>
       <li>ID: <%= link_to trip.id, trip_path(trip.id) %></li>
@@ -13,6 +17,10 @@
       <li>Bike ID: <%= trip.bike_id %></li>
       <li>Subscription Type: <%= trip.subscription_type%></li>
       <li>Zip Code: <%= trip.zip_code%></li>
+      <% if current_admin? %>
+        <%= link_to 'Edit', edit_admin_trip_path(trip) %>
+        <%= link_to 'Delete', admin_trip_path(trip), method: :delete %>
+      <% end %>
     <% end %>
   </ul>
 
