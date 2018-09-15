@@ -3,3 +3,16 @@
 
 <h4>Name: <%= current_user.name %></h4>
 <h4>Current Email: <%= current_user.email %></h4>
+
+<h4>Orders by Status</h4>
+<p>Ordered: <%= @orders_by_status_count[:ordered] %> </p>
+<p>Paid: <%= @orders_by_status_count[:paid] %> </p>
+<p>Cancelled: <%= @orders_by_status_count[:cancelled] %> </p>
+<p>Completed: <%= @orders_by_status_count[:completed] %> </p>
+
+<h4>All Orders</h4>
+<ul>
+  <% @orders.each do |order| %>
+  <li>Order Number <%= order.id %></li>
+  <% end %>
+</ul>
