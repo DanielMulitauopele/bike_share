@@ -18,7 +18,6 @@ describe 'as an admin' do
       expect(page).to have_content("End Station: #{trip.end_station.name}")
       expect(page).to have_content("Bike ID: #{trip.bike_id}")
       expect(page).to have_content("Subscription Type: #{trip.subscription_type}")
-      save_and_open_page
       expect(page).to have_link("Edit")
       expect(page).to have_link("Delete")
     end
