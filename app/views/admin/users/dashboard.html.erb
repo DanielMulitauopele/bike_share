@@ -5,10 +5,10 @@
 <h4>Current Email: <%= current_user.email %></h4>
 
 <h4>Orders by Status</h4>
-<p>Ordered: <%= @orders_by_status_count[:ordered] %> </p>
-<p>Paid: <%= @orders_by_status_count[:paid] %> </p>
-<p>Cancelled: <%= @orders_by_status_count[:cancelled] %> </p>
-<p>Completed: <%= @orders_by_status_count[:completed] %> </p>
+<p>Ordered: <%= @ordered_count %> </p>
+<p>Paid: <%= @paid_count %> </p>
+<p>Cancelled: <%= @cancelled_count%> </p>
+<p>Completed: <%= @completed_count%> </p>
 
 <h4>All Orders</h4>
 <ul>

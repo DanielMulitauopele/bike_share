@@ -2,24 +2,31 @@ require 'rails_helper'
 
 describe 'as an admin' do
   describe 'visiting dashboard page' do
-    before (:each) do
-      @admin = create(:user, role: 1)
-      @order_1 = @admin.orders.create!(total: 65, status: 'Paid')
-      @order_2 = @admin.orders.create!(total: 65, status: 'Ordered')
-      @order_3 = @admin.orders.create!(total: 65, status: 'Cancelled')
-      @order_4 = @admin.orders.create!(total: 65, status: 'Cancelled')
-      @order_5 = @admin.orders.create!(total: 65, status: 'Ordered')
-      @order_6 = @admin.orders.create!(total: 65, status: 'Cancelled')
-    end
     it 'should show all orders' do
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
+      admin = create(:user, role: 1)
+      order_1 = admin.orders.create!(total: 65, status: 'Paid')
+      order_2 = admin.orders.create!(total: 65, status: 'Ordered')
+      order_3 = admin.orders.create!(total: 65, status: 'Cancelled')
+      order_4 = admin.orders.create!(total: 65, status: 'Cancelled')
+      order_5 = admin.orders.create!(total: 65, status: 'Ordered')
+      order_6 = admin.orders.create!(total: 65, status: 'Cancelled')
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
       visit admin_dashboard_path
 
       expect(page).to have_content('All Orders')
-      expect(page).to have_content("Order Number #{@order_1.id}")
+      expect(page).to have_content("Order Number #{order_1.id}")
     end
     it "should show the total number of orders per status" do
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
+      admin = create(:user, role: 1)
+      order_1 = admin.orders.create!(total: 65, status: 'Paid')
+      order_2 = admin.orders.create!(total: 65, status: 'Ordered')
+      order_3 = admin.orders.create!(total: 65, status: 'Cancelled')
+      order_4 = admin.orders.create!(total: 65, status: 'Cancelled')
+      order_5 = admin.orders.create!(total: 65, status: 'Ordered')
+      order_6 = admin.orders.create!(total: 65, status: 'Cancelled')
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
       visit admin_dashboard_path
 
       expect(page).to have_content('Orders by Status')

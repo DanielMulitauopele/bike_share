@@ -14,8 +14,7 @@ class Order < ApplicationRecord
     formatted_hash
   end
 
-  def self.orders_by_status_count
-    require "pry"; binding.pry
-    self.group(:status).count
-  end
+  # def self.orders_by_status_count
+  #   self.group(:status).count
+  # end
 end
