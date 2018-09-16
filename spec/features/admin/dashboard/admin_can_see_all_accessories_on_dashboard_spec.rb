@@ -27,7 +27,7 @@ describe 'as an admin' do
       fill_in :accessory_description, with: "Yummy Yummy"
       fill_in :accessory_price, with: "50"
       select "retired", from: "accessory[status]"
-
+      
       click_on 'Update Accessory'
 
       expect(current_path).to eq(admin_dashboard_path)
