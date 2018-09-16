@@ -20,11 +20,14 @@
 <h4><%= link_to 'All Accessories', admin_bike_shop_path %></h4>
 
 <% @accessories.each do |accessory| %>
-  <tr>
-    <td><%= accessory.image %></td>
-    <td>Title: <%= accessory.title %></td>
-    <td>Description: <%= accessory.description %></td>
-    <td>Status: <%= accessory.status %></td>
-    <td><%= link_to "Edit", edit_admin_accessory_path(accessory) %></td>
-  </tr>
+  <div class="accessory-<%= accessory.id %>  ">
+    <tr>
+      <td><%= image_tag(accessory.image) %></td>
+      <td>Title: <%= accessory.title %></td>
+      <td>Description: <%= accessory.description %></td>
+      <td>Status: <%= accessory.status %></td>
+      <td><%= link_to "Edit", edit_admin_accessory_path(accessory) %></td>
+    </tr>
+    <br />
+  </div>
 <% end %>

@@ -13,6 +13,21 @@ class Admin::AccessoriesController< Admin::BaseController
     flash[:notice] = "Successfully Created #{accessory.title}"
   end
 
+  def edit
+    @accessory = Accessory.find(params[:id])
+  end
+
+  def update
+    @accessory.update(accessory_params)
+    if @accessory.save
+      flash[:notice] = "Successfully updated accessory."
+      redirect_to admin_dashboard_path
+    else
+      flash[:alert] = "Something went wrong, please try again."
+      render :edit
+    end
+  end
+
   private
   def accessory_params
     params.require(:accessory).permit(:title, :description, :price)
