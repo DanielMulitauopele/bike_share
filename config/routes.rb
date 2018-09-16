@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     resources :stations, except: [:index, :show]
     resources :trips, except: [:index, :show]
     resources :conditions, except: [:index, :show]
-    resources :accessories, only: [:create]
+    resources :accessories, only: [:create, :edit]
     get '/dashboard' => 'users#dashboard'
     get '/bike-shop' => 'accessories#index'
     get '/bike-shop/new' => 'accessories#new'
