@@ -25,6 +25,7 @@
       <td><%= image_tag(accessory.image) %></td>
       <td>Title: <%= accessory.title %></td>
       <td>Description: <%= accessory.description %></td>
+      <td>Price: <%= number_to_currency(accessory.price) %></td>
       <td>Status: <%= accessory.status %></td>
       <td><%= link_to "Edit", edit_admin_accessory_path(accessory) %></td>
     </tr>

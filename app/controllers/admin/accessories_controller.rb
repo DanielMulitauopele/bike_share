@@ -18,6 +18,7 @@ class Admin::AccessoriesController< Admin::BaseController
   end
 
   def update
+    @accessory = Accessory.find(params[:id])
     @accessory.update(accessory_params)
     if @accessory.save
       flash[:notice] = "Successfully updated accessory."
@@ -30,7 +31,7 @@ class Admin::AccessoriesController< Admin::BaseController
 
   private
   def accessory_params
-    params.require(:accessory).permit(:title, :description, :price)
+    params.require(:accessory).permit(:title, :description, :price, :status)
   end
 
 end

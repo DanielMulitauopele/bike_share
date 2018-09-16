@@ -21,21 +21,21 @@ describe 'as an admin' do
 
       within '.accessory-1' do
         click_on 'Edit'
-
-        fill_in 'title', with: "Chicken Pot Pie"
-        fill_in 'description', with: "Yummy Yummy"
-        fill_in 'price', with: "50"
-        select "Inactive", from: "accessory[status]"
-
-        click_on 'Update Accessory'
-
-        expect(current_path).to eq(admin_dashboard_path)
-        expect(page).to have_content('All Accessories')
-        expect(page).to have_content("Chicken Pot Pie")
-        expect(page).to have_content("Yummy Yummy")
-        expect(page).to have_content("$50.00")
-        expect(page).to have_content("Inactive")
       end
+
+      fill_in :accessory_title, with: "Chicken Pot Pie"
+      fill_in :accessory_description, with: "Yummy Yummy"
+      fill_in :accessory_price, with: "50"
+      select "retired", from: "accessory[status]"
+
+      click_on 'Update Accessory'
+
+      expect(current_path).to eq(admin_dashboard_path)
+      expect(page).to have_content('All Accessories')
+      expect(page).to have_content("Chicken Pot Pie")
+      expect(page).to have_content("Yummy Yummy")
+      expect(page).to have_content("$50.00")
+      expect(page).to have_content("retired")
     end
   end
 end
