@@ -9,7 +9,7 @@ describe 'as an admin' do
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
-      visit admin_trip_path(trip)
+      visit trip_path(trip)
 
       expect(page).to have_content("Duration:   #{trip.duration}")
       expect(page).to have_content("Start Date: #{trip.start_date}")

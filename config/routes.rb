@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :stations, except: [:index, :show]
-    resources :trips, except: [:index]
+    resources :trips, except: [:index, :show]
     resources :conditions, except: [:index, :show]
     resources :accessories, only: [:create]
     get '/dashboard' => 'users#dashboard'
