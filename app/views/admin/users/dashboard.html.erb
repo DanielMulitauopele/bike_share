@@ -4,4 +4,17 @@
 <h4>Name: <%= current_user.name %></h4>
 <h4>Current Email: <%= current_user.email %></h4>
 
+<h4>Orders by Status</h4>
+<p>Ordered: <%= @ordered_count %> </p>
+<p>Paid: <%= @paid_count %> </p>
+<p>Cancelled: <%= @cancelled_count%> </p>
+<p>Completed: <%= @completed_count%> </p>
+
+<h4>All Orders</h4>
+<ul>
+  <% @orders.each do |order| %>
+  <li>Order Number <%= order.id %></li>
+  <% end %>
+</ul>
+
 <h6><%= link_to 'All Accessories', admin_bike_shop_path %></h6>

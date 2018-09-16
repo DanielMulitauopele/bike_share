@@ -13,4 +13,8 @@ class Order < ApplicationRecord
     end
     formatted_hash
   end
+
+  # def self.orders_by_status_count
+  #   self.group(:status).count
+  # end
 end
