@@ -27,9 +27,7 @@ describe 'user sees all items in cart' do
     fill_in 'login_password', with: '1234'
     click_button 'Login'
 
-    within('#Cart-Header') do
-      click_on 'Cart'
-    end
+    click_on 'Cart'
 
     expect(current_path).to eq(carts_path)
     expect(page).to have_content(accessory_1.title)

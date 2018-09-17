@@ -23,7 +23,8 @@
           <%= link_to 'Conditions', conditions_path, class: "nav-link" %>
         </div>
         <div class="navbar-nav ml-auto">
-          <%= "Logged in as #{current_user.name}" %> | <%= link_to 'Log Out', logout_path, method: :delete %>
+          <p><%= "Logged in as #{current_user.name}"%></p>
+          <p><%= link_to 'Log Out', logout_path, class: "nav-link", method: :delete %></p>
           <%= link_to "Cart: #{@cart.total_count}", carts_path, class: "nav-link", id: "Cart-Header" %>
         </div>
       </nav>
@@ -53,8 +54,8 @@
           <%= link_to 'All Trips', trips_path, class: "nav-link" %>
           <%= link_to 'Conditions', conditions_path, class: "nav-link" %>
         </div>
-        <div class="navbar-nav ml-auto">
-          <%= "Logged in as #{current_user.name}" %> | <%= link_to 'Log Out', logout_path, method: :delete %>
+        <div class="navbar-nav ml-auto cart-box">
+          <%= link_to 'Log In', login_path %> or <%= link_to 'Sign Up', new_user_path %>
           <%= link_to "Cart: #{@cart.total_count}", carts_path, class: "nav-link", id: "Cart-Header" %>
         </div>
       </nav>

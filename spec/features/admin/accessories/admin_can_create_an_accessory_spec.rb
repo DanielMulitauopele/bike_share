@@ -7,10 +7,10 @@ describe 'Visit Admin Bike Shop New' do
         admin = create(:user, role: 1)
 
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
-        
+
         visit bike_shop_path
         click_on 'Create A New Accessory'
-        
+
         expect(current_path).to eq(admin_bike_shop_new_path)
         expect(page).to have_content('Create New Accessory')
 
@@ -23,5 +23,5 @@ describe 'Visit Admin Bike Shop New' do
         expect(page).to have_content('Thingy thing')
       end
     end
-  end 
+  end
 end

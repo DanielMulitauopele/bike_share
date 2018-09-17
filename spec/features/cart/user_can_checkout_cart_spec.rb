@@ -22,9 +22,7 @@ describe 'User Checkout' do
         within("#accessory-#{accessory_3.id}") do
           click_on 'Add to Cart'
         end
-        within('#Cart-Header') do
-          click_on 'Cart'
-        end
+        find('#Cart-Header').click
 
         click_on 'Checkout'
 
@@ -51,9 +49,7 @@ describe 'User Checkout' do
         within("#accessory-#{accessory_3.id}") do
           click_on 'Add to Cart'
         end
-        within('#Cart-Header') do
-          click_on 'Cart'
-        end
+        find('#Cart-Header').click
 
         click_on 'Checkout'
 
@@ -64,19 +60,19 @@ describe 'User Checkout' do
       end
     end
   end
-  
-  describe 'user can not checkout if cart is empty' do 
-    it 'should not create an order' do 
+
+  describe 'user can not checkout if cart is empty' do
+    it 'should not create an order' do
       user = create(:user)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-      
-      visit carts_path 
-      click_on 'Checkout' 
-      
+
+      visit carts_path
+      click_on 'Checkout'
+
       expect(current_path).to eq(carts_path)
       expect(page).to have_content('Your cart is empty, please add items from the bike shop to your cart before checking out!')
     end
-  end 
+  end
 end
 
 describe 'when visitor clicks on checkout they are redirected to the login page' do
@@ -96,9 +92,7 @@ describe 'when visitor clicks on checkout they are redirected to the login page'
     within("#accessory-#{accessory_3.id}") do
       click_on 'Add to Cart'
     end
-    within('#Cart-Header') do
-      click_on 'Cart'
-    end
+    find('#Cart-Header').click
 
     click_on 'Checkout'
 
