@@ -1,5 +1,7 @@
 <h1>Bike Accessories</h1>
 
+<p><%= link_to 'Create A New Accessory', admin_bike_shop_new_path %></p>
+
 <% @accessories.each do |item| %>
   <div id="accessory-<%= item.id %>">
 

@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   put '/carts' => 'carts#update'
 
   resources :users, only: [:new, :create, :edit, :update]
-  resources :orders, only: [:show, :create, :edit, :update]
+  resources :orders, only: [:show, :create]
   resources :carts, only: [:create, :index]
   resources :stations, only: [:index]
   resources :trips, only: [:index, :show]
@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     resources :trips, except: [:index, :show]
     resources :conditions, except: [:index, :show]
     resources :accessories, only: [:create, :edit, :update]
+    resources :orders, only: [:edit, :update]
     get '/dashboard' => 'users#dashboard'
     get '/bike-shop' => 'accessories#index'
     get '/bike-shop/new' => 'accessories#new'

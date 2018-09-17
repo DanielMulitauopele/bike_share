@@ -8,10 +8,10 @@ class Admin::AccessoriesController< Admin::BaseController
   end
 
   def create
-    accessory = Accessory.create(accessory_params)
-    if accessory.save
-      flash[:notice] = "Successfully Created #{accessory.title}"
-      redirect_to accessory_path(accessory)
+    @accessory = Accessory.create(accessory_params)
+    if @accessory.save
+      flash[:notice] = "Successfully Created #{@accessory.title}"
+      redirect_to accessory_path(@accessory)
     else
       flash[:alert] = 'Oops, something went wrong, please try again!'
       render :new 

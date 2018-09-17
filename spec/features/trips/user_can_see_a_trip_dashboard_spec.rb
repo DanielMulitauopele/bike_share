@@ -75,8 +75,8 @@ describe 'visit the trips-dashboard-path' do
     it 'should show the distribution of rides grouped by subscription type' do
       visit trips_dashboard_path
 
-      expect(page).to have_content("Subscriber: 25.0%")
-      expect(page).to have_content("Customer: 75.0%")
+      expect(page).to have_content("Subscriber : 1 : 25.0%")
+      expect(page).to have_content("Customer : 3 : 75.0%")
     end
 
     it 'it should show the date with the most rides' do

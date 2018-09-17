@@ -5,6 +5,8 @@
 <h4>Current Email: <%= current_user.email %></h4>
 <h4>Current Address: <%= current_user.address %></h4>
 
+<p> <%= link_to 'Edit Profile', edit_user_path(current_user) %></p>
+
 <div class="status-nav">
   <h4>Orders by Status</h4>
     <p><%= link_to "Ordered: ", admin_dashboard_path(status: 'Ordered') %><%= @ordered_count %></p>
@@ -19,16 +21,15 @@
       <% @orders.each do |order| %>
         <div class="order-<%= order.id %>">
           <p><%= link_to "Order Number #{order.id}", order_path(order) %></p>
-          <li>Status: <%= order.status %> </li>
-
+          <p>Status: <%= order.status %> </p>
+          <p><%= link_to "Edit", edit_admin_order_path(order)%></p>
           <% if order.status == "Ordered"%>
-            <%= link_to "Mark as Paid", order_path(order, {order: {status: "Paid"}}), method: :patch %>
-            <%= link_to "Cancel Order", order_path(order, {order: {status: "Canceled"}}), method: :put %>
+            <%= link_to "Mark as Paid", admin_order_path(order, {order: {status: "Paid"}}), method: :patch %>
+            <%= link_to "Cancel Order", admin_order_path(order, {order: {status: "Canceled"}}), method: :put %>
 
           <% elsif order.status == "Paid" %>
-            <%= link_to "Mark as Completed", order_path(order, {order: {status: "Completed"}}), method: :put %>
-            <%= link_to "Cancel Order", order_path(order, {order: {status: "Canceled"}}), method: :put %>
-
+            <%= link_to "Mark as Completed", admin_order_path(order, {order: {status: "Completed"}}), method: :put %>
+            <%= link_to "Cancel Order", admin_order_path(order, {order: {status: "Canceled"}}), method: :put %>
           <% end %>
         </div>
       <% end %>

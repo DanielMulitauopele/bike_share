@@ -31,7 +31,7 @@ class Trip < ApplicationRecord
   end
 
   def self.group_by_month_year
-    group("DATE_TRUNC('month', start_date)").count
+    select("DATE_TRUNC('month', start_date) as my, count(id) as count").group('my').order('my asc')
   end
 
   def self.group_by_year
