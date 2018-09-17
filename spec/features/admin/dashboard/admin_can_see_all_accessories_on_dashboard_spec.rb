@@ -8,18 +8,19 @@ describe 'as an admin' do
       @accessory_3 = create(:accessory, title: "Tennis Racket")
       @admin = create(:user, role: 1)
     end
-    it "should show all accessories" do
+    it "should link to admin bike shop" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
       visit admin_dashboard_path
 
-      expect(page).to have_content('All Accessories')
-      expect(page).to have_content(@accessory_1.title)
+      expect(page).to have_link('All Accessories')
+      click_on 'All Accessories'
+      expect(current_path).to eq(admin_bike_shop_path)
     end
     it "should be able to edit an accessory" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
-      visit admin_dashboard_path
+      visit admin_bike_shop_path
 
-      within '.accessory-1' do
+      within '#accessory-1' do
         click_on 'Edit'
       end
 
@@ -30,18 +31,16 @@ describe 'as an admin' do
 
       click_on 'Update Accessory'
 
-      expect(current_path).to eq(admin_dashboard_path)
-      expect(page).to have_content('All Accessories')
+      expect(current_path).to eq(admin_bike_shop_path)
+      expect(page).to have_content('Bike Accessories')
       expect(page).to have_content("Chicken Pot Pie")
-      expect(page).to have_content("Yummy Yummy")
-      expect(page).to have_content("$50.00")
       expect(page).to have_content("retired")
     end
     it "should show flash message if user does not input correct info" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
-      visit admin_dashboard_path
+      visit admin_bike_shop_path
 
-      within '.accessory-1' do
+      within '#accessory-1' do
         click_on 'Edit'
       end
 
