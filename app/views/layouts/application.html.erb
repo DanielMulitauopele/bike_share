@@ -6,11 +6,11 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <link href="https://fonts.googleapis.com/css?family=Arimo|Cabin" rel="stylesheet">
   </head>
-
   <body>
-      <header class="header">
-      </header>
+    <header class="header">
+    </header>
     <% if current_admin? %>
       <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <div class="navbar-nav mr-auto">
@@ -24,7 +24,7 @@
         </div>
         <div class="navbar-nav ml-auto">
           <%= "Logged in as #{current_user.name}" %> | <%= link_to 'Log Out', logout_path, method: :delete %>
-          <%= link_to 'Cart: ', carts_path, class: "nav-link", id: "Cart-Header" %><%= @cart.total_count %>
+          <%= link_to "Cart: #{@cart.total_count}", carts_path, class: "nav-link", id: "Cart-Header" %>
         </div>
       </nav>
     <% elsif current_user %>
@@ -39,8 +39,8 @@
           <%= link_to 'Conditions', conditions_path, class: "nav-link" %>
         </div>
         <div class="navbar-nav ml-auto">
-          <%= "Logged in as #{current_user.name}" %> | <%= link_to 'Log Out', logout_path, method: :delete %>
-          <%= link_to 'Cart: ', carts_path, class: "nav-link", id: "Cart-Header" %><%= @cart.total_count %>
+          <%= "Logged in as #{current_user.name}"%> | <%= link_to 'Log Out', logout_path, class: "nav-link", method: :delete %>
+          <%= link_to "Cart: #{@cart.total_count}", carts_path, class: "nav-link", id: "Cart-Header" %>
         </div>
       </nav>
     <% else %>
@@ -55,7 +55,7 @@
         </div>
         <div class="navbar-nav ml-auto">
           <%= "Logged in as #{current_user.name}" %> | <%= link_to 'Log Out', logout_path, method: :delete %>
-          <%= link_to 'Cart: ', carts_path, class: "nav-link", id: "Cart-Header" %><%= @cart.total_count %>
+          <%= link_to "Cart: #{@cart.total_count}", carts_path, class: "nav-link", id: "Cart-Header" %>
         </div>
       </nav>
     <% end %>
@@ -63,7 +63,9 @@
     <% flash.each do |type, message| %>
       <%= content_tag :div, message.html_safe, class: type %>
     <% end %>
+    <div class="body-body">
 
-    <%= yield %>
+      <%= yield %>
+    </div>
   </body>
 </html>
