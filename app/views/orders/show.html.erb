@@ -10,7 +10,7 @@
   </div>
 <% end %>
 
-<h4>Order Total:</h4> <%= number_to_currency(@cart.cart_total) %>
+<h4>Order Total:</h4> <%= number_to_currency(@order.total) %>
 
 <h4>Status:</h4> <%= @order.status %>
 <h4>Created:</h4> <%= @order.created_at %>
