@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'user can edit their dashboard info' do
   before(:each) do
-    @user1 = User.create!(name: 'Bob Ross', email: 'painterbob12@gmail.com', password: 'password')
+    @user1 = User.create!(name: 'Bob Ross', email: 'painterbob12@gmail.com', address: "123 Main St, San Fransisco, CA 87654", password: 'password')
     @user2 = User.create!(name: 'Bobby Ross', email: 'painterbob14@gmail.com', password: 'password')
 
     visit root_path
@@ -12,6 +12,7 @@ describe 'user can edit their dashboard info' do
     click_on 'Login'
 
     expect(page).to have_content('Bob Ross')
+    expect(page).to have_content('123 Main St, San Fransisco, CA 87654')
     expect(page).to have_content('painterbob12@gmail.com')
 
     click_link 'Edit Profile Information'
