@@ -40,6 +40,9 @@ describe 'as an admin' do
       expect(page).to have_content("Status: #{@order_2.status}")
       expect(page).to_not have_content("Order Number #{@order_3.id}")
       expect(page).to_not have_content("Status: #{@order_3.status}")
+
+      expect(page).to have_link("Mark as Paid")
+      expect(page).to have_link("Cancel Order")
     end
   end
 end
