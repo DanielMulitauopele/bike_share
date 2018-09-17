@@ -21,9 +21,8 @@ describe 'as a user' do
       within("#accessory-#{accessory_3.id}") do
         click_on 'Add to Cart'
       end
-      within('#Cart-Header') do
-        click_on 'Cart'
-      end
+
+      find('#Cart-Header').click
 
       click_on 'Checkout'
       expect(current_path).to eq(dashboard_path)

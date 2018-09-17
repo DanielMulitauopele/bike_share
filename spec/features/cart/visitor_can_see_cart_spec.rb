@@ -20,9 +20,7 @@ describe 'Visitor sees all items in the cart' do
       click_on 'Add to Cart'
     end
 
-    within('#Cart-Header') do
-      click_on 'Cart'
-    end
+    find('#Cart-Header').click
 
     expect(current_path).to eq(carts_path)
     expect(page).to have_css("img[src*='default-image']", visible: false)
@@ -46,9 +44,7 @@ describe 'Visitor sees all items in the cart' do
       click_on 'Add to Cart'
     end
 
-    within('#Cart-Header') do
-      click_on 'Cart'
-    end
+    find('#Cart-Header').click
 
     click_on 'Remove'
 
@@ -68,9 +64,7 @@ describe 'Visitor sees all items in the cart' do
       click_on 'Add to Cart'
     end
 
-    within('#Cart-Header') do
-      click_on 'Cart'
-    end
+    find('#Cart-Header').click
 
     click_on 'Remove'
 

@@ -7,10 +7,10 @@ describe 'Visit Admin Bike Shop New' do
         admin = create(:user, role: 1)
 
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
-        
+
         visit admin_bike_shop_path
         click_on 'Create A New Accessory'
-        
+
         expect(current_path).to eq(admin_bike_shop_new_path)
         expect(page).to have_content('Create New Accessory')
 
@@ -23,14 +23,14 @@ describe 'Visit Admin Bike Shop New' do
         expect(page).to have_content('Thingy thing')
       end
     end
-  end 
-  
+  end
+
   context 'as an admin' do
     it 'should not allow admin to create an accessory if invalid entry' do
       admin = create(:user, role: 1)
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
-      
+
       visit admin_bike_shop_new_path
 
       fill_in 'accessory[title]', with: ''

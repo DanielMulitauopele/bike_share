@@ -1,11 +1,16 @@
 <h1>Bike Accessories</h1>
 
-<% @accessories.each do |item| %>
-  <div id="accessory-<%= item.id %>">
-
-  <%= image_tag(item.image)  %>
-  <%= link_to item.title, accessory_path(item.id) %>
-  <%= button_to 'Add to Cart', carts_path(accessory_id: item.id, do: 'add') unless item.retired? %>
-  <%= 'Accessory Retired' if item.retired? %>
-  </div>
+<% if current_admin? %>
+  <p><%= link_to 'Create A New Accessory', admin_bike_shop_new_path %></p>
 <% end %>
+
+<div class="item">
+  <% @accessories.each do |item| %>
+    <div id="accessory-<%= item.id %>" class="accessory-align">
+      <%= image_tag(item.image, :size => "100x67") %>
+      <%= link_to item.title, accessory_path(item.id) %>
+      <%= button_to 'Add to Cart', carts_path(accessory_id: item.id, do: 'add') unless item.retired? %>
+      <%= 'Accessory Retired' if item.retired? %>
+    </div>
+  <% end %>
+</div>
