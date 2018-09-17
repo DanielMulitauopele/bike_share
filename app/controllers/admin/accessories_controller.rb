@@ -27,7 +27,7 @@ class Admin::AccessoriesController< Admin::BaseController
     @accessory.update(accessory_params)
     if @accessory.save
       flash[:notice] = "Successfully updated accessory."
-      redirect_to admin_dashboard_path
+      redirect_to admin_bike_shop_path
     else
       flash[:alert] = "Something went wrong, please try again."
       render :edit

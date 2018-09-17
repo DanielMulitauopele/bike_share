@@ -15,6 +15,9 @@ class Trip < ApplicationRecord
                 precip: 'precipitation',
                 vis:    'mean_visibility'}
 
+  def duration_minutes
+    duration / 60
+  end
   def self.average_duration
     average(:duration)
   end
