@@ -5,10 +5,10 @@ class Admin::ConditionsController < Admin::BaseController
   end
   
   def create
-    condition = Condition.create(condition_params)
-    if condition.save
-      flash[:notice] = "#{condition.date} created successfully!"
-      redirect_to condition_path(condition)
+    @condition = Condition.create(condition_params)
+    if @condition.save
+      flash[:notice] = "#{@condition.date} created successfully!"
+      redirect_to condition_path(@condition)
     else
       flash[:notice] = 'Failed to create!'
       @condition = Condition.new
@@ -23,7 +23,13 @@ class Admin::ConditionsController < Admin::BaseController
   def update
     @condition = Condition.find(params[:id])
     @condition.update(condition_params)
-    redirect_to condition_path(@condition)
+    if @condition.save
+      flash[:notice] = "#{@condition.date} updated successfully!"
+      redirect_to condition_path(@condition)
+    else
+      flash[:notice] = 'Failed to update!'
+      render :edit
+    end
   end
   
   def destroy
