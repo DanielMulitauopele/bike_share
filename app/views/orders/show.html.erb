@@ -1,5 +1,11 @@
 <h2>Order <%= @order.id %> Details</h2>
 
+<% if current_admin? %>
+  <%= link_to "Back to All Orders", admin_dashboard_path %>
+<% else %>
+  <%= link_to "Back to All Orders", dashboard_path %>
+<% end %>
+
 <% @accessories.each do |accessory, values_hash| %>
   <div class="accessory-<%= accessory.id %>">
     <h3><%= accessory.title %></h3>
