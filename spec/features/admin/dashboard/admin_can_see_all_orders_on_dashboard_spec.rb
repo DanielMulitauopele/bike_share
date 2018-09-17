@@ -6,10 +6,10 @@ describe 'as an admin' do
       @admin = create(:user, role: 1)
       @order_1 = @admin.orders.create!(id: 1, total: 65, status: 'Paid')
       @order_2 = @admin.orders.create!(id: 2, total: 65, status: 'Ordered')
-      @order_3 = @admin.orders.create!(id: 3, total: 65, status: 'Cancelled')
-      @order_4 = @admin.orders.create!(id: 4, total: 65, status: 'Cancelled')
+      @order_3 = @admin.orders.create!(id: 3, total: 65, status: 'Canceled')
+      @order_4 = @admin.orders.create!(id: 4, total: 65, status: 'Canceled')
       @order_5 = @admin.orders.create!(id: 5, total: 65, status: 'Ordered')
-      @order_6 = @admin.orders.create!(id: 6, total: 65, status: 'Cancelled')
+      @order_6 = @admin.orders.create!(id: 6, total: 65, status: 'Canceled')
     end
     it 'should show all orders' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
@@ -25,7 +25,7 @@ describe 'as an admin' do
       expect(page).to have_content('Orders by Status')
       expect(page).to have_content("Ordered: 2")
       expect(page).to have_content("Paid: 1")
-      expect(page).to have_content("Cancelled: 3")
+      expect(page).to have_content("Canceled: 3")
       expect(page).to have_content("Completed: 0")
     end
     it "should filter orders by status" do

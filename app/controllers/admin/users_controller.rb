@@ -5,11 +5,11 @@ class Admin::UsersController< Admin::BaseController
     else
       @orders = Order.where(status: params[:status])
     end
-    
+
     @accessories = Accessory.all
     @ordered_count = Order.where(status: 'Ordered').count
     @paid_count = Order.where(status: 'Paid').count
-    @cancelled_count = Order.where(status: 'Cancelled').count
+    @canceled_count = Order.where(status: 'Canceled').count
     @completed_count = Order.where(status: 'Completed').count
   end
 end

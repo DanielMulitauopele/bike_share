@@ -8,7 +8,7 @@
   <h4>Orders by Status</h4>
     <p><%= link_to "Ordered: ", admin_dashboard_path(status: 'Ordered') %><%= @ordered_count %></p>
     <p><%= link_to "Paid: ", admin_dashboard_path(status: 'Paid') %><%= @paid_count %></p>
-    <p><%= link_to "Cancelled: ", admin_dashboard_path(status: 'Cancelled') %><%= @cancelled_count%></p>
+    <p><%= link_to "Canceled: ", admin_dashboard_path(status: 'Canceled') %><%= @canceled_count%></p>
     <p><%= link_to "Completed: ", admin_dashboard_path(status: 'Completed') %><%= @completed_count%></p>
 </div>
 
@@ -22,11 +22,11 @@
 
           <% if order.status == "Ordered"%>
             <%= link_to "Mark as Paid", order_path(order, {order: {status: "Paid"}}), method: :patch %>
-            <%= link_to "Cancel Order", order_path(order, {order: {status: "Cancelled"}}), method: :put %>
+            <%= link_to "Cancel Order", order_path(order, {order: {status: "Canceled"}}), method: :put %>
 
           <% elsif order.status == "Paid" %>
             <%= link_to "Mark as Completed", order_path(order, {order: {status: "Completed"}}), method: :put %>
-            <%= link_to "Cancel Order", order_path(order, {order: {status: "Cancelled"}}), method: :put %>
+            <%= link_to "Cancel Order", order_path(order, {order: {status: "Canceled"}}), method: :put %>
 
           <% end %>
         </div>
