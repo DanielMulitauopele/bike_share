@@ -8,7 +8,7 @@ describe 'Visit Admin Bike Shop New' do
 
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
         
-        visit bike_shop_path
+        visit admin_bike_shop_path
         click_on 'Create A New Accessory'
         
         expect(current_path).to eq(admin_bike_shop_new_path)
