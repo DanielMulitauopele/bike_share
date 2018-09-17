@@ -13,8 +13,11 @@
         <li>Mean Visibility: <%= condition.mean_visibility %> mi</li>
         <li>Mean Wind Speed: <%= condition.mean_wind_speed %> mph</li>
         <li>Precipitation: <%= condition.precipitation %> in</li>
-        <li><%= link_to 'Delete', admin_condition_path(condition), method: :delete if current_admin? %></li>
-        <li><%= link_to 'Edit', edit_admin_condition_path(condition) if current_admin? %></li>
+        <% if current_admin? %>
+        <li><%= link_to 'Delete', admin_condition_path(condition), method: :delete%></li>
+        <li><%= link_to 'Edit', edit_admin_condition_path(condition)  %></li>
+
+        <% end %>
       </ul>
   </div>
 <% end %>

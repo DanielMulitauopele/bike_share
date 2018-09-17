@@ -1,17 +1,17 @@
 <h1>Trip Dashboard</h1>
-<h2>Average Trip Duration: <%= @average_duration.round(2) %></h2>
+<h2>Average Trip Duration: <%= @average_duration.round(2) %> Minutes</h2>
 <p><%= link_to 'Back to Trips Index', trips_path %></p>
 <ul>
   <strong><li>Longest Rides:</li></strong>
   <% @longest_ride.each do |ride| %>
-    <li>Longest Ride: Trip <%= ride.id %> - <%= ride.start_date.strftime("%F") %> - <%= ride.duration %> Seconds</li>
+    <li>Longest Ride: Trip <%= ride.id %> - <%= ride.start_date.strftime("%F") %> - <%= ride.duration_minutes %> minutes</li>
     <% end %>
 </ul>
 
 <ul>
  <strong><li>Shortest Rides:</li></strong>
   <% @shortest_ride.each do |ride| %>
-    <li>Shortest Ride: Trip <%= ride.id %> - <%= ride.start_date.strftime("%F") %> - <%= ride.duration %> Seconds</li>
+    <li>Shortest Ride: Trip <%= ride.id %> - <%= ride.start_date.strftime("%F") %> - <%= ride.duration_minutes %> minutes</li>
     <% end %>
 </ul>
 

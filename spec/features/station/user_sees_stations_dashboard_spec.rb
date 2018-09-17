@@ -30,14 +30,14 @@ describe 'Stations-Dashboard' do
 
       visit stations_dashboard_path
 
-      expect(page).to have_content("Station(s) with most bikes available: #{Station.most_bikes_station} with #{Station.most_bikes} Bikes")
+      expect(page).to have_content("Station(s) with the most bikes available: #{Station.most_bikes_station.first} : #{Station.most_bikes}")
     end
 
     it 'should see fewest bikes available at a station and the station(s) name(s)' do
 
       visit stations_dashboard_path
 
-      expect(page).to have_content("Station(s) with fewest bikes available: #{Station.fewest_bikes_station} with #{Station.fewest_bikes} Bikes")
+      expect(page).to have_content("Station(s) with fewest bikes available: #{Station.fewest_bikes_station.first} : #{Station.fewest_bikes}")
     end
 
     it 'should see most recently installed station' do
