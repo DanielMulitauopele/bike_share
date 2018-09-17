@@ -19,9 +19,9 @@ describe 'admin creates new trip' do
 
         fill_in :trip_duration, with: 1000
         fill_in :trip_start_date, with: "2018-09-01"
-        select @station_1.name, :from => "trip[start_station_id]"
+        select "Wash Park East", from: :trip_start_station_id
         fill_in :trip_end_date, with: "2018-09-02"
-        select @station_2.name, :from => "trip[end_station_id]"
+        select "Yale St", from: :trip_end_station_id
         fill_in :trip_bike_id, with: 45
         fill_in :trip_subscription_type, with: "Subscriber"
         fill_in :trip_zip_code, with: 98765
@@ -43,14 +43,13 @@ describe 'admin creates new trip' do
         expect(current_path).to eq(new_admin_trip_path)
 
         fill_in :trip_start_date, with: "2018-09-01"
-        select @station_1.name, :from => "trip[start_station_id]"
+        select "Wash Park East", from: :trip_start_station_id
         fill_in :trip_end_date, with: "2018-09-02"
-        select @station_2.name, :from => "trip[end_station_id]"
+        select "Yale St", from: :trip_end_station_id
         fill_in :trip_bike_id, with: 45
         fill_in :trip_zip_code, with: 98765
 
         click_on "Create Trip"
-
         expect(page).to have_content("Oops, something went wrong, please try again!")
       end
     end
