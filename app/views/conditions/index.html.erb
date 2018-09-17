@@ -1,6 +1,10 @@
 <h1>All Conditions</h1>
 
-<p><%= link_to 'Conditions Dashboard', conditions_dashboard_path %>
+<p><%= link_to 'Conditions Dashboard', conditions_dashboard_path %></p>
+
+<% if current_admin? %>
+  <p><%= link_to 'Create New Condition', new_admin_condition_path %></p>
+<% end %>
 
 <% @conditions.each do |condition| %>
   <div class="condition">

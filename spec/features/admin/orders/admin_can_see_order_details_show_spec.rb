@@ -7,7 +7,7 @@ describe 'as a admin' do
       accessory_3 = create(:accessory, title: 'an accessory again')
       sum = accessory_1.price + accessory_3.price
       user = create(:user)
-      order = Order.create(status: 'pending', total: sum, user_id: 1)
+      order = Order.create(status: 'Ordered', total: sum, user_id: 1)
       order.order_accessories.create(accessory: accessory_1)
       order.order_accessories.create(accessory: accessory_3)
 
@@ -26,8 +26,8 @@ describe 'as a admin' do
         expect(page).to have_content("Quantity: 1")
       end
 
-      expect(page).to have_content('Order Total')
-      expect(page).to have_content('Status')
+      expect(page).to have_content('Order Total: $60.00')
+      expect(page).to have_content('Status: Ordered')
       expect(page).to have_content('Created')
       expect(page).to have_content('Updated')
 

@@ -55,7 +55,7 @@ describe 'user can visit login page' do
 
   describe 'login/logout' do
     it 'should allow user to login and logout' do
-      user = User.create!(name: 'Hans', email: 'hans@email.com', password: 'test123')
+      user = User.create!(name: 'Hans', email: 'hans@email.com', address: '123 Main St, San Fransisco, CA 87654', password: 'test123')
 
       visit root_path
       click_on 'Login'
@@ -70,6 +70,7 @@ describe 'user can visit login page' do
       expect(page).to have_content('You have been successfully logged in!')
       expect(page).to have_content("Logged in as #{user.name}")
       expect(page).to have_content("#{user.email}")
+      expect(page).to have_content("#{user.address}")
       expect(page).to have_content('Log Out')
       expect(page).to_not have_content('Log In')
 
