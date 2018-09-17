@@ -29,7 +29,18 @@ describe 'as an admin' do
       expect(page).to have_content("Completed: 0")
     end
     it "should filter orders by status" do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
+      visit admin_dashboard_path
 
+      within '.status-nav' do
+        click_on 'Ordered'
+      end
+
+      expect(current_path).to eq(admin_dashboard_path(status: 'Ordered'))
+      expect(page).to have_content("Order Number #{@order_2.id}")
+      expect(page).to have_content("Order Status #{@order_2.status}")
+      expect(page).to not_have_content("Order Number #{@order_3.id}")
+      expect(page).to not_have_content("Order Status #{@order_3.status}")
     end
   end
 end
