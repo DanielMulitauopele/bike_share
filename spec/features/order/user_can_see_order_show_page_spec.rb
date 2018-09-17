@@ -38,7 +38,7 @@ describe 'as a user' do
         expect(page).to have_content("Subtotal: $60.00")
         expect(page).to have_content("Quantity: 2")
       end
-save_and_open_page
+
       expect(page).to have_content('Order Total')
       expect(page).to have_content('Status')
       expect(page).to have_content('Created')
