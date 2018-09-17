@@ -17,7 +17,7 @@
     <ul>
       <% @orders.each do |order| %>
         <div class="order-<%= order.id %>">
-          <li><%= link_to "Order Number #{order.id}", order_path(order) %></li>
+          <p><%= link_to "Order Number #{order.id}", order_path(order) %></p>
           <li>Status: <%= order.status %> </li>
 
           <% if order.status == "Ordered"%>
