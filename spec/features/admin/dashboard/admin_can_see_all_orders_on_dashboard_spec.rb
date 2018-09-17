@@ -53,7 +53,7 @@ describe 'as an admin' do
         click_on 'Mark as Paid'
       end
 
-      expect(@order_2.status).to eq('Paid')
+      expect(page).to have_content('Status: Paid')
     end
   end
 end
