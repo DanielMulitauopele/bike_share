@@ -4,48 +4,38 @@
 <h4>Name: <%= current_user.name %></h4>
 <h4>Current Email: <%= current_user.email %></h4>
 
-<% if params[:status].nil? %>
-  <div class="status-nav">
-    <h4>Orders by Status</h4>
-      <p><%= link_to "Ordered: ", admin_dashboard_path(status: 'Ordered') %><%= @ordered_count %></p>
-      <p><%= link_to "Paid: ", admin_dashboard_path(status: 'Paid') %><%= @paid_count %></p>
-      <p><%= link_to "Cancelled: ", admin_dashboard_path(status: 'Cancelled') %><%= @cancelled_count%></p>
-      <p><%= link_to "Completed: ", admin_dashboard_path(status: 'Completed') %><%= @completed_count%></p>
-  </div>
-
-  <div class="all-orders">
-    <h4>All Orders</h4>
-      <ul>
-        <% @orders.each do |order| %>
-        <li><%= link_to "Order Number #{order.id}", order_path(order) %></li>
-        <% end %>
-      </ul>
-  </div>
-
-  <div class="accessories">
-    <h4><%= link_to 'All Accessories', admin_bike_shop_path %></h4>
-
-    <% @accessories.each do |accessory| %>
-      <div class="accessory-<%= accessory.id %>  ">
-        <tr>
-          <td><%= image_tag(accessory.image) %></td>
-          <td>Title: <%= accessory.title %></td>
-          <td>Description: <%= accessory.description %></td>
-          <td>Price: <%= number_to_currency(accessory.price) %></td>
-          <td>Status: <%= accessory.status %></td>
-          <td><%= link_to "Edit", edit_admin_accessory_path(accessory) %></td>
-        </tr>
-        <br />
-      </div>
-    <% end %>
-  </div>
-<% elsif params[:status] = 'Ordered' %>
-  <div class="status-nav">
-    <h4>Orders by Status</h4>
+<div class="status-nav">
+  <h4>Orders by Status</h4>
     <p><%= link_to "Ordered: ", admin_dashboard_path(status: 'Ordered') %><%= @ordered_count %></p>
     <p><%= link_to "Paid: ", admin_dashboard_path(status: 'Paid') %><%= @paid_count %></p>
     <p><%= link_to "Cancelled: ", admin_dashboard_path(status: 'Cancelled') %><%= @cancelled_count%></p>
     <p><%= link_to "Completed: ", admin_dashboard_path(status: 'Completed') %><%= @completed_count%></p>
-    <p><%= link_to "Go to Admin Dashboard", admin_dashboard_path %>
-  </div>
-<% end %>
+</div>
+
+<div class="all-orders">
+  <h4>All Orders</h4>
+    <ul>
+      <% @orders.each do |order| %>
+      <li><%= link_to "Order Number #{order.id}", order_path(order) %></li>
+      <li>Status: <%= order.status %> </li>
+      <% end %>
+    </ul>
+</div>
+
+<div class="accessories">
+  <h4><%= link_to 'All Accessories', admin_bike_shop_path %></h4>
+
+  <% @accessories.each do |accessory| %>
+    <div class="accessory-<%= accessory.id %>  ">
+      <tr>
+        <td><%= image_tag(accessory.image) %></td>
+        <td>Title: <%= accessory.title %></td>
+        <td>Description: <%= accessory.description %></td>
+        <td>Price: <%= number_to_currency(accessory.price) %></td>
+        <td>Status: <%= accessory.status %></td>
+        <td><%= link_to "Edit", edit_admin_accessory_path(accessory) %></td>
+      </tr>
+      <br />
+    </div>
+  <% end %>
+</div>
