@@ -13,7 +13,7 @@
 <h4>All Orders</h4>
 <ul>
   <% @orders.each do |order| %>
-  <li>Order Number <%= order.id %></li>
+  <li><%= link_to "Order Number #{order.id}", order_path(order) %></li>
   <% end %>
 </ul>
 
