@@ -1,6 +1,6 @@
-id,name,email,password
-1,Bob Ross,painterbob12@gmail.com,password
-2,Judith Sheindlin,judyjudgesyou@yahoo.com,password
-3,Fred Rogers,mr.rogers@juno.com,password
-4,Jimmy Fallon,latenightwithjimmy8@gmail.com,password
-5,Ellen DeGeneres,funnygal23@aol.com,password
+id,name,address,email,password
+1,Bob Ross,123 Main St San Fransisco CA 98765, painterbob12@gmail.com,password
+2,Judith Sheindlin,4876 1st St San Fransisco CA 98734,judyjudgesyou@yahoo.com,password
+3,Fred Rogers,24 Irish Pat Murphy St Portland OR 68765,mr.rogers@juno.com,password
+4,Jimmy Fallon,18765 Rodeo Drive Los Angeles CA 98745,latenightwithjimmy8@gmail.com,password
+5,Ellen DeGeneres,8453 Pine Lake Dr San Fransisco CA 98764,funnygal23@aol.com,password
