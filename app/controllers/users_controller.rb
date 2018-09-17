@@ -34,7 +34,7 @@ class UsersController < ApplicationController
       flash[:success] = "#{@user.name} profile updated."
       redirect_to dashboard_path
     else
-      flash[:failure] = "User '#{params[:user][:email]}' already exists."
+      flash[:failure] = "Please fill in all fields to update user profile."
       redirect_to edit_user_path(@user)
     end
   end
