@@ -16,16 +16,20 @@
   <h4>All Orders</h4>
     <ul>
       <% @orders.each do |order| %>
-        <li><%= link_to "Order Number #{order.id}", order_path(order) %></li>
-        <li>Status: <%= order.status %> </li>
-        <% if params[:status] = "Ordered"%>
-          <%= link_to "Mark as Paid" %>
-          <%= link_to "Cancel Order" %>
-        <% elsif params[:status] = "Paid" %>
-          <%= link_to "Mark as Completed" %>
-          <%= link_to "Cancel Order" %>
-        <% else %>
-        <% end %>
+        <div class="order-<%= order.id %>">
+          <li><%= link_to "Order Number #{order.id}", order_path(order) %></li>
+          <li>Status: <%= order.status %> </li>
+
+          <% if order.status == "Ordered"%>
+            <%= link_to "Mark as Paid", order_path(order, {order: {status: "Paid"}}), method: :patch %>
+            <%= link_to "Cancel Order", order_path(order, {order: {status: "Cancelled"}}), method: :put %>
+
+          <% elsif order.status == "Paid" %>
+            <%= link_to "Mark as Completed", order_path(order, {order: {status: "Completed"}}), method: :put %>
+            <%= link_to "Cancel Order", order_path(order, {order: {status: "Cancelled"}}), method: :put %>
+
+          <% end %>
+        </div>
       <% end %>
     </ul>
     <p><%= link_to "Back to All Orders", admin_dashboard_path %></p>

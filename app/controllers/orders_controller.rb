@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
     elsif current_user && @cart.total_count == 0
       flash[:notice] = "Your cart is empty, please add items from the #{view_context.link_to 'bike shop', bike_shop_path} to your cart before checking out!"
       redirect_to carts_path
-    else 
+    else
       redirect_to login_path
       flash[:alert] = 'Please login before checking out!'
     end
