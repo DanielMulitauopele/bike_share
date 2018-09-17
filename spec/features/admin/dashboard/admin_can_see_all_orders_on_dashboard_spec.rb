@@ -35,12 +35,11 @@ describe 'as an admin' do
       within '.status-nav' do
         click_on 'Ordered'
       end
-      save_and_open_page
-      expect(current_path).to eq(admin_dashboard_path(status: 'Ordered'))
+
       expect(page).to have_content("Order Number #{@order_2.id}")
-      expect(page).to have_content("Order Status #{@order_2.status}")
-      expect(page).to not_have_content("Order Number #{@order_3.id}")
-      expect(page).to not_have_content("Order Status #{@order_3.status}")
+      expect(page).to have_content("Status: #{@order_2.status}")
+      expect(page).to_not have_content("Order Number #{@order_3.id}")
+      expect(page).to_not have_content("Status: #{@order_3.status}")
     end
   end
 end
