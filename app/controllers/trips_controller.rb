@@ -9,7 +9,7 @@ class TripsController< ApplicationController
   end
 
   def dashboard
-    @average_duration = Trip.average_duration
+    @average_duration = (Trip.average_duration / 60)
     @longest_ride = Trip.longest_ride
     @shortest_ride = Trip.shortest_ride
     @most_popular_start_station = Station.max_starting_station

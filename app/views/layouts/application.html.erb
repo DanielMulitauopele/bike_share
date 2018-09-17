@@ -14,6 +14,7 @@
         <% if current_admin? %>
           <ul>
             <li><%= "Logged in as #{current_user.name}" %> | <%= link_to 'Log Out', logout_path, method: :delete %></li>
+            <li><%= link_to 'Home', root_path %></li>
             <li><%= link_to 'Profile', admin_dashboard_path %></li>
             <li><%= link_to 'Bike Shop', bike_shop_path %></li>
             <li><%= link_to 'All Stations', stations_path %>
@@ -23,6 +24,7 @@
         <% elsif current_user %>
           <ul>
             <li><%= "Logged in as #{current_user.name}" %> | <%= link_to 'Log Out', logout_path, method: :delete %></li>
+            <li><%= link_to 'Home', root_path %></li>
             <li><%= link_to 'Profile', dashboard_path %></li>
             <li><%= link_to 'Bike Shop', bike_shop_path %></li>
             <li><%= link_to 'All Stations', stations_path %>
@@ -32,10 +34,11 @@
         <% else %>
           <ul>
             <li> <%= link_to 'Log In', login_path %> or <%= link_to 'Sign Up', new_user_path %></li>
+            <li><%= link_to 'Home', root_path %></li>
             <li><%= link_to 'Bike Shop', bike_shop_path %>
-              <li><%= link_to 'All Stations', stations_path %>
-              <li><%= link_to 'All Trips', trips_path %>
-              <li><%= link_to 'Conditions', conditions_path %>
+            <li><%= link_to 'All Stations', stations_path %>
+            <li><%= link_to 'All Trips', trips_path %>
+            <li><%= link_to 'Conditions', conditions_path %>
             <li id="Cart-Header"> <%= link_to 'Cart: ', carts_path %><%= @cart.total_count %></li>
         <% end %>
       </div>

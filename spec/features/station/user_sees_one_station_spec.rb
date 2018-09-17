@@ -72,6 +72,19 @@ describe 'registered user sees one station' do
       expect(page).to have_content('Delete')
     end 
   end
+  
+  describe 'As an Admin' do 
+    it 'they can link to create a new station from the index page' do 
+      admin = create(:user, role: 1)
+      
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
+      visit station_path(@station_1)
+      click_on 'Create A New Station'
+      
+      expect(current_path).to eq(new_admin_station_path)
+    end 
+  end
 end
 
 
