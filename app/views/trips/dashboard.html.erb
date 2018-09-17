@@ -20,8 +20,8 @@
 
 <ul>
   <strong><li>Rides by Month Year: </li></strong>
-  <% @grouped_by_month_year.each do |date, count| %>
-  <li><%= date.strftime("%b-%Y")%>: <%= count %></li>
+  <% @grouped_by_month_year.each do |trip| %>
+  <li><%= trip.my.strftime("%b-%Y")%>: <%= trip.count %></li>
 <% end %>
 </ul>
 
@@ -38,7 +38,7 @@
 <ul>
   <strong><li>Distribution by Subscriber</li></strong>
   <% @distribution_by_subscriber.each do |subscription_group| %>
-    <li><%= subscription_group.subscription_type.capitalize %>: <%= subscription_group.percentage %>%</li>
+    <li><%= subscription_group.subscription_type.capitalize %> : <%= subscription_group.count %> : <%= subscription_group.percentage %>%</li>
     <% end %>
 </ul>
 

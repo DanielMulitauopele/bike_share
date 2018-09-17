@@ -6,13 +6,14 @@ class Station < ApplicationRecord
   validates_uniqueness_of :name
   validates_uniqueness_of :slug
 
+  validates_numericality_of :dock_count, :greater_than_or_equal_to => 0
   has_many :start_trips, class_name: 'Trip', foreign_key: 'start_station_id', dependent: :destroy
   has_many :end_trips, class_name: 'Trip', foreign_key: 'end_station_id', dependent: :destroy
 
   def to_param
     slug
   end
-  
+
   def should_generate_new_friendly_id?
     slug.blank? || self.name_changed?
   end

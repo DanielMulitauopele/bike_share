@@ -27,17 +27,17 @@ describe 'Admin' do
       click_on 'Checkout'
       @order = @admin.orders.first.id
     end
-    
+
     it 'they link from the admin dashboard' do
       visit admin_dashboard_path
 
       click_on 'Edit'
 
       expect(current_path).to eq(edit_admin_order_path(@order))
-      
+
       select "Canceled", from: "order[status]"
       click_on 'Submit'
-    
+
       expect(current_path).to eq(order_path(@order))
       expect(page).to have_content('Status: Canceled')
       expect(page).to have_content("Order #{@order} updated successfully!")
