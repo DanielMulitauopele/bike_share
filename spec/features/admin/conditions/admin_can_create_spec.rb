@@ -27,7 +27,7 @@ describe 'Admin visits new condition page' do
     expect(page).to have_content("Mean Wind Speed: #{temp}")
     expect(page).to have_content("Precipitation: #{temp}")
   end
-  
+
   it 'should fail to create' do
     temp = 1000
 
@@ -45,5 +45,16 @@ describe 'Admin visits new condition page' do
     click_on 'Submit'
 
     expect(page).to have_content("Failed to create!")
+  end
+  it "should link to new condition page from index page" do
+    admin = create(:user, role: 1)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
+    visit conditions_path
+
+    expect(page).to have_link('Create New Condition')
+    click_on 'Create New Condition'
+
+    expect(current_path).to eq(new_admin_condition_path)
   end
 end
