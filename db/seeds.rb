@@ -62,6 +62,7 @@ CSV.foreach('./db/csv/user.csv', headers: true, header_converters: :symbol) do |
     id: person[:id],
     name: person[:name],
     email: person[:email],
+    address: person[:address],
     password: person[:password]
   )
   if !user.save
