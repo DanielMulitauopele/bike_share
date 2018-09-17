@@ -2,6 +2,9 @@
 
 <p><%= link_to 'Stations Dashboard', stations_dashboard_path %></p> 
 
+<% if current_admin? %>
+  <p><%= link_to 'Create A New Station', new_admin_station_path %></p>
+<% end %>
 
 <ul id="stations">
   <% @stations.each do |station| %>
@@ -15,8 +18,5 @@
         <%= link_to 'Delete', admin_station_path(station), method: :delete %>
       <% end %>
     </li>
-  <% end %>
-  <% if current_admin? %>
-    <p><%= link_to 'Create A New Station', new_admin_station_path %></p>
   <% end %>
 </ul>

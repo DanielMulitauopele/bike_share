@@ -9,7 +9,6 @@ Date of Installation: <%= @station.installation_date %><br>
 <% if current_admin? %>
   <%= link_to 'Edit', edit_admin_station_path(@station) %>
   <%= link_to 'Delete', admin_station_path(@station), method: :delete %>
-  <%= link_to 'Create A New Station', new_admin_station_path %>
 <% end %>
 
 <% if current_user? %>
