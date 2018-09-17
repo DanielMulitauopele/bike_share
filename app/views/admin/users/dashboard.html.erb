@@ -4,31 +4,51 @@
 <h4>Name: <%= current_user.name %></h4>
 <h4>Current Email: <%= current_user.email %></h4>
 
-<h4>Orders by Status</h4>
-<p>Ordered: <%= @ordered_count %> </p>
-<p>Paid: <%= @paid_count %> </p>
-<p>Cancelled: <%= @cancelled_count%> </p>
-<p>Completed: <%= @completed_count%> </p>
+<div class="status-nav">
+  <h4>Orders by Status</h4>
+    <p><%= link_to "Ordered: ", admin_dashboard_path(status: 'Ordered') %><%= @ordered_count %></p>
+    <p><%= link_to "Paid: ", admin_dashboard_path(status: 'Paid') %><%= @paid_count %></p>
+    <p><%= link_to "Canceled: ", admin_dashboard_path(status: 'Canceled') %><%= @canceled_count%></p>
+    <p><%= link_to "Completed: ", admin_dashboard_path(status: 'Completed') %><%= @completed_count%></p>
+</div>
 
-<h4>All Orders</h4>
-<ul>
-  <% @orders.each do |order| %>
-  <li>Order Number <%= order.id %></li>
+<div class="all-orders">
+  <h4>All Orders</h4>
+    <ul>
+      <% @orders.each do |order| %>
+        <div class="order-<%= order.id %>">
+          <p><%= link_to "Order Number #{order.id}", order_path(order) %></p>
+          <li>Status: <%= order.status %> </li>
+
+          <% if order.status == "Ordered"%>
+            <%= link_to "Mark as Paid", order_path(order, {order: {status: "Paid"}}), method: :patch %>
+            <%= link_to "Cancel Order", order_path(order, {order: {status: "Canceled"}}), method: :put %>
+
+          <% elsif order.status == "Paid" %>
+            <%= link_to "Mark as Completed", order_path(order, {order: {status: "Completed"}}), method: :put %>
+            <%= link_to "Cancel Order", order_path(order, {order: {status: "Canceled"}}), method: :put %>
+
+          <% end %>
+        </div>
+      <% end %>
+    </ul>
+    <p><%= link_to "Back to All Orders", admin_dashboard_path %></p>
+</div>
+
+<div class="accessories">
+  <h4><%= link_to 'All Accessories', admin_bike_shop_path %></h4>
+
+  <% @accessories.each do |accessory| %>
+    <div class="accessory-<%= accessory.id %>  ">
+      <tr>
+        <td><%= image_tag(accessory.image) %></td>
+        <td>Title: <%= accessory.title %></td>
+        <td>Description: <%= accessory.description %></td>
+        <td>Price: <%= number_to_currency(accessory.price) %></td>
+        <td>Status: <%= accessory.status %></td>
+        <td><%= link_to "Edit", edit_admin_accessory_path(accessory) %></td>
+      </tr>
+      <br />
+    </div>
   <% end %>
-</ul>
-
-<h4><%= link_to 'All Accessories', admin_bike_shop_path %></h4>
-
-<% @accessories.each do |accessory| %>
-  <div class="accessory-<%= accessory.id %>  ">
-    <tr>
-      <td><%= image_tag(accessory.image) %></td>
-      <td>Title: <%= accessory.title %></td>
-      <td>Description: <%= accessory.description %></td>
-      <td>Price: <%= number_to_currency(accessory.price) %></td>
-      <td>Status: <%= accessory.status %></td>
-      <td><%= link_to "Edit", edit_admin_accessory_path(accessory) %></td>
-    </tr>
-    <br />
-  </div>
-<% end %>
+</div>
