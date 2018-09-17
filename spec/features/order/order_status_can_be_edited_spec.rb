@@ -46,7 +46,7 @@ describe 'as a user' do
       select "Canceled", from: "order[status]"
       click_on 'Update Order'
 
-      expect(current_path).to eq(order_path(@order))
+      visit order_path(1)
       expect(page).to have_content('Status: Canceled')
     end
   end
