@@ -17,7 +17,6 @@ describe 'as a admin' do
 
       visit order_path(order)
 
-
       expect(page).to have_content("Order #{user.orders.first.id} Details")
 
       within '.accessory-1' do
