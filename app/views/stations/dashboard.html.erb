@@ -5,8 +5,18 @@
 <ul>
   <li> Total count of stations: <%= @stations_count %></li>
   <li> Average bikes available per station: <%= @average_docks.round(2) %></li>
-  <li> Station(s) with most bikes available: <%= @station_max_bikes %> with <%= @max_bikes %> Bikes </li>
-  <li> Station(s) with fewest bikes available: <%= @station_min_bikes %> with <%= @min_bikes %> Bikes </li>
+  <li>Station(s) with the most bikes available:</li>
+  <ul>
+    <% @station_max_bikes.each do |station| %>
+    <li> <%= station %> : <%= @max_bikes %> </li>
+    <% end %>
+  </ul>
+  <li> Station(s) with fewest bikes available: </li>
+  <ul>
+    <% @station_min_bikes.each do |station| %>
+    <li> <%= station %> : <%= @min_bikes %> </li>
+    <% end %>
+  </ul>
   <li> Most recently installed station: <%= @newest_station %></li>
   <li> Oldest station: <%= @oldest_station %></li>
 </ul>
