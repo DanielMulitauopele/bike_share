@@ -20,8 +20,8 @@
 
 <ul>
   <strong><li>Rides by Month Year: </li></strong>
-  <% @grouped_by_month_year.each do |date, count| %>
-  <li><%= date.strftime("%b-%Y")%>: <%= count %></li>
+  <% @grouped_by_month_year.each do |trip| %>
+  <li><%= trip.my.strftime("%b-%Y")%>: <%= trip.count %></li>
 <% end %>
 </ul>
 
