@@ -39,7 +39,7 @@ describe 'user can edit their dashboard info' do
 
     click_button 'Update User'
 
-    expect(page).to have_content("User 'painterbob14@gmail.com' already exists.")
+    expect(page).to have_content("Please fill in all fields to update user profile.")
     expect(page).to_not have_content('Robert Ross')
     expect(page).to_not have_content('painterbob13@gmail.com')
   end
