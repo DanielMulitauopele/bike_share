@@ -1,22 +1,79 @@
-<h3> Stations Dashboard </h3>
+<h3 class="text-center"> Stations Dashboard </h3>
 
-<p><%= link_to "Back to All Stations", stations_path %></p>
+<p class="text-center"><%= link_to "Back to All Stations", stations_path %></p>
+</br>
 
-<ul>
-  <li> Total count of stations: <%= @stations_count %></li>
-  <li> Average bikes available per station: <%= @average_docks.round(2) %></li>
-  <li>Station(s) with the most bikes available:</li>
-  <ul>
-    <% @station_max_bikes.each do |station| %>
-    <li> <%= station %> : <%= @max_bikes %> </li>
-    <% end %>
-  </ul>
-  <li> Station(s) with fewest bikes available: </li>
-  <ul>
-    <% @station_min_bikes.each do |station| %>
-    <li> <%= station %> : <%= @min_bikes %> </li>
-    <% end %>
-  </ul>
-  <li> Most recently installed station: <%= @newest_station %></li>
-  <li> Oldest station: <%= @oldest_station %></li>
-</ul>
+<div class="container">
+  <div class="row">
+    <div class="col-sm"></div>
+    <div class="col-12">
+
+      <table class="table">
+        <tbody>
+          <tr id="total-stations">
+            <th> Total count of stations</th>
+            <td> <%= @stations_count %></td>
+          </tr>
+          <tr id="average-bikes">
+            <th>Average bikes available per station</th>
+            <td><%= @average_docks.round(2) %></td>
+          </tr>
+          <tr id="recently-installed">
+            <th>Most recently installed station</th>
+            <td><%= @newest_station %></td>
+          </tr>
+          <tr id="oldest-station">
+            <th>Oldest station</th>
+            <td><%= @oldest_station %></td>
+          </tr>
+        </tbody>
+      </table>
+
+      </br>
+      <h4 class="text-center"> Stations with the most rides </h4>
+      </br>
+
+      <table class="table" id="most-rides-table">
+        <thead>
+          <tr>
+            <th scope="col">Station</th>
+            <th scope="col">Rides</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @station_max_bikes.each do |station| %>
+          <tr>
+            <td><%= station %></td>
+            <td><%= @max_bikes %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      </br>
+      <h4 class="text-center"> Stations with the least rides </h4>
+      </br>
+
+      <table class="table" id="fewest-rides-table">
+        <thead>
+          <tr>
+            <th scope="col">Station</th>
+            <th scope="col">Rides</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @station_min_bikes.each do |station| %>
+          <tr>
+            <td><%= station %></td>
+            <td><%= @min_bikes %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+
+
+    </div>
+    <div class="col-sm"></div>
+  </div>
+</div>

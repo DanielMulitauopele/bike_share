@@ -16,42 +16,56 @@ describe 'Stations-Dashboard' do
 
       visit stations_dashboard_path
 
-      expect(page).to have_content("Total count of stations: #{Station.count}")
+      within '#total-stations' do
+        expect(page).to have_content(Station.count)
+      end
     end
 
     it 'should see Average bikes available per station' do
 
       visit stations_dashboard_path
 
-      expect(page).to have_content("Average bikes available per station: #{Station.average_docks}")
+      within '#average-bikes' do
+        expect(page).to have_content(Station.average_docks)
+      end
     end
 
     it 'should see most bikes available at a station and the station(s) name(s)' do
 
       visit stations_dashboard_path
 
-      expect(page).to have_content("Station(s) with the most bikes available: #{Station.most_bikes_station.first} : #{Station.most_bikes}")
+      within '#most-rides-table' do
+        expect(page).to have_content(Station.most_bikes_station.first)
+        expect(page).to have_content(Station.most_bikes)
+      end
     end
 
     it 'should see fewest bikes available at a station and the station(s) name(s)' do
 
       visit stations_dashboard_path
 
-      expect(page).to have_content("Station(s) with fewest bikes available: #{Station.fewest_bikes_station.first} : #{Station.fewest_bikes}")
+      within '#fewest-rides-table' do
+        expect(page).to have_content(Station.fewest_bikes_station.first)
+        expect(page).to have_content(Station.fewest_bikes)
+      end
     end
 
     it 'should see most recently installed station' do
 
       visit stations_dashboard_path
 
-      expect(page).to have_content("Most recently installed station: #{Station.newest_installation}")
+      within "#recently-installed" do
+        expect(page).to have_content(Station.newest_installation)
+      end
     end
 
     it 'should see the oldest station' do
 
       visit stations_dashboard_path
 
-      expect(page).to have_content("Oldest station: #{Station.oldest_installation}")
+      within '#oldest-station' do
+        expect(page).to have_content(Station.oldest_installation)
+      end
     end
   end
 end
