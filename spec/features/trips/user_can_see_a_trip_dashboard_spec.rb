@@ -33,7 +33,9 @@ describe 'visit the trips-dashboard-path' do
                             end_station_id: 3, bike_id: 76, subscription_type:	'customer', zip_code:	872671)
       visit trips_dashboard_path
 
-      expect(page).to have_content("Longest Ride: Trip #{trip.id} - #{trip.start_date.strftime("%F")} - #{trip.duration_minutes} minutes")
+      within '#longest-rides' do
+        expect(page).to have_content("#{trip.id} #{trip.start_date.strftime("%F")} #{trip.duration_minutes} minutes")
+      end
 		end
 
 		it 'should show the shortest ride' do
@@ -41,26 +43,32 @@ describe 'visit the trips-dashboard-path' do
                             end_station_id: 3, bike_id: 76, subscription_type:	'customer', zip_code:	872671)
       visit trips_dashboard_path
 
-      expect(page).to have_content("Shortest Ride: Trip #{trip.id} - #{trip.start_date.strftime("%F")} - #{trip.duration_minutes} minutes")
+      within '#shortest-rides' do
+        expect(page).to have_content("#{trip.id} #{trip.start_date.strftime("%F")} #{trip.duration_minutes} minutes")
+      end
 		end
 
 		it 'should show the start station with the most rides' do
       visit trips_dashboard_path
 
-      expect(page).to have_content("Most Popular Start Location: #{@station_1.name}")
+      within '#most-popular-start' do
+        expect(page).to have_content(@station_1.name)
+      end
 		end
 
     it 'should show the end station with the most rides' do
       visit trips_dashboard_path
 
-      expect(page).to have_content("Most Popular End Location: #{@station_2.name}")
+      within '#most-popular-end' do
+        expect(page).to have_content(@station_2.name)
+      end
 		end
 
     it 'should show the count of rides grouped by month/year' do
       visit trips_dashboard_path
 
-      expect(page).to have_content("Jan-2013: 1")
-      expect(page).to have_content("Feb-2013: 3")
+      expect(page).to have_content("Jan-2013 1")
+      expect(page).to have_content("Feb-2013 3")
     end
 
     it 'should show the count of rides grouped by year' do
@@ -68,15 +76,19 @@ describe 'visit the trips-dashboard-path' do
                             end_station_id: 3, bike_id: 76, subscription_type:	'customer', zip_code:	872671)
       visit trips_dashboard_path
 
-      expect(page).to have_content("2013: 4")
-      expect(page).to have_content("2014: 1")
+      within '#grouped-year-2013' do
+        expect(page).to have_content("4")
+      end
+      within '#grouped-year-2014' do
+        expect(page).to have_content("1")
+      end
     end
 
     it 'should show the distribution of rides grouped by subscription type' do
       visit trips_dashboard_path
 
-      expect(page).to have_content("Subscriber : 1 : 25.0%")
-      expect(page).to have_content("Customer : 3 : 75.0%")
+      expect(page).to have_content("Subscriber 1 25.0%")
+      expect(page).to have_content("Customer 3 75.0%")
     end
 
     it 'it should show the date with the most rides' do
@@ -94,25 +106,29 @@ describe 'visit the trips-dashboard-path' do
     it 'it should show the weather on the day with the most rides' do
       visit trips_dashboard_path
 
-      expect(page).to have_content("Max Temperature: 74.0")
-      expect(page).to have_content("Mean Temperature: 68.0")
-      expect(page).to have_content("Min Temperature: 61.0")
-      expect(page).to have_content("Mean Humidity: 75.0")
-      expect(page).to have_content("Mean Visibility: 10.0")
-      expect(page).to have_content("Mean Wind Speed: 11.0")
-      expect(page).to have_content("Precipitation: 0.0")
+      within '#most-pop-day-table' do
+        expect(page).to have_content("Max Temperature 74.0")
+        expect(page).to have_content("Mean Temperature 68.0")
+        expect(page).to have_content("Min Temperature 61.0")
+        expect(page).to have_content("Mean Humidity 75.0")
+        expect(page).to have_content("Mean Visibility 10.0")
+        expect(page).to have_content("Mean Wind Speed 11.0")
+        expect(page).to have_content("Precipitation 0.0")
+    end
     end
 
     it 'it should show the weather on the day with the least rides' do
       visit trips_dashboard_path
 
-      expect(page).to have_content("Max Temperature: 69.0")
-      expect(page).to have_content("Mean Temperature: 63.0")
-      expect(page).to have_content("Min Temperature: 56.0")
-      expect(page).to have_content("Mean Humidity: 50.0")
-      expect(page).to have_content("Mean Visibility: 10.0")
-      expect(page).to have_content("Mean Wind Speed: 25.0")
-      expect(page).to have_content("Precipitation: 30.0")
+      within '#least-pop-day-table' do
+        expect(page).to have_content("Max Temperature 69.0")
+        expect(page).to have_content("Mean Temperature 63.0")
+        expect(page).to have_content("Min Temperature 56.0")
+        expect(page).to have_content("Mean Humidity 50.0")
+        expect(page).to have_content("Mean Visibility 10.0")
+        expect(page).to have_content("Mean Wind Speed 25.0")
+        expect(page).to have_content("Precipitation 30.0")
+      end
     end
   end
 end

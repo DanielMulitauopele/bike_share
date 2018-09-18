@@ -4,13 +4,26 @@
   <p><%= link_to 'Create A New Accessory', admin_bike_shop_new_path %></p>
 <% end %>
 
-<div class="item">
-  <% @accessories.each do |item| %>
-    <div id="accessory-<%= item.id %>" class="accessory-align">
-      <%= image_tag(item.image, :size => "100x67") %>
-      <%= link_to item.title, accessory_path(item.id) %>
-      <%= button_to 'Add to Cart', carts_path(accessory_id: item.id, do: 'add') unless item.retired? %>
-      <%= 'Accessory Retired' if item.retired? %>
+
+<div class="container">
+  <% @accessories.each_slice(4) do |item_group| %>
+  <div class="row">
+    <% item_group.each do |item| %>
+    <div class="card" style="width: 16rem; margin: 1%;">
+      <%= image_tag(item.image, :size => "100x180", class: "card-img-top") %>
+      <div class="card-body" id="accessory-<%= item.id %>">
+        <h5 class="card-title"><%= link_to item.title, accessory_path(item.id) %></h5>
+      </br>
+      <% if item.retired? %>
+        <button type="button" class="btn btn-secondary btn-lg" disabled>Retired Accessory</button>
+      <% else %>
+        <%= button_to 'Add to Cart', carts_path(accessory_id: item.id, do: 'add'), class: "btn btn-primary"%>
+      <% end %>
+
+
+      </div>
     </div>
+    <% end %>
+  </div>
   <% end %>
 </div>

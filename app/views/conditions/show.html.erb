@@ -1,17 +1,25 @@
-<h1>Conditions for <%= @condition.date %> </h1>
+<h1 class='text-center'>Conditions for <%= @condition.date %> </h1>
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="col-sm"></div>
+    <div class="col-sm">
 
-<ul>
-  <li>Max Temperature: <%= @condition.max_temperature %></li>
-  <li>Mean Temperature: <%= @condition.mean_temperature %></li>
-  <li>Min Temperature: <%= @condition.min_temperature %></li>
-  <li>Mean Humidity: <%= @condition.mean_humidity %></li>
-  <li>Mean Visibility: <%= @condition.mean_visibility %> mi</li>
-  <li>Mean Wind Speed: <%= @condition.mean_wind_speed %> mph</li>
-  <li>Precipitation: <%= @condition.precipitation %> in</li>
-  <% if current_admin? %>
-    <li><%= link_to 'Delete', admin_condition_path(@condition), method: :delete %></li>
-    <li><%= link_to 'Edit', edit_admin_condition_path(@condition) %></li>
-  <% end %>
-</ul>
-
-<%= link_to "Return to All Conditions Page", conditions_path %>
+      <ul class="list-group">
+        <li class="list-group-item">Max Temperature: <%= @condition.max_temperature %></li>
+        <li class="list-group-item">Mean Temperature: <%= @condition.mean_temperature %></li>
+        <li class="list-group-item">Min Temperature: <%= @condition.min_temperature %></li>
+        <li class="list-group-item">Mean Humidity: <%= @condition.mean_humidity %></li>
+        <li class="list-group-item">Mean Visibility: <%= @condition.mean_visibility %> mi</li>
+        <li class="list-group-item">Mean Wind Speed: <%= @condition.mean_wind_speed %> mph</li>
+        <li class="list-group-item">Precipitation: <%= @condition.precipitation %> in</li>
+        <% if current_admin? %>
+          <li class="list-group-item"><%= link_to 'Delete', admin_condition_path(@condition), method: :delete %></li>
+          <li class="list-group-item"><%= link_to 'Edit', edit_admin_condition_path(@condition) %></li>
+        <% end %>
+        <li class="list-group-item"><%= link_to "Return to All Conditions Page", conditions_path %></li>
+      </ul>
+    </div>
+    <div class="col-sm"></div>
+  </div>
+</div>

@@ -1,8 +1,19 @@
-<h2>Edit Order <%= @order.id %> </h2>
+<h2 class='text-center'>Edit Order <%= @order.id %> </h2>
 
-<%= form_for [:admin, @order] do |f| %>
-  <%= f.label :status %>
-  <%= f.select :status, options_for_select(["Ordered", "Completed", "Paid", "Canceled"]) %>
-  <%= f.submit 'Submit' %>
-<% end %>
 
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm"></div>
+    <div class="col-sm">
+
+      <%= form_for [:admin, @order] do |f| %>
+        <%= f.label :status %>
+        <%= f.select :status, options_for_select(["Ordered", "Completed", "Paid", "Canceled"]) %>
+        <%= f.submit 'Submit' %>
+      <% end %>
+
+    </div>
+    <div class="col-sm"></div>
+  </div>
+</div>

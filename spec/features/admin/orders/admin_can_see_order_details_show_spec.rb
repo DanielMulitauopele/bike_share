@@ -19,10 +19,10 @@ describe 'as a admin' do
 
       expect(page).to have_content("Order #{user.orders.first.id} Details")
 
-      within '.accessory-1' do
+      within '#accessory-1' do
         expect(page).to have_content(accessory_1.title)
-        expect(page).to have_content("Subtotal: $30.00")
-        expect(page).to have_content("Quantity: 1")
+        expect(page).to have_content("$30.00")
+        expect(page).to have_content("1")
       end
 
       expect(page).to have_content('Order Total: $60.00')

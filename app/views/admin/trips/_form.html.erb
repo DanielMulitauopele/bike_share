@@ -1,28 +1,39 @@
-<%= form_for [:admin, @trip] do |f| %>
 
-  <%= f.label :duration %>
-  <%= f.text_field :duration %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm"></div>
+    <div class="col-sm">
 
-  <%= f.label :start_date %>
-  <%= f.date_field :start_date %>
+      <%= form_for [:admin, @trip] do |f| %>
 
-  <%= f.label :start_station_id %>
-  <%= f.collection_select :start_station_id, Station.order(:name), :id, :name %>
+        <%= f.label :duration %>
+        <%= f.text_field :duration %>
 
-  <%= f.label :end_date %>
-  <%= f.date_field :end_date %>
+        <%= f.label :start_date %>
+        <%= f.date_field :start_date %>
 
-  <%= f.label :end_station_id %>
-  <%= f.collection_select :end_station_id, Station.order(:name), :id, :name %>
+        <%= f.label :start_station_id %>
+        <%= f.collection_select :start_station_id, Station.order(:name), :id, :name %>
 
-  <%= f.label :bike_id %>
-  <%= f.text_field :bike_id %>
+        <%= f.label :end_date %>
+        <%= f.date_field :end_date %>
 
-  <%= f.label :subscription_type %>
-  <%= f.text_field :subscription_type %>
+        <%= f.label :end_station_id %>
+        <%= f.collection_select :end_station_id, Station.order(:name), :id, :name %>
 
-  <%= f.label :zip_code %>
-  <%= f.text_field :zip_code %>
+        <%= f.label :bike_id %>
+        <%= f.text_field :bike_id %>
 
-  <%= f.submit %>
-<% end %>
+        <%= f.label :subscription_type %>
+        <%= f.text_field :subscription_type %>
+
+        <%= f.label :zip_code %>
+        <%= f.text_field :zip_code %>
+
+        <%= f.submit %>
+      <% end %>
+
+    </div>
+    <div class="col-sm"></div>
+  </div>
+</div>

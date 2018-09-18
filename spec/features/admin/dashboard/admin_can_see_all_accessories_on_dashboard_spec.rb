@@ -34,7 +34,7 @@ describe 'as an admin' do
       expect(current_path).to eq(admin_bike_shop_path)
       expect(page).to have_content('Bike Accessories')
       expect(page).to have_content("Chicken Pot Pie")
-      expect(page).to have_content("retired")
+      expect(page).to have_content("Retired")
     end
     it "should show flash message if user does not input correct info" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)

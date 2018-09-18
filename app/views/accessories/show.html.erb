@@ -1,14 +1,26 @@
-<h1><%= @accessory.title %></h1>
+<h1 class="text-center"><%= @accessory.title %></h1>
 
-<%= image_tag('default-image.jpg', class: 'default-image') %>
-<ul>
-  <li><%= @accessory.description %></li>
-  <li><%= @accessory.title %></li>
-  <li><%= number_to_currency(@accessory.price) %></li>
-</ul>
-<% if  @accessory.retired?%>
-  <p> Accessory Retired </p>
-  <% else %>
-<%= button_to "Add to Cart", carts_path(accessory_id: @accessory.id) %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm"></div>
+    <div class="col-sm">
+      <div class="card" style="width: 50rem; margin: 1%;">
+        <%= image_tag('default-image.jpg', class: "card-img-top") %>
+        <div class="card-body" id="accessory-<%= @accessory.id %>">
+          <h5 class="card-title text-center"><%= link_to @accessory.title, accessory_path(@accessory.id) %></h5>
+        <p class="text-center"><%= @accessory.title %></p>
+        <p class="text-center"><%= @accessory.description %></p>
+        <p class="text-center"><%= number_to_currency(@accessory.price) %></p>
+        <% if @accessory.retired? %>
+          <button type="button" class="btn btn-secondary btn-lg" disabled>Accessory Retired</button>
+        <% else %>
+          <%= button_to 'Add to Cart', carts_path(accessory_id: @accessory.id, do: 'add'), class: "btn btn-primary"%>
+        <% end %>
 
+
+        </div>
+      </div>
+    </div>
+    <div class="col-sm"></div>
+  </div>
+</div>

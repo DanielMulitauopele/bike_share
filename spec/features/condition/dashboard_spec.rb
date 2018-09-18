@@ -27,28 +27,28 @@ describe 'visit the condition dashboard' do
 
       expect(page).to have_content('Conditions Dashboard')
 
-      within "#temp-list" do
-        expect(page).to have_content("Max # of Rides: 2018-04-09 : 3")
-        expect(page).to have_content("Min # of Rides: 2018-01-09 : 1")
-        expect(page).to have_content("Avg # of Rides: 2")
+      within "#temp-table" do
+        expect(page).to have_content("2018-04-09 : 3")
+        expect(page).to have_content("2018-01-09 : 1")
+        expect(page).to have_content("2")
       end
 
-      within "#precip-list" do
-        expect(page).to have_content("Max # of Rides: 2018-02-09 : 2")
-        expect(page).to have_content("Min # of Rides: 2018-02-09 : 2")
-        expect(page).to have_content("Avg # of Rides: 2")
+      within "#precip-table" do
+        expect(page).to have_content("2018-02-09 : 2")
+        expect(page).to have_content("2018-02-09 : 2")
+        expect(page).to have_content("2")
       end
 
-      within "#wind-list" do
-        expect(page).to have_content("Max # of Rides: 2018-04-09 : 3")
-        expect(page).to have_content("Min # of Rides: 2018-04-09 : 3")
-        expect(page).to have_content("Avg # of Rides: 3")
+      within "#wind-table" do
+        expect(page).to have_content("2018-04-09 : 3")
+        expect(page).to have_content("2018-04-09 : 3")
+        expect(page).to have_content("3")
       end
 
-      within "#vis-list" do
-        expect(page).to have_content("Max # of Rides: 2018-04-09 : 3")
-        expect(page).to have_content("Min # of Rides: 2018-06-09 : 2")
-        expect(page).to have_content("Avg # of Rides: 2")
+      within "#vis-table" do
+        expect(page).to have_content("2018-04-09 : 3")
+        expect(page).to have_content("2018-06-09 : 2")
+        expect(page).to have_content("2")
       end
     end
   end
