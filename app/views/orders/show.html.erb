@@ -13,6 +13,7 @@
   <ul>
     <li><%= @order.user.name %></li>
     <li><%= @order.user.address %></li>
+    <li><%= link_to 'Edit', edit_admin_order_path(@order) %></li
   </ul>
 
 <% end %>

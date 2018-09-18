@@ -1,14 +1,23 @@
-<%= form_for [:admin, @accessory] do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm"></div>
+    <div class="col-sm">
 
-  <%= f.label :description %>
-  <%= f.text_field :description %>
+      <%= form_for [:admin, @accessory] do |f| %>
+        <%= f.label :title %>
+        <%= f.text_field :title %>
 
-  <%= f.label :price %>
-  <%= f.text_field :price %>
+        <%= f.label :description %>
+        <%= f.text_field :description %>
 
-  <%= f.label :status %>
-  <%= f.select :status, options_for_select(["active", "retired"]) %>
-  <%= f.submit %>
-<% end %>
+        <%= f.label :price %>
+        <%= f.text_field :price %>
+
+        <%= f.label :status %>
+        <%= f.select :status, options_for_select(["active", "retired"]) %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+    <div class="col-sm"></div>
+  </div>
+</div>

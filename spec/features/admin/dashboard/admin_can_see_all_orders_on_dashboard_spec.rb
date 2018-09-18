@@ -11,15 +11,17 @@ describe 'as an admin' do
       @order_5 = @admin.orders.create!(id: 5, total: 65, status: 'Ordered')
       @order_6 = @admin.orders.create!(id: 6, total: 65, status: 'Canceled')
     end
-    
+
     it 'should show all orders' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
       visit admin_dashboard_path
 
       expect(page).to have_content('All Orders')
-      expect(page).to have_link("Order Number #{@order_1.id}")
+      within '#order-1' do
+        expect(page).to have_link(@order_1.id)
+      end
     end
-    
+
     it "should show the total number of orders per status" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
       visit admin_dashboard_path
@@ -30,34 +32,34 @@ describe 'as an admin' do
       expect(page).to have_content("Canceled: 3")
       expect(page).to have_content("Completed: 0")
     end
-    
+
     it "should filter orders by status" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
       visit admin_dashboard_path
 
-      within '.status-nav' do
-        click_on 'Ordered'
+      click_on 'Ordered'
+
+      within '#order-2' do
+        expect(page).to have_content(@order_2.id)
+        expect(page).to have_content(@order_2.status)
+        expect(page).to_not have_content(@order_3.id)
+        expect(page).to_not have_content(@order_3.status)
+
+        expect(page).to have_link("Mark as Paid")
+        expect(page).to have_link("Cancel Order")
       end
-
-      expect(page).to have_content("Order Number #{@order_2.id}")
-      expect(page).to have_content("Status: #{@order_2.status}")
-      expect(page).to_not have_content("Order Number #{@order_3.id}")
-      expect(page).to_not have_content("Status: #{@order_3.status}")
-
-      expect(page).to have_link("Mark as Paid")
-      expect(page).to have_link("Cancel Order")
     end
-    
+
     it "should change status through link" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
       visit admin_dashboard_path
 
       expect(@order_2.status).to eq('Ordered')
-  
-      within '.order-2' do
+
+      within '#order-2' do
         click_on 'Mark as Paid'
       end
-      
+
       expect(page).to have_content('Status: Paid')
     end
   end
