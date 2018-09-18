@@ -19,57 +19,91 @@ describe 'registered user sees one station' do
     @trip_11 = Trip.create!(duration: 160, start_date: '2018/09/06', start_station_id: 1, end_date: '2018/09/06', end_station_id: 3, bike_id: 6, subscription_type: 'cheap', zip_code: 29765)
     @trip_12 = Trip.create!(duration: 160, start_date: '2018/09/06', start_station_id: 1, end_date: '2018/09/06', end_station_id: 3, bike_id: 4, subscription_type: 'cheap', zip_code: 98765)
   end
-  
+
   describe 'they link from stations index' do
     describe 'they see one station' do
       it 'they can not edit or delete station as a regular user' do
         user = create(:user)
-        
+
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-        
+
         visit stations_path
         click_on @station_1.name
 
         expect(current_path).to eq('/wash-park-east')
         expect(page).to have_content(@station_1.name)
-        expect(page).to have_content(@station_1.dock_count)
+        within '#dock-count' do
+          expect(page).to have_content(@station_1.dock_count)
+        end
         expect(page).to have_content(@station_1.city)
         expect(page).to have_content(@station_1.installation_date)
-        expect(page).to have_content("Number of rides started at this station: 6")
-        expect(page).to have_content("Number of rides ended at this station: 3")
-        expect(page).to have_content("Most frequent destination station: #{@station_2.name}")
-        expect(page).to have_content("Most frequent origination station: #{@station_2.name}")
-        expect(page).to have_content("Date with the highest number of trips started at this station: 2018-09-06")
-        expect(page).to have_content("Most frequent zip code for users starting trips at this station: 98765")
-        expect(page).to have_content("Bike ID most frequently starting a trip at this station: 4")
+        within '#rides-started' do
+          expect(page).to have_content("6")
+        end
+        within '#rides-ended' do
+          expect(page).to have_content("3")
+        end
+        within '#most-frequent-destination' do
+          expect(page).to have_content(@station_2.name)
+        end
+        within '#most-frequent-origination' do
+          expect(page).to have_content(@station_2.name)
+        end
+        within '#highest-date' do
+          expect(page).to have_content("2018-09-06")
+        end
+        within '#frequent-zip' do
+          expect(page).to have_content("98765")
+        end
+        within '#frequent-bike' do
+          expect(page).to have_content("4")
+        end
         expect(page).to_not have_content('Edit')
         expect(page).to_not have_content('Delete')
       end
     end
   end
-  
-  describe 'Admin sees one station' do 
+
+  describe 'Admin sees one station' do
     it 'they see link to edit and delete a station' do
       admin = create(:user, role: 1)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
       visit station_path(@station_1)
 
+
       expect(current_path).to eq('/wash-park-east')
       expect(page).to have_content(@station_1.name)
-      expect(page).to have_content(@station_1.dock_count)
+      within '#dock-count' do
+        expect(page).to have_content(@station_1.dock_count)
+      end
       expect(page).to have_content(@station_1.city)
       expect(page).to have_content(@station_1.installation_date)
-      expect(page).to have_content("Number of rides started at this station: 6")
-      expect(page).to have_content("Number of rides ended at this station: 3")
-      expect(page).to have_content("Most frequent destination station: #{@station_2.name}")
-      expect(page).to have_content("Most frequent origination station: #{@station_2.name}")
-      expect(page).to have_content("Date with the highest number of trips started at this station: 2018-09-06")
-      expect(page).to have_content("Most frequent zip code for users starting trips at this station: 98765")
-      expect(page).to have_content("Bike ID most frequently starting a trip at this station: 4")
+      within '#rides-started' do
+        expect(page).to have_content("6")
+      end
+      within '#rides-ended' do
+        expect(page).to have_content("3")
+      end
+      within '#most-frequent-destination' do
+        expect(page).to have_content(@station_2.name)
+      end
+      within '#most-frequent-origination' do
+        expect(page).to have_content(@station_2.name)
+      end
+      within '#highest-date' do
+        expect(page).to have_content("2018-09-06")
+      end
+      within '#frequent-zip' do
+        expect(page).to have_content("98765")
+      end
+      within '#frequent-bike' do
+        expect(page).to have_content("4")
+      end
       expect(page).to have_content('Edit')
       expect(page).to have_content('Delete')
-    end 
+
+    end
   end
 end
 
