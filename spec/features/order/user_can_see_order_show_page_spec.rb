@@ -32,10 +32,10 @@ describe 'as a user' do
       expect(current_path).to eq(order_path(user.orders.first))
       expect(page).to have_content("Order #{user.orders.first.id} Details")
 
-      within '.accessory-1' do
+      within '#accessory-1' do
         expect(page).to have_content(accessory_1.title)
-        expect(page).to have_content("Subtotal: $60.00")
-        expect(page).to have_content("Quantity: 2")
+        expect(page).to have_content("$60.00")
+        expect(page).to have_content("2")
       end
 
       expect(page).to have_content('Order Total')
