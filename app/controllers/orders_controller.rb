@@ -12,13 +12,14 @@ class OrdersController < ApplicationController
   def create
     if current_user && @cart.total_count != 0
       order = current_user.orders.create!(total: 0, status: "Ordered", user_id: current_user.id)
+
       @cart.contents.each do |id, quantity|
         quantity.times do
           order.accessories << Accessory.find(id)
         end
       end
 
-      order[:total] = order.accessories.sum(:price)
+      order.update(total: order.accessories.sum(:price))
 
       flash[:order] = "You have successfully submitted your order totaling $#{@cart.cart_total}!"
       session[:cart] = nil
