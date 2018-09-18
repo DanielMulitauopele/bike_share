@@ -1,22 +1,35 @@
-<h1>All Stations</h1>
+<h1 class='text-center'>All Stations</h1>
 
-<p><%= link_to 'Stations Dashboard', stations_dashboard_path %></p> 
+<p class='text-center'><%= link_to 'Stations Dashboard', stations_dashboard_path %></p>
 
 <% if current_admin? %>
-  <p><%= link_to 'Create A New Station', new_admin_station_path %></p>
+  <p class='text-center'><%= link_to 'Create A New Station', new_admin_station_path %></p>
 <% end %>
 
-<ul id="stations">
-  <% @stations.each do |station| %>
-    <li id="station-<%= station.id %>">
-      Station: <%= link_to station.name, station_path(station), class: 'stations-name' %>
-      Dock Count: <%= station.dock_count %>
-      City: <%= station.city %>
-      Installed: <%= station.installation_date %>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Station</th>
+      <th scope="col">Dock Count</th>
+      <th scope="col">City</th>
+      <th scope="col">Installed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stations.each do |station| %>
+    <tr id="station-<%= station.id %>">
+      <th scope="row"><%= link_to station.name, station_path(station)%></th>
+      <td><%= station.dock_count %></td>
+      <td><%= station.city %></td>
+      <td><%= station.installation_date %></td>
       <% if current_admin? %>
-        <%= link_to 'Edit', edit_admin_station_path(station) %>
-        <%= link_to 'Delete', admin_station_path(station), method: :delete %>
+        <td><%= link_to 'Edit', edit_admin_station_path(station) %></td>
+        <td><%= link_to 'Delete', admin_station_path(station), method: :delete %></td>
       <% end %>
-    </li>
-  <% end %>
-</ul>
+    </tr>
+    <% end %>
+
+  </tbody>
+</table>
