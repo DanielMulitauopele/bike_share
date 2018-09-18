@@ -1,64 +1,251 @@
-<h1>Trip Dashboard</h1>
-<h2>Average Trip Duration: <%= @average_duration.round(2) %> Minutes</h2>
-<p><%= link_to 'Back to Trips Index', trips_path %></p>
-<ul>
-  <strong><li>Longest Rides:</li></strong>
-  <% @longest_ride.each do |ride| %>
-    <li>Longest Ride: Trip <%= ride.id %> - <%= ride.start_date.strftime("%F") %> - <%= ride.duration_minutes %> minutes</li>
-    <% end %>
-</ul>
+<h1 class='text-center'>Trip Dashboard</h1>
+<h2 class='text-center'>Average Trip Duration: <%= @average_duration.round(2) %> Minutes</h2>
+<p class='text-center'><%= link_to 'Back to Trips Index', trips_path %></p>
 
-<ul>
- <strong><li>Shortest Rides:</li></strong>
-  <% @shortest_ride.each do |ride| %>
-    <li>Shortest Ride: Trip <%= ride.id %> - <%= ride.start_date.strftime("%F") %> - <%= ride.duration_minutes %> minutes</li>
-    <% end %>
-</ul>
 
-<p>Most Popular Start Location: <%= @most_popular_start_station %></p>
-<p>Most Popular End Location: <%= @most_popular_end_station %></p>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm"></div>
+      <div class="col-12">
 
-<ul>
-  <strong><li>Rides by Month Year: </li></strong>
-  <% @grouped_by_month_year.each do |trip| %>
-  <li><%= trip.my.strftime("%b-%Y")%>: <%= trip.count %></li>
-<% end %>
-</ul>
+        <h4 class='text-center'>Destinations</h4>
+        <table class="table">
+          <tbody>
 
-<ul>
-  <strong><li>Rides by Year: </li></strong>
-  <% @grouped_by_year.each do |date, count| %>
-  <li><%= date.strftime("%Y")%>: <%= count %></li>
-<% end %>
-</ul>
+            <tr id='most-popular-start'>
+              <th scope="row">Most Popular Start Location</th>
+              <td><%= @most_popular_start_station %></td>
+            </tr>
+            <tr id='most-popular-end'>
+              <th scope="row">Most Popular End Location</th>
+              <td><%= @most_popular_end_station %></td>
+            </tr>
 
-<p>Most Ridden Bike: <%= @most_ridden_bike.bike_id %> - Rides: <%= @most_ridden_bike.count %></p>
-<p>Least Ridden Bike: <%= @least_ridden_bike.bike_id %> - Rides: <%= @least_ridden_bike.count %></p>
+          </tbody>
+        </table>
 
-<ul>
-  <strong><li>Distribution by Subscriber</li></strong>
-  <% @distribution_by_subscriber.each do |subscription_group| %>
-    <li><%= subscription_group.subscription_type.capitalize %> : <%= subscription_group.count %> : <%= subscription_group.percentage %>%</li>
-    <% end %>
-</ul>
+      </br>
+      </br>
 
-<h3>Most Popular Day: <%= @max_day.day.strftime("%F") %>: <%= @max_day.count %></h3>
-  <ul>
-    <li>Max Temperature: <%= @max_day_weather.max_temperature %></li>
-    <li>Mean Temperature: <%= @max_day_weather.mean_temperature %></li>
-    <li>Min Temperature: <%= @max_day_weather.min_temperature %></li>
-    <li>Mean Humidity: <%= @max_day_weather.mean_humidity %></li>
-    <li>Mean Visibility: <%= @max_day_weather.mean_visibility %></li>
-    <li>Mean Wind Speed: <%= @max_day_weather.mean_wind_speed %></li>
-    <li>Precipitation: <%= @max_day_weather.precipitation %></li>
-  </ul>
-<h3>Least Popular Day: <%= @min_day.day.strftime("%F") %>: <%= @min_day.count %></h3>
-  <ul>
-    <li>Max Temperature: <%= @min_day_weather.max_temperature %></li>
-    <li>Mean Temperature: <%= @min_day_weather.mean_temperature %></li>
-    <li>Min Temperature: <%= @min_day_weather.min_temperature %></li>
-    <li>Mean Humidity: <%= @min_day_weather.mean_humidity %></li>
-    <li>Mean Visibility: <%= @min_day_weather.mean_visibility %></li>
-    <li>Mean Wind Speed: <%= @min_day_weather.mean_wind_speed %></li>
-    <li>Precipitation: <%= @min_day_weather.precipitation %></li>
-  </ul>
+        <h4 class='text-center'>Bike</h4>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Bike</th>
+              <th scope="col">Rides</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr>
+              <th scope="row">Most Ridden Bike</th>
+              <td><%= @most_ridden_bike.bike_id %></td>
+              <td><%= @most_ridden_bike.count %></td>
+            </tr>
+            <tr>
+              <th scope="row">Least Ridden Bike</th>
+              <td><%= @least_ridden_bike.bike_id %></td>
+              <td><%= @least_ridden_bike.count %></td>
+            </tr>
+
+          </tbody>
+        </table>
+
+      </br>
+      </br>
+
+
+        <h4 class='text-center'>Longest Rides</h4>
+        <table class="table" id='longest-rides'>
+          <thead>
+            <tr>
+              <th scope="col">Trip</th>
+              <th scope="col">Date</th>
+              <th scope="col">Duration</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @longest_ride.each do |ride| %>
+            <tr>
+              <th scope="row">Trip <%= ride.id %></th>
+              <td><%= ride.start_date.strftime("%F") %></td>
+              <td><%= ride.duration_minutes %> minutes</td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+      </br>
+      </br>
+
+        <h4 class='text-center'>Shortest Rides</h4>
+        <table class="table" id='shortest-rides'>
+          <thead>
+            <tr>
+              <th scope="col">Trip</th>
+              <th scope="col">Date</th>
+              <th scope="col">Duration</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @shortest_ride.each do |ride| %>
+            <tr>
+              <th scope="row">Trip <%= ride.id %></th>
+              <td><%= ride.start_date.strftime("%F") %></td>
+              <td><%= ride.duration_minutes %> minutes</td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+      </br>
+      </br>
+
+        <h4 class='text-center'>Rides by Month Year</h4>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Rides</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @grouped_by_month_year.each do |trip| %>
+
+            <tr>
+              <th scope="row"><%= trip.my.strftime("%b-%Y")%></th>
+              <td><%= trip.count %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+      </br>
+      </br>
+
+        <h4 class='text-center'>Rides by Year</h4>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Rides</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @grouped_by_year.each do |date, count| %>
+            <tr id="grouped-year-<%=date.strftime("%Y")%>">
+              <th scope="row"><%= date.strftime("%Y")%></th>
+              <td><%= count %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+      </br>
+      </br>
+
+        <h4 class='text-center'>Distribtuion by Subscriber Type</h4>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Type</th>
+              <th scope="col">Rides</th>
+              <th scope="col">Percentage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @distribution_by_subscriber.each do |subscription_group| %>
+            <tr>
+              <th scope="row"><%= subscription_group.subscription_type.capitalize %></th>
+              <td><%= subscription_group.count %></td>
+              <td><%= subscription_group.percentage %>%</td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+      </br>
+      </br>
+
+        <h4 class='text-center'>Most Popular Day: <%= @max_day.day.strftime("%F") %>: <%= @max_day.count %></h4>
+        <table class="table" id="most-pop-day-table">
+          <tbody>
+
+            <tr>
+              <td>Max Temperature</td>
+              <td><%= @max_day_weather.max_temperature %></td>
+            </tr>
+            <tr>
+              <td>Mean Temperature</td>
+              <td><%= @max_day_weather.mean_temperature %></td>
+            </tr>
+            <tr>
+              <td>Min Temperature</td>
+              <td><%= @max_day_weather.min_temperature %></td>
+            </tr>
+            <tr>
+              <td>Mean Humidity</td>
+              <td><%= @max_day_weather.mean_humidity %></td>
+            </tr>
+            <tr>
+              <td>Mean Visibility</td>
+              <td><%= @max_day_weather.mean_visibility %></td>
+            </tr>
+            <tr>
+              <td>Mean Wind Speed</td>
+              <td><%= @max_day_weather.mean_wind_speed %></td>
+            </tr>
+            <tr>
+              <td>Precipitation</td>
+              <td><%= @max_day_weather.precipitation %></td>
+            </tr>
+
+          </tbody>
+        </table>
+
+      </br>
+      </br>
+
+        <h4 class='text-center'>Least Popular Day: <%= @min_day.day.strftime("%F") %>: <%= @min_day.count %></h4>
+        <table class="table" id="least-pop-day-table">
+          <tbody>
+
+            <tr>
+              <td>Max Temperature</td>
+              <td><%= @min_day_weather.max_temperature %></td>
+            </tr>
+            <tr>
+              <td>Mean Temperature</td>
+              <td><%= @min_day_weather.mean_temperature %></td>
+            </tr>
+            <tr>
+              <td>Min Temperature</td>
+              <td><%= @min_day_weather.min_temperature %></td>
+            </tr>
+            <tr>
+              <td>Mean Humidity</td>
+              <td><%= @min_day_weather.mean_humidity %></td>
+            </tr>
+            <tr>
+              <td>Mean Visibility</td>
+              <td><%= @min_day_weather.mean_visibility %></td>
+            </tr>
+            <tr>
+              <td>Mean Wind Speed</td>
+              <td><%= @min_day_weather.mean_wind_speed %></td>
+            </tr>
+            <tr>
+              <td>Precipitation</td>
+              <td><%= @min_day_weather.precipitation %></td>
+            </tr>
+
+          </tbody>
+        </table>
+
+
+
+      </div>
+      <div class="col-sm"></div>
+    </div>
+  </div>
