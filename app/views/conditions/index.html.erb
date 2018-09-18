@@ -6,22 +6,39 @@
   <p><%= link_to 'Create New Condition', new_admin_condition_path %></p>
 <% end %>
 
-<% @conditions.each do |condition| %>
-  <div class="condition">
-    <h4><%= link_to "Date: #{condition.date}", condition_path(condition) %></h4>
-      <ul class="condition-number-<%= condition.id %>">
-        <li>Max Temperature: <%= condition.max_temperature %></li>
-        <li>Mean Temperature: <%= condition.mean_temperature %></li>
-        <li>Min Temperature: <%= condition.min_temperature %></li>
-        <li>Mean Humidity: <%= condition.mean_humidity %></li>
-        <li>Mean Visibility: <%= condition.mean_visibility %> mi</li>
-        <li>Mean Wind Speed: <%= condition.mean_wind_speed %> mph</li>
-        <li>Precipitation: <%= condition.precipitation %> in</li>
-        <% if current_admin? %>
-        <li><%= link_to 'Delete', admin_condition_path(condition), method: :delete%></li>
-        <li><%= link_to 'Edit', edit_admin_condition_path(condition)  %></li>
 
-        <% end %>
-      </ul>
-  </div>
-<% end %>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Max Temperature</th>
+      <th scope="col">Mean Temperature</th>
+      <th scope="col">Min Temperature</th>
+      <th scope="col">Mean Humidity</th>
+      <th scope="col">Mean Visibility</th>
+      <th scope="col">Mean Wind Speed</th>
+      <th scope="col">Precipitation</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @conditions.each do |condition| %>
+    <tr id="condition-<%= condition.id %>">
+      <th scope="row"><%= link_to "Date: #{condition.date}", condition_path(condition) %></th>
+      <td><%= condition.max_temperature %></td>
+      <td><%= condition.mean_temperature %></td>
+      <td><%= condition.min_temperature %></td>
+      <td><%= condition.mean_humidity %></td>
+      <td><%= condition.mean_visibility %> mi</td>
+      <td><%= condition.mean_wind_speed %> mph</td>
+      <td><%= condition.precipitation %> in</td>
+      <% if current_admin? %>
+      <td><%= link_to 'Delete', admin_condition_path(condition), method: :delete%></td>
+      <td><%= link_to 'Edit', edit_admin_condition_path(condition)  %></td>
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
