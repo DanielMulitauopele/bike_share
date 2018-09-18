@@ -29,14 +29,14 @@ describe 'admin creates new trip' do
         click_on "Create Trip"
 
         expect(page).to have_content("Trip successfully created!")
-        expect(page).to have_content("Duration: 1000")
-        expect(page).to have_content("Start Date: 2018-09-01")
-        expect(page).to have_content("Start Station: Wash Park East")
-        expect(page).to have_content("End Date: 2018-09-02")
-        expect(page).to have_content("End Station: Yale St")
-        expect(page).to have_content("Bike ID: 45")
-        expect(page).to have_content("Subscription Type: Subscriber")
-        expect(page).to have_content("Zip Code: 98765")
+        expect(page).to have_content("Duration 1000")
+        expect(page).to have_content("Start Date 2018-09-01")
+        expect(page).to have_content("Start Station Wash Park East")
+        expect(page).to have_content("End Date 2018-09-02")
+        expect(page).to have_content("End Station Yale St")
+        expect(page).to have_content("Bike ID 45")
+        expect(page).to have_content("Subscription Type Subscriber")
+        expect(page).to have_content("Zip Code 98765")
       end
 
       it "it should fail if not all information provided" do

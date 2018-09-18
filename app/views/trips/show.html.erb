@@ -1,19 +1,57 @@
-<h2>Trip No. <%= @trip.id %></h1>
+<h2 class='text-center'>Trip No. <%= @trip.id %></h1>
 
-<p><%= link_to "Back to All Trips", trips_path %>
+<p class='text-center'><%= link_to "Back to All Trips", trips_path %>
 
-<ul>
-  <li>Duration: <%= @trip.duration %></li>
-  <li>Start Date: <%= @trip.start_date%></li>
-  <li>Start Station: <%= @trip.start_station.name %></li>
-  <li>End Date: <%= @trip.end_date %></li>
-  <li>End Station: <%= @trip.end_station.name %></li>
-  <li>Bike ID: <%= @trip.bike_id %></li>
-  <li>Subscription Type: <%= @trip.subscription_type%></li>
-  <li>Zip Code: <%= @trip.zip_code%></li>
+<div class="container">
+  <div class="row">
+    <div class="col-sm"></div>
+    <div class="col-12">
 
-  <% if current_admin? %>
-    <%= link_to 'Edit', edit_admin_trip_path(@trip) %>
-    <%= link_to 'Delete', admin_trip_path(@trip), method: :destroy %>
-  <% end %>
-</ul>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>Duration</td>
+            <td><%= @trip.duration %></td>
+          </tr>
+          <tr>
+            <td>Start Date</td>
+            <td><%= @trip.start_date%></td>
+          </tr>
+          <tr>
+            <td>Start Station</td>
+            <td><%= @trip.start_station.name %></td>
+          </tr>
+          <tr>
+            <td>End Date</td>
+            <td><%= @trip.end_date %></td>
+          </tr>
+          <tr>
+            <td>End Station</td>
+            <td><%= @trip.end_station.name %></td>
+          </tr>
+          <tr>
+            <td>Bike ID</td>
+            <td><%= @trip.bike_id %></td>
+          </tr>
+          <tr>
+            <td>Subscription Type</td>
+            <td><%= @trip.subscription_type%></td>
+          </tr>
+          <tr>
+            <td>Zip Code</td>
+            <td><%= @trip.zip_code%></td>
+          </tr>
+          <tr>
+          <% if current_admin? %>
+            <td><%= link_to 'Edit', edit_admin_trip_path(@trip) %></td>
+            <td><%= link_to 'Delete', admin_trip_path(@trip), method: :destroy %></td>
+          <% end %>
+        </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+    <div class="col-sm"></div>
+  </div>
+</div>

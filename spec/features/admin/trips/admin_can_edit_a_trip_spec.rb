@@ -27,14 +27,14 @@ describe 'admin can edit a trip' do
 
       expect(current_path).to eq(trip_path(@trip))
       expect(page).to have_content("Successfully updated trip.")
-      expect(page).to have_content("Duration: 1000")
-      expect(page).to have_content("Start Date: 2018-09-01")
-      expect(page).to have_content("Start Station: Wash Park East")
-      expect(page).to have_content("End Date: 2018-09-02")
-      expect(page).to have_content("End Station: Yale St")
-      expect(page).to have_content("Bike ID: 45")
-      expect(page).to have_content("Subscription Type: Subscriber")
-      expect(page).to have_content("Zip Code: 98765")
+      expect(page).to have_content("Duration 1000")
+      expect(page).to have_content("Start Date 2018-09-01")
+      expect(page).to have_content("Start Station Wash Park East")
+      expect(page).to have_content("End Date 2018-09-02")
+      expect(page).to have_content("End Station Yale St")
+      expect(page).to have_content("Bike ID 45")
+      expect(page).to have_content("Subscription Type Subscriber")
+      expect(page).to have_content("Zip Code 98765")
     end
 
     it "cannot edit trip if not given all neccessary information" do
