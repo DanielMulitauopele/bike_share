@@ -6,15 +6,19 @@
       <%= form_for [:admin, @accessory] do |f| %>
         <%= f.label :title %>
         <%= f.text_field :title %>
+        </br>
 
         <%= f.label :description %>
         <%= f.text_field :description %>
+        </br>
 
         <%= f.label :price %>
         <%= f.text_field :price %>
+        </br>
 
         <%= f.label :status %>
         <%= f.select :status, options_for_select(["active", "retired"]) %>
+        </br>
         <%= f.submit %>
       <% end %>
     </div>
