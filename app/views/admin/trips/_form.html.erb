@@ -2,33 +2,41 @@
 <div class="container">
   <div class="row">
     <div class="col-sm"></div>
-    <div class="col-sm">
+    <div class="col-6">
 
       <%= form_for [:admin, @trip] do |f| %>
 
         <%= f.label :duration %>
         <%= f.text_field :duration %>
+        </br>
 
         <%= f.label :start_date %>
         <%= f.date_field :start_date %>
+        </br>
 
         <%= f.label :start_station_id %>
         <%= f.collection_select :start_station_id, Station.order(:name), :id, :name %>
+        </br>
 
         <%= f.label :end_date %>
         <%= f.date_field :end_date %>
+        </br>
 
         <%= f.label :end_station_id %>
         <%= f.collection_select :end_station_id, Station.order(:name), :id, :name %>
+        </br>
 
         <%= f.label :bike_id %>
         <%= f.text_field :bike_id %>
+        </br>
 
         <%= f.label :subscription_type %>
         <%= f.text_field :subscription_type %>
+        </br>
 
         <%= f.label :zip_code %>
         <%= f.text_field :zip_code %>
+        </br>
 
         <%= f.submit %>
       <% end %>

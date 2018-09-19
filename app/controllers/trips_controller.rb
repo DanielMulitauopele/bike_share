@@ -23,5 +23,6 @@ class TripsController< ApplicationController
     @min_day = Trip.min_day
     @max_day_weather = Condition.max_day_weather(@max_day)
     @min_day_weather = Condition.min_day_weather(@min_day)
+    require 'pry'; binding.pry
   end
 end

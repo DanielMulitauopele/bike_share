@@ -10,10 +10,10 @@
 
 
 <% if current_admin? %>
-  <ul>
-    <li><%= @order.user.name %></li>
-    <li><%= @order.user.address %></li>
-    <li><%= link_to 'Edit', edit_admin_order_path(@order) %></li
+  <ul class='text-center'>
+    <li class='text-center'><%= @order.user.name %></li>
+    <li class='text-center'><%= @order.user.address %></li>
+    <li class='text-center'><%= link_to 'Edit', edit_admin_order_path(@order) %></li>
   </ul>
 
 <% end %>

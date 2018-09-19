@@ -35,8 +35,8 @@
       <td><%= condition.mean_wind_speed %> mph</td>
       <td><%= condition.precipitation %> in</td>
       <% if current_admin? %>
-      <td><%= link_to 'Delete', admin_condition_path(condition), method: :delete%></td>
       <td><%= link_to 'Edit', edit_admin_condition_path(condition)  %></td>
+      <td><%= link_to 'Delete', admin_condition_path(condition), method: :delete%></td>
       <% end %>
     </tr>
     <% end %>
