@@ -5,7 +5,7 @@ class CreateAccessories < ActiveRecord::Migration[5.1]
       t.text :description
       t.decimal :price
       t.integer :status,                 default: 0
-      t.string :image
+      t.string :image, default: 'default-image.jpg'
 
       t.timestamps
     end
